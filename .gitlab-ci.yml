@@ -1,0 +1,86 @@
+stages:
+ - build
+ - release
+
+build:windows:
+  stage: build
+  tags:
+  - windows
+  when: manual
+  script:
+    - choco install -y cmake --installargs '"ADD_CMAKE_TO_PATH=System"'
+    - $env:Path += ";C:\Program Files\CMake\bin"
+    - cmake . -DCMAKE_TOOLCHAIN_FILE="$TOOLCHAIN.cmake"
+    - cmake --build . --config Release
+     - cp Release/$CI_PROJECT_NAME.*.dll ./
+  after_script:
+    - $env = "${TOOLCHAIN}_JOB_ID=$CI_JOB_ID" -replace "-", "_"
+    - Add-Content -Path job.env -Value $env
+  parallel:
+    matrix:
+      - TOOLCHAIN: [windows-x86, windows-x64]
+  artifacts:
+    name: $CI_PROJECT_NAME
+    paths:
+    - $CI_PROJECT_NAME.*.dll
+    expire_in: never
+    reports:
+       dotenv: job.env
+
+build:linux:
+  stage: build
+  image: registry.gitlab.com/gothicmultiplayerteam/buildimage:ubuntu-18.04
+  when: manual
+  script:
+    - cmake . -DCMAKE_TOOLCHAIN_FILE="$TOOLCHAIN.cmake"
+    - cmake --build . && exit $?
+  after_script:
+    - echo "${TOOLCHAIN}_JOB_ID=$CI_JOB_ID" | tr - _ >> job.env
+  parallel:
+    matrix:
+      - TOOLCHAIN: [linux-x86, linux-x64, linux-arm, linux-arm64]
+  artifacts:
+    name: $CI_PROJECT_NAME
+    paths:
+    - $CI_PROJECT_NAME.*
+    expire_in: never
+    reports:
+       dotenv: job.env
+    
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  when: manual
+  needs:
+    - job: build:linux
+      artifacts: true
+    - job: build:windows
+      artifacts: true
+  variables:
+    TAG: '0.1'
+  script:
+    - echo "Create Release $TAG"
+  release:
+    tag_name: '$TAG'
+    description: "./CHANGELOG.md"
+    assets:
+      links:
+        - name: "$CI_PROJECT_NAME.x86.dll"
+          url: "$CI_PROJECT_URL/-/jobs/$windows_x86_JOB_ID/artifacts/download"
+          link_type: "package"
+        - name: "$CI_PROJECT_NAME.x64.dll"
+          url: "$CI_PROJECT_URL/-/jobs/$windows_x64_JOB_ID/artifacts/download"
+          link_type: "package"
+        - name: "$CI_PROJECT_NAME.x86.so"
+          url: "$CI_PROJECT_URL/-/jobs/$linux_x86_JOB_ID/artifacts/download"
+          link_type: "package"
+        - name: "$CI_PROJECT_NAME.x64.so"
+          url: "$CI_PROJECT_URL/-/jobs/$linux_x64_JOB_ID/artifacts/download"
+          link_type: "package"
+        - name: "$CI_PROJECT_NAME.arm.so"
+          url: "$CI_PROJECT_URL/-/jobs/$linux_arm_JOB_ID/artifacts/download"
+          link_type: "package"
+        - name: "$CI_PROJECT_NAME.arm64.so"
+          url: "$CI_PROJECT_URL/-/jobs/$linux_arm64_JOB_ID/artifacts/download"
+          link_type: "package"
+
