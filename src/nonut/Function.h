@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <type_traits>
 
 #include "api/squirrel_api.h"
 #include "api/module_api.h"
@@ -9,30 +8,58 @@ using namespace SqModule;
 
 namespace nonut {
 
+	inline class PushArg
+	{
+	} pushArgObject;
+
+	inline PushArg operator<<(const PushArg pushArg, bool value)
+	{
+		sq_pushbool(vm, value);
+		return pushArg;
+	}
+
+	inline PushArg operator<<(const PushArg pushArg, float value)
+	{
+		sq_pushfloat(vm, value);
+		return pushArg;
+	}
+
+	inline PushArg operator<<(const PushArg pushArg, int value)
+	{
+		sq_pushinteger(vm, value);
+		return pushArg;
+	}
+
+	inline PushArg operator<<(const PushArg pushArg, const std::string& value)
+	{
+		sq_pushstring(vm, value.c_str(), value.length());
+		return pushArg;
+	}
+
 	template <typename ReturnType, typename... Args>
 	class Function
 	{
 	public:
-		Function(std::string _functionName)
+		Function(const std::string& _functionName)
 		{
-			(Count(_args), ...);
-
 			sq_pushroottable(vm);
 			sq_pushstring(vm, _functionName.c_str(), _functionName.length());
-			sq_get(vm, -2); //get the function from the root table
 
+			// get the function from the root table
 			if (SQ_FAILED(sq_get(vm, -2)))
 			{
 				sq_pop(vm, 1);
 				throw;
 			}
-			SQObjectType value_type = sq_gettype(vm, -1);
-			if (value_type != OT_CLOSURE && value_type != OT_NATIVECLOSURE)
+
+			// check the type
+			if (const SQObjectType value_type = sq_gettype(vm, -1); value_type != OT_CLOSURE && value_type != OT_NATIVECLOSURE)
 			{
 				sq_pop(vm, 2);
 				throw;
 			}
 
+			// get function and add ref
 			sq_getstackobj(vm, -1, &funcObj);
 			sq_addref(vm, &funcObj);
 
@@ -45,22 +72,28 @@ namespace nonut {
 			sq_resetobject(&funcObj);
 		}
 
-		ReturnType operator()(Args... _args)
+		ReturnType operator()(Args... args)
 		{
-			SQInteger top = sq_gettop(vm);
-
+			const SQInteger top = sq_gettop(vm);
 			sq_pushobject(vm, funcObj);
 			sq_pushroottable(vm);
 
-			(PushArg(_args), ...);
+			((pushArgObject << args), ...);
 
-			if constexpr (std::is_same<ReturnType, void>)
+			if constexpr (std::is_same_v<ReturnType, void>)
 			{
-				sq_call(v, count + 1, SQFalse, SQFalse);
+				auto returnCode = sq_call(vm, argCount + 1, SQFalse, SQFalse); // TODO: HANDLE ERROR RETURN CODE
+				sq_pop(vm, 2);
+				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
+				return void();
 			}
 			else
 			{
-				sq_call(v, count + 1, SQTrue, SQFalse);
+				auto returnCode = sq_call(vm, argCount + 1, SQTrue, SQFalse); // TODO: HANDLE ERROR RETURN CODE
+				auto result = ReturnVar<ReturnType>();
+				sq_pop(vm, 2);
+				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
+				return result;
 			}
 		}
 
@@ -68,43 +101,56 @@ namespace nonut {
 
 
 	private:
-		HSQOBJECT funcObj;
-		size_t count = 0;
-
-		template<typename T>
-		constexpr void Count(T t)
-		{
-			++count;
-		}
-
-		template <typename T>
-		void PushArg(T value)
-		{
-			static_assert(false, "Not supported argument type");
-		}
-
-		template<>
-		void PushArg<bool>(bool value)
-		{
-			sq_pushbool(vm, value);
-		}
-
-		template<>
-		void PushArg<float>(float value)
-		{
-			sq_pushfloat(vm, value);
-		}
-
-		template<>
-		void PushArg<int>(int value)
-		{
-			sq_pushinteger(vm, value);
-		}
-
-		template<>
-		void PushArg<>(std::string value)
-		{
-			sq_pushstring(vm, value.c_str(), value.length());
-		}
+		HSQOBJECT funcObj{};
+		static constexpr auto argCount{ sizeof...(Args) };
 	};
+
+	template <typename T>
+	T ReturnVar()
+	{
+		static_assert(
+			std::is_same_v<T, bool> ||
+			std::is_same_v<T, float> ||
+			std::is_same_v<T, int> ||
+			std::is_same_v<T, std::string>,
+			"Not supported return type");
+
+		return T();
+	}
+
+	template<>
+	inline bool ReturnVar<bool>()
+	{
+		SQBool result;
+		sq_getbool(vm, -1, &result);
+		sq_pop(vm, 1); // pops result
+		return static_cast<bool>(result);
+	}
+
+	template<>
+	inline float ReturnVar<float>()
+	{
+		float result;
+		sq_getfloat(vm, -1, &result);
+		sq_pop(vm, 1); // pops result
+		return result;
+	}
+
+	template<>
+	inline int ReturnVar<int>()
+	{
+		int result;
+		sq_getinteger(vm, -1, &result);
+		sq_pop(vm, 1); // pops result
+		return result;
+	}
+
+	template<>
+	inline std::string ReturnVar<std::string>()
+	{
+		const SQChar* result = nullptr;
+		sq_getstring(vm, -1, &result);
+		sq_pop(vm, 1); // pops result
+		return std::string(result);
+	}
 }

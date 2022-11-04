@@ -20,6 +20,7 @@ file(GLOB SRC
 
 add_library(squirrel-template SHARED ${SRC})
 target_precompile_headers(squirrel-template PRIVATE "src/pch.h")
+set_property(TARGET squirrel-template PROPERTY CXX_STANDARD 20)
 
 target_include_directories(squirrel-template
 	INTERFACE

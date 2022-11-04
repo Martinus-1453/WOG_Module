@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "nonut/Function.h"
 using namespace SqModule;
 
 class Draw {
@@ -71,10 +72,18 @@ private:
 };
 
 extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api) {
-	SqModule::Initialize(vm, api);
+	Initialize(vm, api);
 	Sqrat::DefaultVM::Set(vm);
-	Sqrat::RootTable(vm).GetFunction("print").Execute(std::string("Hello there from module :)"));
-	Draw* draw = new Draw(0, 0, "dupa");
-	draw->SetIsVisible(true);
+
+	// Test print function
+	nonut::Function<void, std::string> print("print");
+	print(std::string("Print z szablonu :D"));
+
+	// Test getWorld function + print
+	nonut::Function<std::string> getWorld("getWorld");
+	print(getWorld());
+
+	//Draw* draw = new Draw(0, 0, "dupa");
+	//draw->SetIsVisible(true);
 	return SQ_OK;
 }
