@@ -36,74 +36,6 @@ namespace nonut {
 		return pushArg;
 	}
 
-	template <typename ReturnType, typename... Args>
-	class Function
-	{
-	public:
-		Function(const std::string& _functionName)
-		{
-			sq_pushroottable(vm);
-			sq_pushstring(vm, _functionName.c_str(), _functionName.length());
-
-			// get the function from the root table
-			if (SQ_FAILED(sq_get(vm, -2)))
-			{
-				sq_pop(vm, 1);
-				throw;
-			}
-
-			// check the type
-			if (const SQObjectType value_type = sq_gettype(vm, -1); value_type != OT_CLOSURE && value_type != OT_NATIVECLOSURE)
-			{
-				sq_pop(vm, 2);
-				throw;
-			}
-
-			// get function and add ref
-			sq_getstackobj(vm, -1, &funcObj);
-			sq_addref(vm, &funcObj);
-
-			sq_pop(vm, 2);
-		}
-
-		~Function()
-		{
-			sq_release(vm, &funcObj);
-			sq_resetobject(&funcObj);
-		}
-
-		ReturnType operator()(Args... args)
-		{
-			const SQInteger top = sq_gettop(vm);
-			sq_pushobject(vm, funcObj);
-			sq_pushroottable(vm);
-
-			((pushArgObject << args), ...);
-
-			if constexpr (std::is_same_v<ReturnType, void>)
-			{
-				auto returnCode = sq_call(vm, argCount + 1, SQFalse, SQFalse); // TODO: HANDLE ERROR RETURN CODE
-				sq_pop(vm, 2);
-				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
-				return void();
-			}
-			else
-			{
-				auto returnCode = sq_call(vm, argCount + 1, SQTrue, SQFalse); // TODO: HANDLE ERROR RETURN CODE
-				auto result = ReturnVar<ReturnType>();
-				sq_pop(vm, 2);
-				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
-				return result;
-			}
-		}
-
-	protected:
-
-
-	private:
-		HSQOBJECT funcObj{};
-		static constexpr auto argCount{ sizeof...(Args) };
-	};
 
 	template <typename T>
 	T ReturnVar()
@@ -153,4 +85,84 @@ namespace nonut {
 		sq_pop(vm, 1); // pops result
 		return std::string(result);
 	}
+
+	template <typename ReturnType, typename... Args>
+	class Function
+	{
+	public:
+		Function(const std::string& _functionName, const HSQOBJECT env = GetRootTable()) : envObj(env)
+		{
+			sq_pushobject(vm, envObj);
+			sq_pushstring(vm, _functionName.c_str(), _functionName.length());
+
+			// get the function from the root table
+			if (SQ_FAILED(sq_get(vm, -2)))
+			{
+				sq_pop(vm, 1);
+				throw;
+			}
+
+			// check the type
+			if (const SQObjectType value_type = sq_gettype(vm, -1); value_type != OT_CLOSURE && value_type != OT_NATIVECLOSURE)
+			{
+				sq_pop(vm, 2);
+				throw;
+			}
+
+			// get function and add ref
+			sq_getstackobj(vm, -1, &funcObj);
+			sq_addref(vm, &funcObj);
+
+			sq_pop(vm, 2);
+		}
+
+		~Function()
+		{
+			sq_release(vm, &funcObj);
+			sq_release(vm, &envObj);
+			sq_resetobject(&funcObj);
+			sq_resetobject(&envObj);
+		}
+
+		ReturnType operator()(Args... args)
+		{
+			const SQInteger top = sq_gettop(vm);
+			sq_pushobject(vm, funcObj);
+			sq_pushobject(vm, envObj);
+
+			((pushArgObject << args), ...);
+
+			if constexpr (std::is_same_v<ReturnType, void>)
+			{
+				auto returnCode = sq_call(vm, argCount + 1, SQFalse, SQFalse); // TODO: HANDLE ERROR RETURN CODE
+				sq_pop(vm, 2);
+				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
+				return void();
+			}
+			else
+			{
+				auto returnCode = sq_call(vm, argCount + 1, SQTrue, SQFalse); // TODO: HANDLE ERROR RETURN CODE
+				auto result = ReturnVar<ReturnType>();
+				sq_pop(vm, 2);
+				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
+				return result;
+			}
+		}
+
+	private:
+		HSQOBJECT funcObj{};
+		HSQOBJECT envObj{};
+		static constexpr auto argCount{ sizeof...(Args) };
+
+		static HSQOBJECT GetRootTable()
+		{
+			HSQOBJECT rootTable{};
+			sq_pushroottable(vm);
+			sq_getstackobj(vm, -1, &rootTable);
+			sq_addref(vm, &rootTable);
+			sq_pop(vm, 1); // pop root table
+			return rootTable;
+		}
+	};
+
 }
