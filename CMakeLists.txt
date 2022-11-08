@@ -12,7 +12,18 @@ file(GLOB SRC
 	"src/api/module_api.h"
 	"src/api/module_api.cpp"
 
-	"src/nonut/"
+	"src/nonut/Class.h"
+	"src/nonut/Class.cpp"
+	"src/nonut/Function.h"
+	"src/nonut/Property.h"
+
+
+	"src/nonut/g2o/Draw.h"
+	"src/nonut/g2o/Draw.cpp"
+
+	"src/wog/Init.h"
+	"src/wog/ClientEventHandlers.h"
+	"src/wog/ClientEventHandlers.cpp"
 
 	"src/pch.h"
 	"src/sqmain.cpp"

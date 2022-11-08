@@ -1,4 +1,7 @@
 #pragma once
+#ifndef FUNCTION_H
+#define FUNCTION_H
+
 #include <string>
 
 #include "api/squirrel_api.h"
@@ -36,11 +39,18 @@ namespace nonut {
 		return pushArg;
 	}
 
+	inline PushArg operator<<(const PushArg pushArg, HSQOBJECT value)
+	{
+		sq_pushobject(vm, value);
+		return pushArg;
+	}
+
 
 	template <typename T>
 	T ReturnVar()
 	{
 		static_assert(
+			std::is_same_v<T, HSQOBJECT> ||
 			std::is_same_v<T, bool> ||
 			std::is_same_v<T, float> ||
 			std::is_same_v<T, int> ||
@@ -48,6 +58,15 @@ namespace nonut {
 			"Not supported return type");
 
 		return T();
+	}
+
+	template<>
+	inline HSQOBJECT ReturnVar<HSQOBJECT>()
+	{
+		HSQOBJECT result;
+		sq_getstackobj(vm, -1, &result);
+		sq_pop(vm, 1); // pops result
+		return result;
 	}
 
 	template<>
@@ -86,10 +105,13 @@ namespace nonut {
 		return std::string(result);
 	}
 
+
+
 	template <typename ReturnType, typename... Args>
 	class Function
 	{
 	public:
+		// Ctor for functions
 		Function(const std::string& _functionName, const HSQOBJECT env = GetRootTable()) : envObj(env)
 		{
 			sq_pushobject(vm, envObj);
@@ -116,12 +138,43 @@ namespace nonut {
 			sq_pop(vm, 2);
 		}
 
+		// Ctor for class methods
+		Function(const std::string& _functionName, const HSQOBJECT classObjectInstance, const HSQOBJECT classObject) : envObj(classObjectInstance)
+		{
+			isClassMethod = true;
+			sq_pushobject(vm, classObject);
+			sq_pushstring(vm, _functionName.c_str(), _functionName.length());
+
+			// get the function from the root table
+			if (SQ_FAILED(sq_get(vm, -2)))
+			{
+				sq_pop(vm, 1);
+				throw;
+			}
+
+			// check the type
+			if (const SQObjectType value_type = sq_gettype(vm, -1); value_type != OT_CLOSURE && value_type != OT_NATIVECLOSURE)
+			{
+				sq_pop(vm, 2);
+				throw;
+			}
+
+			// get function and add ref
+			sq_getstackobj(vm, -1, &funcObj);
+			sq_addref(vm, &funcObj);
+
+			sq_pop(vm, 2);
+		}
+
 		~Function()
 		{
-			sq_release(vm, &funcObj);
-			sq_release(vm, &envObj);
-			sq_resetobject(&funcObj);
-			sq_resetobject(&envObj);
+			if(!isClassMethod)
+			{
+				sq_release(vm, &funcObj);
+				sq_release(vm, &envObj);
+				sq_resetobject(&funcObj);
+				sq_resetobject(&envObj);
+			}
 		}
 
 		ReturnType operator()(Args... args)
@@ -149,9 +202,15 @@ namespace nonut {
 			}
 		}
 
+		HSQOBJECT GetObject()
+		{
+			return funcObj;
+		}
+
 	private:
 		HSQOBJECT funcObj{};
 		HSQOBJECT envObj{};
+		bool isClassMethod = false;
 		static constexpr auto argCount{ sizeof...(Args) };
 
 		static HSQOBJECT GetRootTable()
@@ -166,3 +225,4 @@ namespace nonut {
 	};
 
 }
+#endif // FUNCTION_H
