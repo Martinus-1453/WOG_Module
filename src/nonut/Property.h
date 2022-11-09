@@ -14,67 +14,33 @@ namespace nonut
 	template <typename T>
 	T GetProperty(HSQOBJECT& object, std::string& name)
 	{
-		return T();
+		T result{};
+
+		sq_pushobject(vm, object);
+		sq_pushstring(vm, name.c_str(), name.length());
+
+		if (SQ_SUCCEEDED(sq_get(vm, -2))) // pops property
+		{
+			sq_getvalue(vm, -1, &result);
+			sq_pop(vm, 1); // pops result
+		}
+
+		sq_pop(vm, 1); // pops object
+
+		return result;
 	}
 
 	template <>
 	inline bool GetProperty<bool>(HSQOBJECT& object, std::string& name)
 	{
-		SQBool result = false;
-		sq_pushobject(vm, object);
-		sq_pushstring(vm, name.c_str(), name.length());
-
-		if (SQ_SUCCEEDED(sq_get(vm, -2))) // pops property
-		{
-			sq_getbool(vm, -1, &result);
-			sq_pop(vm, 1); // pops result
-		}
-
-		sq_pop(vm, 1); // pops object
-
-		return static_cast<bool>(result);
-	}
-
-	template <>
-	inline int GetProperty<int>(HSQOBJECT& object, std::string& name)
-	{
-		int result = 0;
-		sq_pushobject(vm, object);
-		sq_pushstring(vm, name.c_str(), name.length());
-
-		if (SQ_SUCCEEDED(sq_get(vm, -2))) // pops property
-		{
-			sq_getinteger(vm, -1, &result);
-			sq_pop(vm, 1); // pops result
-		}
-
-		sq_pop(vm, 1); // pops object
-
-		return result;
-	}
-
-	template <>
-	inline float GetProperty<float>(HSQOBJECT& object, std::string& name)
-	{
-		float result = 0.f;
-		sq_pushobject(vm, object);
-		sq_pushstring(vm, name.c_str(), name.length());
-
-		if (SQ_SUCCEEDED(sq_get(vm, -2))) // pops property
-		{
-			sq_getfloat(vm, -1, &result);
-			sq_pop(vm, 1); // pops result
-		}
-
-		sq_pop(vm, 1); // pops object
-
-		return result;
+		return GetProperty<SQBool>(object, name);
 	}
 
 	template <>
 	inline std::string GetProperty<std::string>(HSQOBJECT& object, std::string& name)
 	{
-		const SQChar* result = nullptr;
+		const SQChar* result{};
+
 		sq_pushobject(vm, object);
 		sq_pushstring(vm, name.c_str(), name.length());
 
@@ -86,65 +52,16 @@ namespace nonut
 
 		sq_pop(vm, 1); // pops object
 
-		return std::string(result);
+		return result;
 	}
 
 
 	template <typename T>
 	void SetProperty(HSQOBJECT& object, std::string& name, T value)
 	{
-	}
-
-	template <>
-	inline void SetProperty<bool>(HSQOBJECT& object, std::string& name, bool value)
-	{
 		sq_pushobject(vm, object);
-
 		sq_pushstring(vm, name.c_str(), name.length());
-
-		sq_pushbool(vm, value);
-
-		auto result = sq_set(vm, -3); // pops name and value
-
-		sq_pop(vm, 1); // pops object
-	}
-
-	template <>
-	inline void SetProperty<int>(HSQOBJECT& object, std::string& name, int value)
-	{
-		sq_pushobject(vm, object);
-
-		sq_pushstring(vm, name.c_str(), name.length());
-
-		sq_pushinteger(vm, value);
-
-		auto result = sq_set(vm, -3); // pops name and value
-
-		sq_pop(vm, 1); // pops object
-	}
-
-	template <>
-	inline void SetProperty<float>(HSQOBJECT& object, std::string& name, float value)
-	{
-		sq_pushobject(vm, object);
-
-		sq_pushstring(vm, name.c_str(), name.length());
-
-		sq_pushfloat(vm, value);
-
-		auto result = sq_set(vm, -3); // pops name and value
-
-		sq_pop(vm, 1); // pops object
-	}
-
-	template <>
-	inline void SetProperty<std::string>(HSQOBJECT& object, std::string& name, std::string value)
-	{
-		sq_pushobject(vm, object);
-
-		sq_pushstring(vm, name.c_str(), name.length());
-
-		sq_pushstring(vm, value.c_str(), value.length());
+		sq_pushvalue(vm, value);
 
 		auto result = sq_set(vm, -3); // pops name and value
 
