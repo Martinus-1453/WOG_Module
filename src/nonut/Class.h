@@ -6,8 +6,8 @@
 
 // Forward declaration
 
-namespace nonut {
-
+namespace nonut
+{
 	static constexpr auto CONSTRUCTOR_NAME = "constructor";
 
 	class Class

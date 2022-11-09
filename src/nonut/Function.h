@@ -9,8 +9,8 @@
 
 using namespace SqModule;
 
-namespace nonut {
-
+namespace nonut
+{
 	inline class PushArg
 	{
 	} pushArgObject;
@@ -60,7 +60,7 @@ namespace nonut {
 		return T();
 	}
 
-	template<>
+	template <>
 	inline HSQOBJECT ReturnVar<HSQOBJECT>()
 	{
 		HSQOBJECT result;
@@ -69,7 +69,7 @@ namespace nonut {
 		return result;
 	}
 
-	template<>
+	template <>
 	inline bool ReturnVar<bool>()
 	{
 		SQBool result;
@@ -78,7 +78,7 @@ namespace nonut {
 		return static_cast<bool>(result);
 	}
 
-	template<>
+	template <>
 	inline float ReturnVar<float>()
 	{
 		float result;
@@ -87,7 +87,7 @@ namespace nonut {
 		return result;
 	}
 
-	template<>
+	template <>
 	inline int ReturnVar<int>()
 	{
 		int result;
@@ -96,7 +96,7 @@ namespace nonut {
 		return result;
 	}
 
-	template<>
+	template <>
 	inline std::string ReturnVar<std::string>()
 	{
 		const SQChar* result = nullptr;
@@ -104,7 +104,6 @@ namespace nonut {
 		sq_pop(vm, 1); // pops result
 		return std::string(result);
 	}
-
 
 
 	template <typename ReturnType, typename... Args>
@@ -125,7 +124,8 @@ namespace nonut {
 			}
 
 			// check the type
-			if (const SQObjectType value_type = sq_gettype(vm, -1); value_type != OT_CLOSURE && value_type != OT_NATIVECLOSURE)
+			if (const SQObjectType value_type = sq_gettype(vm, -1); value_type != OT_CLOSURE && value_type !=
+				OT_NATIVECLOSURE)
 			{
 				sq_pop(vm, 2);
 				throw;
@@ -139,7 +139,8 @@ namespace nonut {
 		}
 
 		// Ctor for class methods
-		Function(const std::string& _functionName, const HSQOBJECT classObjectInstance, const HSQOBJECT classObject) : envObj(classObjectInstance)
+		Function(const std::string& _functionName, const HSQOBJECT classObjectInstance,
+		         const HSQOBJECT classObject) : envObj(classObjectInstance)
 		{
 			isClassMethod = true;
 			sq_pushobject(vm, classObject);
@@ -153,7 +154,8 @@ namespace nonut {
 			}
 
 			// check the type
-			if (const SQObjectType value_type = sq_gettype(vm, -1); value_type != OT_CLOSURE && value_type != OT_NATIVECLOSURE)
+			if (const SQObjectType value_type = sq_gettype(vm, -1); value_type != OT_CLOSURE && value_type !=
+				OT_NATIVECLOSURE)
 			{
 				sq_pop(vm, 2);
 				throw;
@@ -168,7 +170,7 @@ namespace nonut {
 
 		~Function()
 		{
-			if(!isClassMethod)
+			if (!isClassMethod)
 			{
 				sq_release(vm, &funcObj);
 				sq_release(vm, &envObj);
@@ -177,7 +179,7 @@ namespace nonut {
 			}
 		}
 
-		ReturnType operator()(Args... args)
+		ReturnType operator()(Args ... args)
 		{
 			const SQInteger top = sq_gettop(vm);
 			sq_pushobject(vm, funcObj);
@@ -211,7 +213,7 @@ namespace nonut {
 		HSQOBJECT funcObj{};
 		HSQOBJECT envObj{};
 		bool isClassMethod = false;
-		static constexpr auto argCount{ sizeof...(Args) };
+		static constexpr auto argCount{sizeof...(Args)};
 
 		static HSQOBJECT GetRootTable()
 		{
@@ -223,6 +225,5 @@ namespace nonut {
 			return rootTable;
 		}
 	};
-
 }
 #endif // FUNCTION_H

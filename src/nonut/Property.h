@@ -9,15 +9,15 @@
 
 using namespace SqModule;
 
-namespace nonut {
-
-	template<typename T>
+namespace nonut
+{
+	template <typename T>
 	T GetProperty(HSQOBJECT& object, std::string& name)
 	{
 		return T();
 	}
 
-	template<>
+	template <>
 	inline bool GetProperty<bool>(HSQOBJECT& object, std::string& name)
 	{
 		SQBool result = false;
@@ -35,7 +35,7 @@ namespace nonut {
 		return static_cast<bool>(result);
 	}
 
-	template<>
+	template <>
 	inline int GetProperty<int>(HSQOBJECT& object, std::string& name)
 	{
 		int result = 0;
@@ -53,7 +53,7 @@ namespace nonut {
 		return result;
 	}
 
-	template<>
+	template <>
 	inline float GetProperty<float>(HSQOBJECT& object, std::string& name)
 	{
 		float result = 0.f;
@@ -71,7 +71,7 @@ namespace nonut {
 		return result;
 	}
 
-	template<>
+	template <>
 	inline std::string GetProperty<std::string>(HSQOBJECT& object, std::string& name)
 	{
 		const SQChar* result = nullptr;
@@ -90,12 +90,12 @@ namespace nonut {
 	}
 
 
-	template<typename T>
+	template <typename T>
 	void SetProperty(HSQOBJECT& object, std::string& name, T value)
 	{
 	}
 
-	template<>
+	template <>
 	inline void SetProperty<bool>(HSQOBJECT& object, std::string& name, bool value)
 	{
 		sq_pushobject(vm, object);
@@ -109,7 +109,7 @@ namespace nonut {
 		sq_pop(vm, 1); // pops object
 	}
 
-	template<>
+	template <>
 	inline void SetProperty<int>(HSQOBJECT& object, std::string& name, int value)
 	{
 		sq_pushobject(vm, object);
@@ -123,7 +123,7 @@ namespace nonut {
 		sq_pop(vm, 1); // pops object
 	}
 
-	template<>
+	template <>
 	inline void SetProperty<float>(HSQOBJECT& object, std::string& name, float value)
 	{
 		sq_pushobject(vm, object);
@@ -137,7 +137,7 @@ namespace nonut {
 		sq_pop(vm, 1); // pops object
 	}
 
-	template<>
+	template <>
 	inline void SetProperty<std::string>(HSQOBJECT& object, std::string& name, std::string value)
 	{
 		sq_pushobject(vm, object);
@@ -151,14 +151,11 @@ namespace nonut {
 		sq_pop(vm, 1); // pops object
 	}
 
-	template<typename T>
+	template <typename T>
 	class Property
 	{
 	public:
-		Property(std::string propertyName, const HSQOBJECT object) : object(object), propertyName(propertyName)
-		{
-		}
-		~Property()
+		Property(std::string propertyName, const HSQOBJECT object) : object(object), propertyName(std::move(propertyName))
 		{
 		}
 

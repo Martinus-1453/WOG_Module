@@ -5,18 +5,20 @@
 #include <string>
 
 #include "nonut/Class.h"
+#include "nonut/Function.h"
 #include "nonut/Property.h"
 
 namespace nonut::g2o
 {
 	using namespace nonut;
+
 	class Draw : public Class
 	{
 	public:
 		Draw(int x, int y, std::string text);
 
 		// Methods
-		//Function<void> top;
+		Function<void> top;
 		//Function<void, int, int, int> setColor;
 		////TODO: Make it work?
 		////Function<{r,g,b}> getColor;

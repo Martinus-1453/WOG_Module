@@ -3,7 +3,8 @@
 
 using namespace SqModule;
 
-namespace nonut {
+namespace nonut
+{
 	Class::Class(std::string className)
 	{
 		const SQInteger top = sq_gettop(vm);
@@ -15,13 +16,13 @@ namespace nonut {
 		{
 			sq_getstackobj(vm, -1, &classObject);
 			sq_addref(vm, &classObject);
-				if (sq_createinstance(vm, -1) == SQ_OK) //create class instance
-				{
-					//1. Get object ptr
-					sq_getstackobj(vm, -1, &classObjectInstance); //retrieve object
-					sq_addref(vm, &classObjectInstance); //Add ref thanks to which object will not be immediately deleted
-					sq_pop(vm, 1); // pop class instance
-				}
+			if (sq_createinstance(vm, -1) == SQ_OK) //create class instance
+			{
+				//1. Get object ptr
+				sq_getstackobj(vm, -1, &classObjectInstance); //retrieve object
+				sq_addref(vm, &classObjectInstance); //Add ref thanks to which object will not be immediately deleted
+				sq_pop(vm, 1); // pop class instance
+			}
 		}
 		sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
 	}
