@@ -4,7 +4,10 @@
 #include "pch.h"
 #include <string>
 
-// Forward declaration
+#include "Function.h"
+
+#define METHOD_CTOR(methodName) methodName(#methodName, this->classObjectInstance, this->classObject)
+#define PROPERTY_CTOR(propertyName) propertyName(#propertyName, this->classObjectInstance)
 
 namespace nonut
 {
@@ -21,6 +24,13 @@ namespace nonut
 		HSQOBJECT classObject{};
 		// Class object instance
 		HSQOBJECT classObjectInstance{};
+
+		template<typename... Args>
+		void ClassCtor(Args... args)
+		{
+			Function<void, Args... > ctor(CONSTRUCTOR_NAME, classObjectInstance, classObject);
+			ctor(std::forward<Args>(args)...);
+		}
 	};
 }
 #endif // CLASS_H
