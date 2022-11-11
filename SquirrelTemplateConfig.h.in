@@ -1,0 +1,4 @@
+#define squirrel_template_VERSION_MAJOR @squirrel-template_VERSION_MAJOR@
+#define squirrel_template_VERSION_MINOR @squirrel-template_VERSION_MINOR@
+
+const char* squirrel_template_COMPILE_TIME_str = "@COMPILE_TIME@";

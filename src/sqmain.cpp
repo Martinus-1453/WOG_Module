@@ -2,9 +2,12 @@
 #include "nonut/Function.h"
 #include "nonut/g2o/Draw.h"
 #include "wog/Init.h"
+#include "SquirrelTemplateConfig.h"
+
 using namespace SqModule;
 
-extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api) {
+extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
+{
 	Initialize(vm, api);
 	Sqrat::DefaultVM::Set(vm);
 
@@ -19,7 +22,10 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api) {
 	print(getWorld());
 
 	// Test Draw class
-	const auto draw = new nonut::g2o::Draw(0, 0, "dupa");
+	const std::string cornerMessage = std::to_string(squirrel_template_VERSION_MAJOR) + "." + std::to_string(squirrel_template_VERSION_MINOR) + " - " + squirrel_template_COMPILE_TIME_str;
+	const auto draw = new nonut::g2o::Draw(0, 0, cornerMessage);
+	
+
 	draw->visible.Set(true);
 	return SQ_OK;
 }

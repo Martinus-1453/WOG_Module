@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.17)
 
-project(squirrel-template)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+project(squirrel-template VERSION 0.1)
+
+# exporting compile time variables into SquirrelTemplateConfig.h
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+string(TIMESTAMP COMPILE_TIME "%Y-%m-%d %H:%M:%S")
+configure_file(SquirrelTemplateConfig.h.in SquirrelTemplateConfig.h)
 
 option(INSTALL_AFTER_BUILD "Run cmake --install separately for every target after each build. By default this option is set to OFF" OFF)
 
