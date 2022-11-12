@@ -5,7 +5,7 @@ using namespace SqModule;
 
 namespace nonut
 {
-	template<typename T>
+	template <typename T>
 	void sq_getvalue(HSQUIRRELVM vm, SQInteger idx, T out_ptr)
 	{
 		static_assert(
@@ -28,7 +28,7 @@ namespace nonut
 			sq_getstackobj(vm, idx, out_ptr);
 	}
 
-	template<typename T>
+	template <typename T>
 	void sq_pushvalue(HSQUIRRELVM vm, T value)
 	{
 		static_assert(

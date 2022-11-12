@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project(squirrel-template VERSION 0.1)
@@ -28,6 +28,7 @@ file(GLOB SRC
 
 	"src/nonut/g2o/Draw.h"
 	"src/nonut/g2o/Draw.cpp"
+	"src/nonut/g2o/ClientFunctions.cpp"
 
 	"src/wog/Init.h"
 	"src/wog/ClientEventHandlers.h"
@@ -37,9 +38,8 @@ file(GLOB SRC
 	"src/sqmain.cpp"
 )
 
-add_library(squirrel-template SHARED ${SRC})
+add_library(squirrel-template SHARED ${SRC} "src/nonut/g2o/ClientFunctions.h")
 target_precompile_headers(squirrel-template PRIVATE "src/pch.h")
-set_property(TARGET squirrel-template PROPERTY CXX_STANDARD 20)
 
 target_include_directories(squirrel-template
 	INTERFACE

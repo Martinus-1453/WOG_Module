@@ -8,6 +8,8 @@
 #include "api/module_api.h"
 #include "nonut/Utils.h"
 
+#define FUNCTION_CTOR(function) function(#function)
+
 using namespace SqModule;
 
 namespace nonut

@@ -72,7 +72,8 @@ namespace nonut
 	class Property
 	{
 	public:
-		Property(std::string propertyName, const HSQOBJECT object) : object(object), propertyName(std::move(propertyName))
+		Property(std::string propertyName, const HSQOBJECT object) : object(object),
+		                                                             propertyName(std::move(propertyName))
 		{
 		}
 

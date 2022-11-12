@@ -25,10 +25,10 @@ namespace nonut
 		// Class object instance
 		HSQOBJECT classObjectInstance{};
 
-		template<typename... Args>
-		void ClassCtor(Args... args)
+		template <typename... Args>
+		void ClassCtor(Args ... args)
 		{
-			Function<void, Args... > ctor(CONSTRUCTOR_NAME, classObjectInstance, classObject);
+			Function<void, Args...> ctor(CONSTRUCTOR_NAME, classObjectInstance, classObject);
 			ctor(std::forward<Args>(args)...);
 		}
 	};
