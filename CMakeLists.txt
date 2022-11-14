@@ -29,16 +29,16 @@ file(GLOB SRC
 	"src/nonut/g2o/Draw.h"
 	"src/nonut/g2o/Draw.cpp"
 	"src/nonut/g2o/ClientFunctions.cpp"
+	"src/nonut/g2o/ClientEventHandlers.h"
+	"src/nonut/g2o/ClientEventHandlers.cpp"
 
 	"src/wog/Init.h"
-	"src/wog/ClientEventHandlers.h"
-	"src/wog/ClientEventHandlers.cpp"
 
 	"src/pch.h"
 	"src/sqmain.cpp"
 )
 
-add_library(squirrel-template SHARED ${SRC} "src/nonut/g2o/ClientFunctions.h")
+add_library(squirrel-template SHARED ${SRC})
 target_precompile_headers(squirrel-template PRIVATE "src/pch.h")
 
 target_include_directories(squirrel-template

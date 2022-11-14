@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
-#include "ClientEventHandlers.h"
+#include "nonut/g2o/ClientEventHandlers.h"
+#include "nonut/g2o/ClientFunctions.h"
 
 using namespace SqModule;
 
@@ -8,11 +9,11 @@ namespace wog
 {
 	inline void Init()
 	{
-		//TODO: REMOVE SQRAT DEPENDENCY
-		Sqrat::RootTable(vm).Func("testHandler", &onKey);
+		nonut::g2o::initializeClientEventHandlers();
 
-		nonut::Function<void, std::string, HSQOBJECT, int> addEventHandler("addEventHandler");
-		nonut::Function<void, int> testHandler("testHandler");
-		addEventHandler("onKey", testHandler.GetObject(), 1);
+		nonut::g2o::onMouseClickHandler.emplace_back([](int key)
+		{
+			CLIENT_FUNCTIONS->print(std::to_string(key));
+		});
 	}
 }
