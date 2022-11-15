@@ -5,10 +5,9 @@
 
 namespace nonut::g2o
 {
-	
 	void onChangeResolution()
 	{
-		for (auto && function : ClientEventHandlers::onChangeResolutionHandler)
+		for (auto&& function : ClientEventHandlers::onChangeResolutionHandler)
 		{
 			function();
 		}
@@ -400,5 +399,5 @@ namespace nonut::g2o
 
 			isInitialized = true;
 		}
-	}	
+	}
 }

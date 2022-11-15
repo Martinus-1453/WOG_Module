@@ -12,7 +12,7 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	Initialize(vm, api);
 	Sqrat::DefaultVM::Set(vm);
 
-	wog::Init();
+	wog::init();
 
 	// Test print function
 	CLIENT_FUNCTIONS->print("Print z szablonu :D");

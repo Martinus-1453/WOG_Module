@@ -11,7 +11,7 @@ typedef nonut::g2o::ClientEventHandlers ClientEventHandlers;
 
 namespace wog
 {
-	inline void Init()
+	inline void init()
 	{
 		nonut::g2o::ClientEventHandlers::Init();
 		nonut::g2o::ClientConstants::Init();

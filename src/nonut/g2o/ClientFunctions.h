@@ -3,7 +3,7 @@
 #define CLIENT_FUNCTIONS_H
 #include "nonut/Function.h"
 
-#define CLIENT_FUNCTIONS nonut::g2o::ClientFunctions::get_instance()
+#define CLIENT_FUNCTIONS nonut::g2o::ClientFunctions::GetInstance()
 
 namespace nonut::g2o
 {
@@ -15,7 +15,7 @@ namespace nonut::g2o
 	public:
 		ClientFunctions(ClientFunctions& other) = delete;
 		void operator=(const ClientFunctions&) = delete;
-		static ClientFunctions* get_instance();
+		static ClientFunctions* GetInstance();
 
 		// G2O functions
 		Function<void, std::string> print;
@@ -155,7 +155,7 @@ namespace nonut::g2o
 		Function<void> openInventory;
 
 		// Item
-		Function <std::string, std::string> getItemDescription;
+		Function<std::string, std::string> getItemDescription;
 		// getItemInfo deprecated
 		Function<std::string, std::string> getItemName;
 		Function<std::string, std::string> getItemValue;
@@ -284,7 +284,6 @@ namespace nonut::g2o
 		// World
 		Function<void, std::string, std::string> changeWorld;
 		Function<std::string> getWorld;
-
 	};
 }
 #endif

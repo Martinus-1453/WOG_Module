@@ -41,13 +41,13 @@ namespace nonut::g2o
 	static void onMouseRelease(int button);
 	static void onMouseWheel(int z);
 	// Network
-// TODO: Packet missing implementation
-// void onPacket(Packet packet);
+	// TODO: Packet missing implementation
+	// void onPacket(Packet packet);
 	// Mob
-// TODO: needs work: userdata missing
-//void onMobClose(userdata address, int type);
-//void onMobInteract(userdata address, int type, int from, int to);
-//void onMobOpen(userdata address, int type);
+	// TODO: needs work: userdata missing
+	//void onMobClose(userdata address, int type);
+	//void onMobInteract(userdata address, int type, int from, int to);
+	//void onMobOpen(userdata address, int type);
 
 	// Player
 	static void onPlayerChangeColor(int id, int r, int g, int b);
