@@ -5,162 +5,119 @@
 
 namespace nonut::g2o
 {
-#define HANDLER_INIT(type, name) std::vector<std::function<type>> name{}
-
-
-	// !!!INITIALIZATION!!!
-	void initializeClientEventHandlers();
+#define HANDLER_INIT(type, name) std::vector<std::function<type>> name ## Handler{}
 
 	// General
-	void onChangeResolution();
-	inline HANDLER_INIT(void(), onChangeResolutionHandler);
-
-	void onExit();
-	inline HANDLER_INIT(void(), onExitHandler);
-
-	//void onInit(); // USELESS
-
-	void onRender();
-	inline HANDLER_INIT(void(), onRenderHandler);
-
-	void onRenderFocus(int type, int id, int x, int y, std::string name);
-	inline HANDLER_INIT(void(int, int, int, int, std::string), onRenderFocusHandler);
-
-
+	static void onChangeResolution();
+	static void onExit();
+	static void onRender();
+	static void onRenderFocus(int type, int id, int x, int y, std::string name);
 	// Hero
-	void onAnim(int id);
-	inline HANDLER_INIT(void(int), onAnimHandler);
-
-	void onDamage(int damage, int flags);
-	inline HANDLER_INIT(void(int, int), onDamageHandler);
-
-	void onEquip(std::string instance);
-	inline HANDLER_INIT(void(std::string), onEquipHandler);
-
-	void onFocus(int currentId, int previousId);
-	inline HANDLER_INIT(void(int, int), onFocusHandler);
-
-	void onLostFocus(int type, int id, std::string name);
-	inline HANDLER_INIT(void(int, int, std::string), onLostFocusHandler);
-
-	void onPlayerUseItem(int id, int itemId, int from, int to);
-	inline HANDLER_INIT(void(int, int, int, int), onPlayerUseItemHandler);
-
-	void onRespawn();
-	inline HANDLER_INIT(void(), onRespawnHandler);
-
-	void onShoot();
-	inline HANDLER_INIT(void(), onShootHandler);
-
-	void onSink();
-	inline HANDLER_INIT(void(), onSinkHandler);
-
-	void onSpellCast(int id);
-	inline HANDLER_INIT(void(int), onSpellCastHandler);
-
-	void onTakeFocus(int type, int id, std::string name);
-	inline HANDLER_INIT(void(int, int, std::string), onTakeFocusHandler);
-
-	void onTakeItem(std::string instance, int amount);
-	inline HANDLER_INIT(void(std::string, int), onTakeItemHandler);
-
-	void onUnequip(std::string instance);
-	inline HANDLER_INIT(void(std::string), onUnequipHandler);
-
-
+	static void onAnim(int id);
+	static void onDamage(int damage, int flags);
+	static void onEquip(std::string instance);
+	static void onFocus(int currentId, int previousId);
+	static void onLostFocus(int type, int id, std::string name);
+	static void onPlayerUseItem(int id, int itemId, int from, int to);
+	static void onRespawn();
+	static void onShoot();
+	static void onSink();
+	static void onSpellCast(int id);
+	static void onTakeFocus(int type, int id, std::string name);
+	static void onTakeItem(std::string instance, int amount);
+	static void onUnequip(std::string instance);
 	// Input
-	void onCommand(std::string command, std::string params);
-	inline HANDLER_INIT(void(std::string, std::string), onCommandHandler);
-
-	void onConsole(std::string command, std::string params);
-	inline HANDLER_INIT(void(std::string, std::string), onConsoleHandler);
-
-	void onKey(int key);
-	inline HANDLER_INIT(void(int), onKeyHandler);
-
-	void onPaste(std::string clipboard);
-	inline HANDLER_INIT(void(std::string), onPasteHandler);
-
-
+	static void onCommand(std::string command, std::string params);
+	static void onConsole(std::string command, std::string params);
+	static void onKey(int key);
+	static void onPaste(std::string clipboard);
 	// Inventory
-	void onCloseInventory();
-	inline HANDLER_INIT(void(), onCloseInventoryHandler);
-
-	void onInventorySlotChange(int from, int to);
-	inline HANDLER_INIT(void(int, int), onInventorySlotChangeHandler);
-
+	static void onCloseInventory();
+	static void onInventorySlotChange(int from, int to);
 	void onOpenInventory();
-	inline HANDLER_INIT(void(), onOpenInventoryHandler);
-
-
-	// Mob
-	// TODO: needs work: userdata missing
-	//void onMobClose(userdata address, int type);
-	//void onMobInteract(userdata address, int type, int from, int to);
-	//void onMobOpen(userdata address, int type);
-
-
 	// Mouse
-	void onMouseClick(int button);
-	inline HANDLER_INIT(void(int), onMouseClickHandler);
-
-	void onMouseMove(int x, int y);
-	inline HANDLER_INIT(void(int, int), onMouseMoveHandler);
-
-	void onMouseRelease(int button);
-	inline HANDLER_INIT(void(int), onMouseReleaseHandler);
-
-	void onMouseWheel(int z);
-	inline HANDLER_INIT(void(int), onMouseWheelHandler);
-
-
+	static void onMouseClick(int button);
+	static void onMouseMove(int x, int y);
+	static void onMouseRelease(int button);
+	static void onMouseWheel(int z);
 	// Network
-	// TODO: Packet missing implementation
-	// void onPacket(Packet packet);
-
+// TODO: Packet missing implementation
+// void onPacket(Packet packet);
+	// Mob
+// TODO: needs work: userdata missing
+//void onMobClose(userdata address, int type);
+//void onMobInteract(userdata address, int type, int from, int to);
+//void onMobOpen(userdata address, int type);
 
 	// Player
-	void onPlayerChangeColor(int id, int r, int g, int b);
-	inline HANDLER_INIT(void(int, int, int, int), onPlayerChangeColorHandler);
-
-	void onPlayerChangeNickname(int id, std::string nickname);
-	inline HANDLER_INIT(void(int, std::string), onPlayerChangeNicknameHandler);
-
-	void onPlayerChangePing(int id, int ping);
-	inline HANDLER_INIT(void(int, int), onPlayerChangePingHandler);
-
-	void onPlayerChangeWeaponMode(int playerId, int oldWeaponMode, int newWeaponMode);
-	inline HANDLER_INIT(void(int, int, int), onPlayerChangeWeaponModeHandler);
-
-	void onPlayerCreate(int id);
-	inline HANDLER_INIT(void(int), onPlayerCreateHandler);
-
-	void onPlayerDead(int id);
-	inline HANDLER_INIT(void(int), onPlayerDeadHandler);
-
-	void onPlayerDestroy(int id);
-	inline HANDLER_INIT(void(int), onPlayerDestroyHandler);
-
-	void onPlayerHit(int killerId, int playerId, int damage);
-	inline HANDLER_INIT(void(int, int, int), onPlayerHitHandler);
-
-	void onPlayerMessage(int id, int r, int g, int b, std::string message);
-	inline HANDLER_INIT(void(int, int, int, int, std::string), onPlayerMessageHandler);
-
-	void onPlayerSpawn(int id);
-	inline HANDLER_INIT(void(int), onPlayerSpawnHandler);
-
-	void onPlayerTeleport(int id, std::string vobName);
-	inline HANDLER_INIT(void(int, std::string), onPlayerTeleportHandler);
-
-	void onPlayerUnspawn(int id);
-	inline HANDLER_INIT(void(int), onPlayerUnspawnHandler);
-
-
+	static void onPlayerChangeColor(int id, int r, int g, int b);
+	static void onPlayerChangeNickname(int id, std::string nickname);
+	static void onPlayerChangePing(int id, int ping);
+	static void onPlayerChangeWeaponMode(int playerId, int oldWeaponMode, int newWeaponMode);
+	static void onPlayerCreate(int id);
+	static void onPlayerDead(int id);
+	static void onPlayerDestroy(int id);
+	static void onPlayerHit(int killerId, int playerId, int damage);
+	static void onPlayerMessage(int id, int r, int g, int b, std::string message);
+	static void onPlayerSpawn(int id);
+	static void onPlayerTeleport(int id, std::string vobName);
+	static void onPlayerUnspawn(int id);
 	// World
-	void onWorldChange(std::string world);
-	inline HANDLER_INIT(void(std::string), onWorldChangeHandler);
+	static void onWorldChange(std::string world);
+	static void onWorldEnter();
 
-	void onWorldEnter();
-	inline HANDLER_INIT(void(), onWorldEnterHandler);
+
+	class ClientEventHandlers
+	{
+	public:
+		// !!!INITIALIZATION!!!
+		static void Init();
+
+		static inline HANDLER_INIT(void(), onChangeResolution);
+		static inline HANDLER_INIT(void(), onExit);
+		static inline HANDLER_INIT(void(), onRender);
+		static inline HANDLER_INIT(void(int, int, int, int, std::string), onRenderFocus);
+
+		static inline HANDLER_INIT(void(int), onAnim);
+		static inline HANDLER_INIT(void(int, int), onDamage);
+		static inline HANDLER_INIT(void(std::string), onEquip);
+		static inline HANDLER_INIT(void(int, int), onFocus);
+		static inline HANDLER_INIT(void(int, int, std::string), onLostFocus);
+		static inline HANDLER_INIT(void(int, int, int, int), onPlayerUseItem);
+		static inline HANDLER_INIT(void(), onRespawn);
+		static inline HANDLER_INIT(void(), onShoot);
+		static inline HANDLER_INIT(void(), onSink);
+		static inline HANDLER_INIT(void(int), onSpellCast);
+		static inline HANDLER_INIT(void(int, int, std::string), onTakeFocus);
+		static inline HANDLER_INIT(void(std::string, int), onTakeItem);
+		static inline HANDLER_INIT(void(std::string), onUnequip);
+
+		static inline HANDLER_INIT(void(std::string, std::string), onCommand);
+		static inline HANDLER_INIT(void(std::string, std::string), onConsole);
+		static inline HANDLER_INIT(void(int), onKey);
+		static inline HANDLER_INIT(void(std::string), onPaste);
+		static inline HANDLER_INIT(void(), onCloseInventory);
+		static inline HANDLER_INIT(void(int, int), onInventorySlotChange);
+		static inline HANDLER_INIT(void(), onOpenInventory);
+		static inline HANDLER_INIT(void(int), onMouseClick);
+		static inline HANDLER_INIT(void(int, int), onMouseMove);
+		static inline HANDLER_INIT(void(int), onMouseRelease);
+		static inline HANDLER_INIT(void(int), onMouseWheel);
+
+		static inline HANDLER_INIT(void(int, int, int, int), onPlayerChangeColor);
+		static inline HANDLER_INIT(void(int, std::string), onPlayerChangeNickname);
+		static inline HANDLER_INIT(void(int, int), onPlayerChangePing);
+		static inline HANDLER_INIT(void(int, int, int), onPlayerChangeWeaponMode);
+		static inline HANDLER_INIT(void(int), onPlayerCreate);
+		static inline HANDLER_INIT(void(int), onPlayerDead);
+		static inline HANDLER_INIT(void(int), onPlayerDestroy);
+		static inline HANDLER_INIT(void(int, int, int), onPlayerHit);
+		static inline HANDLER_INIT(void(int, int, int, int, std::string), onPlayerMessage);
+		static inline HANDLER_INIT(void(int), onPlayerSpawn);
+		static inline HANDLER_INIT(void(int, std::string), onPlayerTeleport);
+		static inline HANDLER_INIT(void(int), onPlayerUnspawn);
+
+		static inline HANDLER_INIT(void(std::string), onWorldChange);
+		static inline HANDLER_INIT(void(), onWorldEnter);
+	};
 }

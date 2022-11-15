@@ -8,7 +8,7 @@ namespace nonut::g2o
 	
 	void onChangeResolution()
 	{
-		for (auto && function : onChangeResolutionHandler)
+		for (auto && function : ClientEventHandlers::onChangeResolutionHandler)
 		{
 			function();
 		}
@@ -16,7 +16,7 @@ namespace nonut::g2o
 
 	void onExit()
 	{
-		for (auto&& function : onExitHandler)
+		for (auto&& function : ClientEventHandlers::onExitHandler)
 		{
 			function();
 		}
@@ -24,7 +24,7 @@ namespace nonut::g2o
 
 	void onRender()
 	{
-		for (auto&& function : onRenderHandler)
+		for (auto&& function : ClientEventHandlers::onRenderHandler)
 		{
 			function();
 		}
@@ -32,7 +32,7 @@ namespace nonut::g2o
 
 	void onRenderFocus(int type, int id, int x, int y, std::string name)
 	{
-		for (auto&& function : onRenderFocusHandler)
+		for (auto&& function : ClientEventHandlers::onRenderFocusHandler)
 		{
 			function(type, id, x, y, name);
 		}
@@ -40,7 +40,7 @@ namespace nonut::g2o
 
 	void onAnim(int id)
 	{
-		for (auto&& function : onAnimHandler)
+		for (auto&& function : ClientEventHandlers::onAnimHandler)
 		{
 			function(id);
 		}
@@ -48,7 +48,7 @@ namespace nonut::g2o
 
 	void onDamage(int damage, int flags)
 	{
-		for (auto&& function : onDamageHandler)
+		for (auto&& function : ClientEventHandlers::onDamageHandler)
 		{
 			function(damage, flags);
 		}
@@ -56,7 +56,7 @@ namespace nonut::g2o
 
 	void onEquip(std::string instance)
 	{
-		for (auto&& function : onEquipHandler)
+		for (auto&& function : ClientEventHandlers::onEquipHandler)
 		{
 			function(instance);
 		}
@@ -64,7 +64,7 @@ namespace nonut::g2o
 
 	void onFocus(int currentId, int previousId)
 	{
-		for (auto&& function : onFocusHandler)
+		for (auto&& function : ClientEventHandlers::onFocusHandler)
 		{
 			function(currentId, previousId);
 		}
@@ -72,7 +72,7 @@ namespace nonut::g2o
 
 	void onLostFocus(int type, int id, std::string name)
 	{
-		for (auto&& function : onLostFocusHandler)
+		for (auto&& function : ClientEventHandlers::onLostFocusHandler)
 		{
 			function(type, id, name);
 		}
@@ -80,7 +80,7 @@ namespace nonut::g2o
 
 	void onPlayerUseItem(int id, int itemId, int from, int to)
 	{
-		for (auto&& function : onPlayerUseItemHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerUseItemHandler)
 		{
 			function(id, itemId, from, to);
 		}
@@ -88,7 +88,7 @@ namespace nonut::g2o
 
 	void onRespawn()
 	{
-		for (auto&& function : onRespawnHandler)
+		for (auto&& function : ClientEventHandlers::onRespawnHandler)
 		{
 			function();
 		}
@@ -96,7 +96,7 @@ namespace nonut::g2o
 
 	void onShoot()
 	{
-		for (auto&& function : onShootHandler)
+		for (auto&& function : ClientEventHandlers::onShootHandler)
 		{
 			function();
 		}
@@ -104,7 +104,7 @@ namespace nonut::g2o
 
 	void onSink()
 	{
-		for (auto&& function : onSinkHandler)
+		for (auto&& function : ClientEventHandlers::onSinkHandler)
 		{
 			function();
 		}
@@ -112,7 +112,7 @@ namespace nonut::g2o
 
 	void onSpellCast(int id)
 	{
-		for (auto&& function : onSpellCastHandler)
+		for (auto&& function : ClientEventHandlers::onSpellCastHandler)
 		{
 			function(id);
 		}
@@ -120,7 +120,7 @@ namespace nonut::g2o
 
 	void onTakeFocus(int type, int id, std::string name)
 	{
-		for (auto&& function : onTakeFocusHandler)
+		for (auto&& function : ClientEventHandlers::onTakeFocusHandler)
 		{
 			function(type, id, name);
 		}
@@ -128,7 +128,7 @@ namespace nonut::g2o
 
 	void onTakeItem(std::string instance, int amount)
 	{
-		for (auto&& function : onTakeItemHandler)
+		for (auto&& function : ClientEventHandlers::onTakeItemHandler)
 		{
 			function(instance, amount);
 		}
@@ -136,7 +136,7 @@ namespace nonut::g2o
 
 	void onUnequip(std::string instance)
 	{
-		for (auto&& function : onUnequipHandler)
+		for (auto&& function : ClientEventHandlers::onUnequipHandler)
 		{
 			function(instance);
 		}
@@ -144,7 +144,7 @@ namespace nonut::g2o
 
 	void onCommand(std::string command, std::string params)
 	{
-		for (auto&& function : onCommandHandler)
+		for (auto&& function : ClientEventHandlers::onCommandHandler)
 		{
 			function(command, params);
 		}
@@ -152,7 +152,7 @@ namespace nonut::g2o
 
 	void onConsole(std::string command, std::string params)
 	{
-		for (auto&& function : onConsoleHandler)
+		for (auto&& function : ClientEventHandlers::onConsoleHandler)
 		{
 			function(command, params);
 		}
@@ -160,7 +160,7 @@ namespace nonut::g2o
 
 	void onKey(int key)
 	{
-		for (auto&& function : onKeyHandler)
+		for (auto&& function : ClientEventHandlers::onKeyHandler)
 		{
 			function(key);
 		}
@@ -168,7 +168,7 @@ namespace nonut::g2o
 
 	void onPaste(std::string clipboard)
 	{
-		for (auto&& function : onPasteHandler)
+		for (auto&& function : ClientEventHandlers::onPasteHandler)
 		{
 			function(clipboard);
 		}
@@ -176,7 +176,7 @@ namespace nonut::g2o
 
 	void onCloseInventory()
 	{
-		for (auto&& function : onCloseInventoryHandler)
+		for (auto&& function : ClientEventHandlers::onCloseInventoryHandler)
 		{
 			function();
 		}
@@ -184,7 +184,7 @@ namespace nonut::g2o
 
 	void onInventorySlotChange(int from, int to)
 	{
-		for (auto&& function : onInventorySlotChangeHandler)
+		for (auto&& function : ClientEventHandlers::onInventorySlotChangeHandler)
 		{
 			function(from, to);
 		}
@@ -192,7 +192,7 @@ namespace nonut::g2o
 
 	void onOpenInventory()
 	{
-		for (auto&& function : onOpenInventoryHandler)
+		for (auto&& function : ClientEventHandlers::onOpenInventoryHandler)
 		{
 			function();
 		}
@@ -200,7 +200,7 @@ namespace nonut::g2o
 
 	void onMouseClick(int button)
 	{
-		for (auto&& function : onMouseClickHandler)
+		for (auto&& function : ClientEventHandlers::onMouseClickHandler)
 		{
 			function(button);
 		}
@@ -208,7 +208,7 @@ namespace nonut::g2o
 
 	void onMouseMove(int x, int y)
 	{
-		for (auto&& function : onMouseMoveHandler)
+		for (auto&& function : ClientEventHandlers::onMouseMoveHandler)
 		{
 			function(x, y);
 		}
@@ -216,7 +216,7 @@ namespace nonut::g2o
 
 	void onMouseRelease(int button)
 	{
-		for (auto&& function : onMouseReleaseHandler)
+		for (auto&& function : ClientEventHandlers::onMouseReleaseHandler)
 		{
 			function(button);
 		}
@@ -224,7 +224,7 @@ namespace nonut::g2o
 
 	void onMouseWheel(int z)
 	{
-		for (auto&& function : onMouseWheelHandler)
+		for (auto&& function : ClientEventHandlers::onMouseWheelHandler)
 		{
 			function(z);
 		}
@@ -232,7 +232,7 @@ namespace nonut::g2o
 
 	void onPlayerChangeColor(int id, int r, int g, int b)
 	{
-		for (auto&& function : onPlayerChangeColorHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerChangeColorHandler)
 		{
 			function(id, r, g, b);
 		}
@@ -240,7 +240,7 @@ namespace nonut::g2o
 
 	void onPlayerChangeNickname(int id, std::string nickname)
 	{
-		for (auto&& function : onPlayerChangeNicknameHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerChangeNicknameHandler)
 		{
 			function(id, nickname);
 		}
@@ -248,7 +248,7 @@ namespace nonut::g2o
 
 	void onPlayerChangePing(int id, int ping)
 	{
-		for (auto&& function : onPlayerChangePingHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerChangePingHandler)
 		{
 			function(id, ping);
 		}
@@ -256,7 +256,7 @@ namespace nonut::g2o
 
 	void onPlayerChangeWeaponMode(int playerId, int oldWeaponMode, int newWeaponMode)
 	{
-		for (auto&& function : onPlayerChangeWeaponModeHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerChangeWeaponModeHandler)
 		{
 			function(playerId, oldWeaponMode, newWeaponMode);
 		}
@@ -264,7 +264,7 @@ namespace nonut::g2o
 
 	void onPlayerCreate(int id)
 	{
-		for (auto&& function : onPlayerCreateHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerCreateHandler)
 		{
 			function(id);
 		}
@@ -272,7 +272,7 @@ namespace nonut::g2o
 
 	void onPlayerDead(int id)
 	{
-		for (auto&& function : onPlayerCreateHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerCreateHandler)
 		{
 			function(id);
 		}
@@ -280,7 +280,7 @@ namespace nonut::g2o
 
 	void onPlayerDestroy(int id)
 	{
-		for (auto&& function : onPlayerDestroyHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerDestroyHandler)
 		{
 			function(id);
 		}
@@ -288,7 +288,7 @@ namespace nonut::g2o
 
 	void onPlayerHit(int killerId, int playerId, int damage)
 	{
-		for (auto&& function : onPlayerHitHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerHitHandler)
 		{
 			function(killerId, playerId, damage);
 		}
@@ -296,7 +296,7 @@ namespace nonut::g2o
 
 	void onPlayerMessage(int id, int r, int g, int b, std::string message)
 	{
-		for (auto&& function : onPlayerMessageHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerMessageHandler)
 		{
 			function(id, r, g, b, message);
 		}
@@ -304,7 +304,7 @@ namespace nonut::g2o
 
 	void onPlayerSpawn(int id)
 	{
-		for (auto&& function : onPlayerSpawnHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerSpawnHandler)
 		{
 			function(id);
 		}
@@ -312,7 +312,7 @@ namespace nonut::g2o
 
 	void onPlayerTeleport(int id, std::string vobName)
 	{
-		for (auto&& function : onPlayerTeleportHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerTeleportHandler)
 		{
 			function(id, vobName);
 		}
@@ -320,7 +320,7 @@ namespace nonut::g2o
 
 	void onPlayerUnspawn(int id)
 	{
-		for (auto&& function : onPlayerUnspawnHandler)
+		for (auto&& function : ClientEventHandlers::onPlayerUnspawnHandler)
 		{
 			function(id);
 		}
@@ -328,7 +328,7 @@ namespace nonut::g2o
 
 	void onWorldChange(std::string world)
 	{
-		for (auto&& function : onWorldChangeHandler)
+		for (auto&& function : ClientEventHandlers::onWorldChangeHandler)
 		{
 			function(world);
 		}
@@ -336,7 +336,7 @@ namespace nonut::g2o
 
 	void onWorldEnter()
 	{
-		for (auto&& function : onWorldEnterHandler)
+		for (auto&& function : ClientEventHandlers::onWorldEnterHandler)
 		{
 			function();
 		}
@@ -348,7 +348,7 @@ namespace nonut::g2o
 	Function<void> eventName ## TestHandler(#eventName "Cpp"); \
 	eventName ## AddEventHandler(#eventName, eventName ## TestHandler.GetObject(), 1)
 
-	void initializeClientEventHandlers()
+	void ClientEventHandlers::Init()
 	{
 		static bool isInitialized = false;
 
