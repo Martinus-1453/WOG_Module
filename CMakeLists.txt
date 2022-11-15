@@ -24,13 +24,15 @@ file(GLOB SRC
 	"src/nonut/Class.cpp"
 	"src/nonut/Function.h"
 	"src/nonut/Property.h"
-
+	"src/nonut/Constant.cpp"
+	"src/nonut/Constant.h"
 
 	"src/nonut/g2o/Draw.h"
 	"src/nonut/g2o/Draw.cpp"
 	"src/nonut/g2o/ClientFunctions.cpp"
 	"src/nonut/g2o/ClientEventHandlers.h"
 	"src/nonut/g2o/ClientEventHandlers.cpp"
+	"src/nonut/g2o/ClientConstants.cpp"
 
 	"src/wog/Init.h"
 

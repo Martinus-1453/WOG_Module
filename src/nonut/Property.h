@@ -6,6 +6,7 @@
 
 #include "api/squirrel_api.h"
 #include "api/module_api.h"
+#include "nonut/Utils.h"
 
 using namespace SqModule;
 
@@ -92,4 +93,4 @@ namespace nonut
 		std::string propertyName;
 	};
 }
-#endif // PROPERTY_H
+#endif

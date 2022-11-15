@@ -1,4 +1,7 @@
 #pragma once
+
+#ifndef UTILS_H
+#define UTILS_H
 #include "pch.h"
 
 using namespace SqModule;
@@ -82,3 +85,4 @@ namespace nonut
 		return std::string(result);
 	}
 }
+#endif

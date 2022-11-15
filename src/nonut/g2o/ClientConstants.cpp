@@ -1,0 +1,482 @@
+#include "ClientConstants.h"
+
+#include "nonut/Constant.h"
+#include "nonut/Property.h"
+
+namespace nonut::g2o
+{
+	int ClientConstants::ATTACK_FRONT = 0;
+	int ClientConstants::ATTACK_SWORD_LEFT = 0;
+	int ClientConstants::ATTACK_SWORD_RIGHT = 0;
+	int ClientConstants::ATTACK_SWORD_FRONT = 0;
+
+	int ClientConstants::CONSOLE_COMMAND_NOT_FOUND = 0;
+	int ClientConstants::CONSOLE_COMMAND_FOUND = 0;
+
+	int ClientConstants::DAEDALUS_TYPE_VOID = 0;
+	int ClientConstants::DAEDALUS_TYPE_FLOAT = 0;
+	int ClientConstants::DAEDALUS_TYPE_INT = 0;
+	int ClientConstants::DAEDALUS_TYPE_STRING = 0;
+	int ClientConstants::DAEDALUS_TYPE_CLASS = 0;
+	int ClientConstants::DAEDALUS_TYPE_FUNC = 0;
+	int ClientConstants::DAEDALUS_TYPE_PROTOTYPE = 0;
+	int ClientConstants::DAEDALUS_TYPE_INSTANCE = 0;
+	int ClientConstants::DAEDALUS_FLAG_CONST = 0;
+	int ClientConstants::DAEDALUS_FLAG_RETURN = 0;
+	int ClientConstants::DAEDALUS_FLAG_EXTERNAL = 0;
+	int ClientConstants::DAEDALUS_FLAG_MERGED = 0;
+
+	int ClientConstants::heroId = 0;
+
+	int ClientConstants::HUD_HEALTH_BAR = 0;
+	int ClientConstants::HUD_MANA_BAR = 0;
+	int ClientConstants::HUD_SWIM_BAR = 0;
+	int ClientConstants::HUD_FOCUS_BAR = 0;
+	int ClientConstants::HUD_FOCUS_NAME = 0;
+	int ClientConstants::HUD_MODE_HIDDEN = 0;
+	int ClientConstants::HUD_MODE_DEFAULT = 0;
+	int ClientConstants::HUD_MODE_ALWAYS_VISIBLE = 0;
+
+	int ClientConstants::DEFAULT_INTERPOLATION = 0;
+	int ClientConstants::V2_INTERPOLATION = 0;
+	int ClientConstants::V1_INTERPOLATION = 0;
+	int ClientConstants::OLD_INTERPOLATION = 0;
+	int ClientConstants::NO_INTERPOLATION = 0;
+
+	int ClientConstants::KEY_LAYOUT_EN = 0;
+	int ClientConstants::KEY_LAYOUT_PL = 0;
+	int ClientConstants::KEY_LAYOUT_RU = 0;
+	int ClientConstants::KEY_LAYOUT_DE = 0;
+
+	int ClientConstants::KEY_ESCAPE = 0;
+	int ClientConstants::KEY_1 = 0;
+	int ClientConstants::KEY_2 = 0;
+	int ClientConstants::KEY_3 = 0;
+	int ClientConstants::KEY_4 = 0;
+	int ClientConstants::KEY_5 = 0;
+	int ClientConstants::KEY_6 = 0;
+	int ClientConstants::KEY_7 = 0;
+	int ClientConstants::KEY_8 = 0;
+	int ClientConstants::KEY_9 = 0;
+	int ClientConstants::KEY_0 = 0;
+	int ClientConstants::KEY_MINUS = 0;
+	int ClientConstants::KEY_EQUALS = 0;
+	int ClientConstants::KEY_BACK = 0;
+	int ClientConstants::KEY_TAB = 0;
+	int ClientConstants::KEY_Q = 0;
+	int ClientConstants::KEY_W = 0;
+	int ClientConstants::KEY_E = 0;
+	int ClientConstants::KEY_R = 0;
+	int ClientConstants::KEY_T = 0;
+	int ClientConstants::KEY_Y = 0;
+	int ClientConstants::KEY_U = 0;
+	int ClientConstants::KEY_I = 0;
+	int ClientConstants::KEY_O = 0;
+	int ClientConstants::KEY_P = 0;
+	int ClientConstants::KEY_LBRACKET = 0;
+	int ClientConstants::KEY_RBRACKET = 0;
+	int ClientConstants::KEY_RETURN = 0;
+	int ClientConstants::KEY_LCONTROL = 0;
+	int ClientConstants::KEY_A = 0;
+	int ClientConstants::KEY_S = 0;
+	int ClientConstants::KEY_D = 0;
+	int ClientConstants::KEY_F = 0;
+	int ClientConstants::KEY_G = 0;
+	int ClientConstants::KEY_H = 0;
+	int ClientConstants::KEY_J = 0;
+	int ClientConstants::KEY_K = 0;
+	int ClientConstants::KEY_L = 0;
+	int ClientConstants::KEY_SEMICOLON = 0;
+	int ClientConstants::KEY_APOSTROPHE = 0;
+	int ClientConstants::KEY_TILDE = 0;
+	int ClientConstants::KEY_LSHIFT = 0;
+	int ClientConstants::KEY_BACKSLASH = 0;
+	int ClientConstants::KEY_Z = 0;
+	int ClientConstants::KEY_X = 0;
+	int ClientConstants::KEY_C = 0;
+	int ClientConstants::KEY_V = 0;
+	int ClientConstants::KEY_B = 0;
+	int ClientConstants::KEY_N = 0;
+	int ClientConstants::KEY_M = 0;
+	int ClientConstants::KEY_COMMA = 0;
+	int ClientConstants::KEY_PERIOD = 0;
+	int ClientConstants::KEY_SLASH = 0;
+	int ClientConstants::KEY_RSHIFT = 0;
+	int ClientConstants::KEY_MULTIPLY = 0;
+	int ClientConstants::KEY_LMENU = 0;
+	int ClientConstants::KEY_SPACE = 0;
+	int ClientConstants::KEY_CAPITAL = 0;
+	int ClientConstants::KEY_F1 = 0;
+	int ClientConstants::KEY_F2 = 0;
+	int ClientConstants::KEY_F3 = 0;
+	int ClientConstants::KEY_F4 = 0;
+	int ClientConstants::KEY_F5 = 0;
+	int ClientConstants::KEY_F6 = 0;
+	int ClientConstants::KEY_F7 = 0;
+	int ClientConstants::KEY_F8 = 0;
+	int ClientConstants::KEY_F9 = 0;
+	int ClientConstants::KEY_F10 = 0;
+	int ClientConstants::KEY_NUMLOCK = 0;
+	int ClientConstants::KEY_SCROLL = 0;
+	int ClientConstants::KEY_NUMPAD7 = 0;
+	int ClientConstants::KEY_NUMPAD8 = 0;
+	int ClientConstants::KEY_NUMPAD9 = 0;
+	int ClientConstants::KEY_SUBTRACT = 0;
+	int ClientConstants::KEY_NUMPAD4 = 0;
+	int ClientConstants::KEY_NUMPAD5 = 0;
+	int ClientConstants::KEY_NUMPAD6 = 0;
+	int ClientConstants::KEY_ADD = 0;
+	int ClientConstants::KEY_NUMPAD1 = 0;
+	int ClientConstants::KEY_NUMPAD2 = 0;
+	int ClientConstants::KEY_NUMPAD3 = 0;
+	int ClientConstants::KEY_NUMPAD0 = 0;
+	int ClientConstants::KEY_DECIMAL = 0;
+	int ClientConstants::KEY_F11 = 0;
+	int ClientConstants::KEY_F12 = 0;
+	int ClientConstants::KEY_NUMPADENTER = 0;
+	int ClientConstants::KEY_RCONTROL = 0;
+	int ClientConstants::KEY_DIVIDE = 0;
+	int ClientConstants::KEY_RMENU = 0;
+	int ClientConstants::KEY_PAUSE = 0;
+	int ClientConstants::KEY_HOME = 0;
+	int ClientConstants::KEY_UP = 0;
+	int ClientConstants::KEY_PRIOR = 0;
+	int ClientConstants::KEY_LEFT = 0;
+	int ClientConstants::KEY_RIGHT = 0;
+	int ClientConstants::KEY_END = 0;
+	int ClientConstants::KEY_DOWN = 0;
+	int ClientConstants::KEY_NEXT = 0;
+	int ClientConstants::KEY_INSERT = 0;
+	int ClientConstants::KEY_DELETE = 0;
+	int ClientConstants::KEY_LWIN = 0;
+	int ClientConstants::KEY_RWIN = 0;
+	int ClientConstants::KEY_POWER = 0;
+	int ClientConstants::KEY_SLEEP = 0;
+	int ClientConstants::KEY_WAKE = 0;
+
+	int ClientConstants::GAME_LEFT = 0;
+	int ClientConstants::GAME_RIGHT = 0;
+	int ClientConstants::GAME_UP = 0;
+	int ClientConstants::GAME_DOWN = 0;
+	int ClientConstants::GAME_ACTION = 0;
+	int ClientConstants::GAME_ACTION2 = 0;
+	int ClientConstants::GAME_SLOW = 0;
+	int ClientConstants::GAME_WEAPON = 0;
+	int ClientConstants::GAME_SMOVE = 0;
+	int ClientConstants::GAME_SMOVE2 = 0;
+	int ClientConstants::GAME_SHIFT = 0;
+	int ClientConstants::GAME_END = 0;
+	int ClientConstants::GAME_INVENTORY = 0;
+	int ClientConstants::GAME_LOOK = 0;
+	int ClientConstants::GAME_SNEAK = 0;
+	int ClientConstants::GAME_STRAFELEFT = 0;
+	int ClientConstants::GAME_STRAFERIGHT = 0;
+	int ClientConstants::GAME_SCREEN_STATUS = 0;
+	int ClientConstants::GAME_SCREEN_LOG = 0;
+	int ClientConstants::GAME_SCREEN_MAP = 0;
+	//TODO: MISSING FIRST PERSON KEY
+	int ClientConstants::GAME_LOCK_TARGET = 0;
+	int ClientConstants::GAME_PARADE = 0;
+	int ClientConstants::GAME_ACTIONLEFT = 0;
+	int ClientConstants::GAME_ACTIONRIGHT = 0;
+	int ClientConstants::GAME_LAME_POTION = 0;
+	int ClientConstants::GAME_LAME_HEAL = 0;
+
+	int ClientConstants::MOUSE_LMB = 0;
+	int ClientConstants::MOUSE_RMB = 0;
+	int ClientConstants::MOUSE_MMB = 0;
+
+	int ClientConstants::OBJ_BASENPC = 0;
+	int ClientConstants::OBJ_PED = 0;
+	int ClientConstants::OBJ_PLAYER = 0;
+	int ClientConstants::OBJ_LOCALPLAYER = 0;
+	int ClientConstants::OBJ_NPC = 0;
+	int ClientConstants::OBJ_LOCALNPC = 0;
+	int ClientConstants::OBJ_ITEM = 0;
+
+	int ClientConstants::PLANET_SUN = 0;
+	int ClientConstants::PLANET_MOON = 0;
+
+	int ClientConstants::TRACERAY_VOB_IGNORE = 0;
+	int ClientConstants::TRACERAY_VOB_IGNORE_NO_CD_DYN = 0;
+	int ClientConstants::TRACERAY_VOB_IGNORE_CHARACTER = 0;
+	int ClientConstants::TRACERAY_VOB_IGNORE_PROJECTILES = 0;
+	int ClientConstants::TRACERAY_VOB_BBOX = 0;
+	int ClientConstants::zTRACERAY_STAT_IGNORE = 0;
+	int ClientConstants::TRACERAY_STAT_POLY = 0;
+	int ClientConstants::TRACERAY_STAT_PORTALS = 0;
+	int ClientConstants::TRACERAY_POLY_NORMAL = 0;
+	int ClientConstants::TRACERAY_POLY_IGNORE_TRANSP = 0;
+	int ClientConstants::TRACERAY_POLY_TEST_WATER = 0;
+	int ClientConstants::TRACERAY_POLY_2SIDED = 0;
+
+	int ClientConstants::VOB_MOB = 0;
+	int ClientConstants::VOB_MOB_BED = 0;
+	int ClientConstants::VOB_MOB_CONTAINER = 0;
+	int ClientConstants::VOB_MOB_DOOR = 0;
+	int ClientConstants::VOB_MOB_FIRE = 0;
+	int ClientConstants::VOB_MOB_INTER = 0;
+	int ClientConstants::VOB_MOB_ITEMSLOT = 0;
+	int ClientConstants::VOB_MOB_LADDER = 0;
+	int ClientConstants::VOB_MOB_LOCKABLE = 0;
+	int ClientConstants::VOB_MOB_SWITCH = 0;
+	int ClientConstants::VOB_MOB_WHEEL = 0;
+	int ClientConstants::VOB_NPC = 0;
+	int ClientConstants::VOB_TRIGGER = 0;
+	int ClientConstants::VOB_TRIGGER_LIST = 0;
+	int ClientConstants::VOB_TRIGGER_TELEPORT = 0;
+	int ClientConstants::VOB_TRIGGER_UNTOUCH = 0;
+	int ClientConstants::VOB_TRIGGER_WORLD_START = 0;
+	int ClientConstants::VOB_GAME = 0;
+	int ClientConstants::VOB_ENGINE = 0;
+	int ClientConstants::VOB_LIGHT = 0;
+	int ClientConstants::VOB_SOUND = 0;
+	int ClientConstants::VOB_START_POINT = 0;
+	int ClientConstants::VOB_WAY_POINT = 0;
+	int ClientConstants::VOB_ERROR = 0;
+
+	int ClientConstants::WEATHER_SNOW = 0;
+	int ClientConstants::WEATHER_RAIN = 0;
+
+
+	void ClientConstants::Init()
+	{
+		HSQOBJECT constTable = GetConstTable();
+
+#define GET_CONST(constName) Property<int> constName ## Prop(#constName, constTable); \
+	(constName) = constName ## Prop.Get()
+
+		GET_CONST(ATTACK_FRONT);
+		GET_CONST(ATTACK_SWORD_LEFT);
+		GET_CONST(ATTACK_SWORD_RIGHT);
+		GET_CONST(ATTACK_SWORD_FRONT);
+
+		GET_CONST(CONSOLE_COMMAND_NOT_FOUND);
+		GET_CONST(CONSOLE_COMMAND_FOUND);
+
+		GET_CONST(DAEDALUS_TYPE_VOID);
+		GET_CONST(DAEDALUS_TYPE_FLOAT);
+		GET_CONST(DAEDALUS_TYPE_INT);
+		GET_CONST(DAEDALUS_TYPE_STRING);
+		GET_CONST(DAEDALUS_TYPE_CLASS);
+		GET_CONST(DAEDALUS_TYPE_FUNC);
+		GET_CONST(DAEDALUS_TYPE_PROTOTYPE);
+		GET_CONST(DAEDALUS_TYPE_INSTANCE);
+		GET_CONST(DAEDALUS_FLAG_CONST);
+		GET_CONST(DAEDALUS_FLAG_RETURN);
+		GET_CONST(DAEDALUS_FLAG_EXTERNAL);
+		GET_CONST(DAEDALUS_FLAG_MERGED);
+
+		GET_CONST(heroId);
+
+		GET_CONST(HUD_HEALTH_BAR);
+		GET_CONST(HUD_MANA_BAR);
+		GET_CONST(HUD_SWIM_BAR);
+		GET_CONST(HUD_FOCUS_BAR);
+		GET_CONST(HUD_FOCUS_NAME);
+		GET_CONST(HUD_MODE_HIDDEN);
+		GET_CONST(HUD_MODE_DEFAULT);
+		GET_CONST(HUD_MODE_ALWAYS_VISIBLE);
+
+		GET_CONST(DEFAULT_INTERPOLATION);
+		GET_CONST(V2_INTERPOLATION);
+		GET_CONST(V1_INTERPOLATION);
+		GET_CONST(OLD_INTERPOLATION);
+		GET_CONST(NO_INTERPOLATION);
+
+		GET_CONST(KEY_LAYOUT_EN);
+		GET_CONST(KEY_LAYOUT_PL);
+		GET_CONST(KEY_LAYOUT_RU);
+		GET_CONST(KEY_LAYOUT_DE);
+
+		GET_CONST(KEY_ESCAPE);
+		GET_CONST(KEY_1);
+		GET_CONST(KEY_2);
+		GET_CONST(KEY_3);
+		GET_CONST(KEY_4);
+		GET_CONST(KEY_5);
+		GET_CONST(KEY_6);
+		GET_CONST(KEY_7);
+		GET_CONST(KEY_8);
+		GET_CONST(KEY_9);
+		GET_CONST(KEY_0);
+		GET_CONST(KEY_MINUS);
+		GET_CONST(KEY_EQUALS);
+		GET_CONST(KEY_BACK);
+		GET_CONST(KEY_TAB);
+		GET_CONST(KEY_Q);
+		GET_CONST(KEY_W);
+		GET_CONST(KEY_E);
+		GET_CONST(KEY_R);
+		GET_CONST(KEY_T);
+		GET_CONST(KEY_Y);
+		GET_CONST(KEY_U);
+		GET_CONST(KEY_I);
+		GET_CONST(KEY_O);
+		GET_CONST(KEY_P);
+		GET_CONST(KEY_LBRACKET);
+		GET_CONST(KEY_RBRACKET);
+		GET_CONST(KEY_RETURN);
+		GET_CONST(KEY_LCONTROL);
+		GET_CONST(KEY_A);
+		GET_CONST(KEY_S);
+		GET_CONST(KEY_D);
+		GET_CONST(KEY_F);
+		GET_CONST(KEY_G);
+		GET_CONST(KEY_H);
+		GET_CONST(KEY_J);
+		GET_CONST(KEY_K);
+		GET_CONST(KEY_L);
+		GET_CONST(KEY_SEMICOLON);
+		GET_CONST(KEY_APOSTROPHE);
+		GET_CONST(KEY_TILDE);
+		GET_CONST(KEY_LSHIFT);
+		GET_CONST(KEY_BACKSLASH);
+		GET_CONST(KEY_Z);
+		GET_CONST(KEY_X);
+		GET_CONST(KEY_C);
+		GET_CONST(KEY_V);
+		GET_CONST(KEY_B);
+		GET_CONST(KEY_N);
+		GET_CONST(KEY_M);
+		GET_CONST(KEY_COMMA);
+		GET_CONST(KEY_PERIOD);
+		GET_CONST(KEY_SLASH);
+		GET_CONST(KEY_RSHIFT);
+		GET_CONST(KEY_MULTIPLY);
+		GET_CONST(KEY_LMENU);
+		GET_CONST(KEY_SPACE);
+		GET_CONST(KEY_CAPITAL);
+		GET_CONST(KEY_F1);
+		GET_CONST(KEY_F2);
+		GET_CONST(KEY_F3);
+		GET_CONST(KEY_F4);
+		GET_CONST(KEY_F5);
+		GET_CONST(KEY_F6);
+		GET_CONST(KEY_F7);
+		GET_CONST(KEY_F8);
+		GET_CONST(KEY_F9);
+		GET_CONST(KEY_F10);
+		GET_CONST(KEY_NUMLOCK);
+		GET_CONST(KEY_SCROLL);
+		GET_CONST(KEY_NUMPAD7);
+		GET_CONST(KEY_NUMPAD8);
+		GET_CONST(KEY_NUMPAD9);
+		GET_CONST(KEY_SUBTRACT);
+		GET_CONST(KEY_NUMPAD4);
+		GET_CONST(KEY_NUMPAD5);
+		GET_CONST(KEY_NUMPAD6);
+		GET_CONST(KEY_ADD);
+		GET_CONST(KEY_NUMPAD1);
+		GET_CONST(KEY_NUMPAD2);
+		GET_CONST(KEY_NUMPAD3);
+		GET_CONST(KEY_NUMPAD0);
+		GET_CONST(KEY_DECIMAL);
+		GET_CONST(KEY_F11);
+		GET_CONST(KEY_F12);
+		GET_CONST(KEY_NUMPADENTER);
+		GET_CONST(KEY_RCONTROL);
+		GET_CONST(KEY_DIVIDE);
+		GET_CONST(KEY_RMENU);
+		GET_CONST(KEY_PAUSE);
+		GET_CONST(KEY_HOME);
+		GET_CONST(KEY_UP);
+		GET_CONST(KEY_PRIOR);
+		GET_CONST(KEY_LEFT);
+		GET_CONST(KEY_RIGHT);
+		GET_CONST(KEY_END);
+		GET_CONST(KEY_DOWN);
+		GET_CONST(KEY_NEXT);
+		GET_CONST(KEY_INSERT);
+		GET_CONST(KEY_DELETE);
+		GET_CONST(KEY_LWIN);
+		GET_CONST(KEY_RWIN);
+		GET_CONST(KEY_POWER);
+		GET_CONST(KEY_SLEEP);
+		GET_CONST(KEY_WAKE);
+
+		GET_CONST(GAME_LEFT);
+		GET_CONST(GAME_RIGHT);
+		GET_CONST(GAME_UP);
+		GET_CONST(GAME_DOWN);
+		GET_CONST(GAME_ACTION);
+		GET_CONST(GAME_ACTION2);
+		GET_CONST(GAME_SLOW);
+		GET_CONST(GAME_WEAPON);
+		GET_CONST(GAME_SMOVE);
+		GET_CONST(GAME_SMOVE2);
+		GET_CONST(GAME_SHIFT);
+		GET_CONST(GAME_END);
+		GET_CONST(GAME_INVENTORY);
+		GET_CONST(GAME_LOOK);
+		GET_CONST(GAME_SNEAK);
+		GET_CONST(GAME_STRAFELEFT);
+		GET_CONST(GAME_STRAFERIGHT);
+		GET_CONST(GAME_SCREEN_STATUS);
+		GET_CONST(GAME_SCREEN_LOG);
+		GET_CONST(GAME_SCREEN_MAP);
+		//TODO: MISSING FIRST PERSON KEY
+		GET_CONST(GAME_LOCK_TARGET);
+		GET_CONST(GAME_PARADE);
+		GET_CONST(GAME_ACTIONLEFT);
+		GET_CONST(GAME_ACTIONRIGHT);
+		GET_CONST(GAME_LAME_POTION);
+		GET_CONST(GAME_LAME_HEAL);
+
+		GET_CONST(MOUSE_LMB);
+		GET_CONST(MOUSE_RMB);
+		GET_CONST(MOUSE_MMB);
+
+		GET_CONST(OBJ_BASENPC);
+		GET_CONST(OBJ_PED);
+		GET_CONST(OBJ_PLAYER);
+		GET_CONST(OBJ_LOCALPLAYER);
+		GET_CONST(OBJ_NPC);
+		GET_CONST(OBJ_LOCALNPC);
+		GET_CONST(OBJ_ITEM);
+
+		GET_CONST(PLANET_SUN);
+		GET_CONST(PLANET_MOON);
+
+		GET_CONST(TRACERAY_VOB_IGNORE);
+		GET_CONST(TRACERAY_VOB_IGNORE_NO_CD_DYN);
+		GET_CONST(TRACERAY_VOB_IGNORE_CHARACTER);
+		GET_CONST(TRACERAY_VOB_IGNORE_PROJECTILES);
+		GET_CONST(TRACERAY_VOB_BBOX);
+		GET_CONST(zTRACERAY_STAT_IGNORE);
+		GET_CONST(TRACERAY_STAT_POLY);
+		GET_CONST(TRACERAY_STAT_PORTALS);
+		GET_CONST(TRACERAY_POLY_NORMAL);
+		GET_CONST(TRACERAY_POLY_IGNORE_TRANSP);
+		GET_CONST(TRACERAY_POLY_TEST_WATER);
+		GET_CONST(TRACERAY_POLY_2SIDED);
+
+		GET_CONST(VOB_MOB);
+		GET_CONST(VOB_MOB_BED);
+		GET_CONST(VOB_MOB_CONTAINER);
+		GET_CONST(VOB_MOB_DOOR);
+		GET_CONST(VOB_MOB_FIRE);
+		GET_CONST(VOB_MOB_INTER);
+		GET_CONST(VOB_MOB_ITEMSLOT);
+		GET_CONST(VOB_MOB_LADDER);
+		GET_CONST(VOB_MOB_LOCKABLE);
+		GET_CONST(VOB_MOB_SWITCH);
+		GET_CONST(VOB_MOB_WHEEL);
+		GET_CONST(VOB_NPC);
+		GET_CONST(VOB_TRIGGER);
+		GET_CONST(VOB_TRIGGER_LIST);
+		GET_CONST(VOB_TRIGGER_TELEPORT);
+		GET_CONST(VOB_TRIGGER_UNTOUCH);
+		GET_CONST(VOB_TRIGGER_WORLD_START);
+		GET_CONST(VOB_GAME);
+		GET_CONST(VOB_ENGINE);
+		GET_CONST(VOB_LIGHT);
+		GET_CONST(VOB_SOUND);
+		GET_CONST(VOB_START_POINT);
+		GET_CONST(VOB_WAY_POINT);
+		GET_CONST(VOB_ERROR);
+
+		GET_CONST(WEATHER_SNOW);
+		GET_CONST(WEATHER_RAIN);
+	}
+}
