@@ -6,7 +6,7 @@
 
 #include "api/squirrel_api.h"
 #include "api/module_api.h"
-#include "nonut/Utils.h"
+#include "Utils.h"
 
 #define FUNCTION_CTOR(function) function(#function)
 
@@ -19,7 +19,7 @@ namespace nonut
 	{
 	public:
 		// Ctor for functions
-		Function(const std::string& functionName, const HSQOBJECT env = GetRootTable()) : envObj(env)
+		Function(const std::string& functionName, const HSQOBJECT env = getRootTable()) : envObj(env)
 		{
 			sq_pushobject(vm, envObj);
 			sq_pushstring(vm, functionName.c_str(), functionName.length());
@@ -93,7 +93,7 @@ namespace nonut
 			sq_pushobject(vm, funcObj);
 			sq_pushobject(vm, envObj);
 
-			(sq_pushvalue(vm, args), ...);
+			(sqPushValue(vm, args), ...);
 
 			if constexpr (std::is_same_v<ReturnType, void>)
 			{
@@ -105,14 +105,14 @@ namespace nonut
 			else
 			{
 				auto returnCode = sq_call(vm, argCount + 1, SQTrue, SQFalse); // TODO: HANDLE ERROR RETURN CODE
-				auto result = ReturnVar<ReturnType>();
+				auto result = returnVar<ReturnType>();
 				sq_pop(vm, 2);
 				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
 				return result;
 			}
 		}
 
-		[[nodiscard]] HSQOBJECT GetObject() const
+		[[nodiscard]] HSQOBJECT getObject() const
 		{
 			return funcObj;
 		}
@@ -123,7 +123,7 @@ namespace nonut
 		bool isClassMethod = false;
 		static constexpr auto argCount{sizeof...(Args)};
 
-		static HSQOBJECT GetRootTable()
+		static HSQOBJECT getRootTable()
 		{
 			HSQOBJECT rootTable{};
 			sq_pushroottable(vm);

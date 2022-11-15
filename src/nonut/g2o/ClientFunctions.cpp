@@ -223,7 +223,7 @@ namespace nonut::g2o
 	{
 	}
 
-	ClientFunctions* ClientFunctions::GetInstance()
+	ClientFunctions* ClientFunctions::getInstance()
 	{
 		if (instance == nullptr)
 		{

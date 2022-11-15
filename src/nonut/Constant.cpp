@@ -4,7 +4,7 @@ using namespace SqModule;
 
 namespace nonut
 {
-	HSQOBJECT GetConstTable()
+	HSQOBJECT getConstTable()
 	{
 		HSQOBJECT obj;
 		sq_pushconsttable(vm);

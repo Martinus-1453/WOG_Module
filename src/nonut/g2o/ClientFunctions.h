@@ -3,7 +3,7 @@
 #define CLIENT_FUNCTIONS_H
 #include "nonut/Function.h"
 
-#define CLIENT_FUNCTIONS nonut::g2o::ClientFunctions::GetInstance()
+#define CLIENT_FUNCTIONS nonut::g2o::ClientFunctions::getInstance()
 
 namespace nonut::g2o
 {
@@ -15,7 +15,7 @@ namespace nonut::g2o
 	public:
 		ClientFunctions(ClientFunctions& other) = delete;
 		void operator=(const ClientFunctions&) = delete;
-		static ClientFunctions* GetInstance();
+		static ClientFunctions* getInstance();
 
 		// G2O functions
 		Function<void, std::string> print;

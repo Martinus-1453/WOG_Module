@@ -9,7 +9,7 @@ using namespace SqModule;
 namespace nonut
 {
 	template <typename T>
-	void sq_getvalue(HSQUIRRELVM vm, SQInteger idx, T out_ptr)
+	void sqGetValue(HSQUIRRELVM vm, SQInteger idx, T outPtr)
 	{
 		static_assert(
 			std::is_same_v<T, SQBool*> ||
@@ -20,19 +20,19 @@ namespace nonut
 			"Not supported return type");
 
 		if constexpr (std::is_same_v<T, SQBool*>)
-			sq_getbool(vm, idx, out_ptr);
+			sq_getbool(vm, idx, outPtr);
 		if constexpr (std::is_same_v<T, SQInteger*>)
-			sq_getinteger(vm, idx, out_ptr);
+			sq_getinteger(vm, idx, outPtr);
 		if constexpr (std::is_same_v<T, SQFloat*>)
-			sq_getfloat(vm, idx, out_ptr);
+			sq_getfloat(vm, idx, outPtr);
 		if constexpr (std::is_same_v<T, SQChar**>)
-			sq_getstring(vm, idx, out_ptr);
+			sq_getstring(vm, idx, outPtr);
 		if constexpr (std::is_same_v<T, HSQOBJECT*>)
-			sq_getstackobj(vm, idx, out_ptr);
+			sq_getstackobj(vm, idx, outPtr);
 	}
 
 	template <typename T>
-	void sq_pushvalue(HSQUIRRELVM vm, T value)
+	void sqPushValue(HSQUIRRELVM vm, T value)
 	{
 		static_assert(
 			std::is_same_v<T, bool> ||
@@ -61,7 +61,7 @@ namespace nonut
 	}
 
 	template <typename T>
-	T ReturnVar()
+	T returnVar()
 	{
 		static_assert(
 			std::is_same_v<T, HSQOBJECT> ||
@@ -77,7 +77,7 @@ namespace nonut
 	}
 
 	template <>
-	inline std::string ReturnVar<std::string>()
+	inline std::string returnVar<std::string>()
 	{
 		const SQChar* result = nullptr;
 		sq_getstring(vm, -1, &result);

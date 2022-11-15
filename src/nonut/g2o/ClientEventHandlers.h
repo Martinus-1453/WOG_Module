@@ -71,7 +71,7 @@ namespace nonut::g2o
 	{
 	public:
 		// !!!INITIALIZATION!!!
-		static void Init();
+		static void init();
 
 		static inline HANDLER_INIT(void(), onChangeResolution);
 		static inline HANDLER_INIT(void(), onExit);

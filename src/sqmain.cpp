@@ -27,6 +27,6 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	const auto draw = new nonut::g2o::Draw(0, 0, corner_message);
 
 
-	draw->visible.Set(true);
+	draw->visible.set(true);
 	return SQ_OK;
 }

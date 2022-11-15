@@ -10,7 +10,7 @@ namespace nonut::g2o
 		METHOD_CTOR(top),
 		PROPERTY_CTOR(visible)
 	{
-		ClassCtor(x, y, std::move(text));
-		visible.Set(true);
+		classCtor(x, y, std::move(text));
+		visible.set(true);
 	}
 }

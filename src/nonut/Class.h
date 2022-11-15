@@ -26,7 +26,7 @@ namespace nonut
 		HSQOBJECT classObjectInstance{};
 
 		template <typename... Args>
-		void ClassCtor(Args ... args)
+		void classCtor(Args ... args)
 		{
 			Function<void, Args...> ctor(CONSTRUCTOR_NAME, classObjectInstance, classObject);
 			ctor(std::forward<Args>(args)...);

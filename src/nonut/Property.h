@@ -6,14 +6,14 @@
 
 #include "api/squirrel_api.h"
 #include "api/module_api.h"
-#include "nonut/Utils.h"
+#include  "Utils.h"
 
 using namespace SqModule;
 
 namespace nonut
 {
 	template <typename T>
-	T GetProperty(HSQOBJECT& object, std::string& name)
+	T getProperty(HSQOBJECT& object, std::string& name)
 	{
 		T result{};
 
@@ -22,7 +22,7 @@ namespace nonut
 
 		if (SQ_SUCCEEDED(sq_get(vm, -2))) // pops property
 		{
-			sq_getvalue(vm, -1, &result);
+			sqGetValue(vm, -1, &result);
 			sq_pop(vm, 1); // pops result
 		}
 
@@ -32,13 +32,13 @@ namespace nonut
 	}
 
 	template <>
-	inline bool GetProperty<bool>(HSQOBJECT& object, std::string& name)
+	inline bool getProperty<bool>(HSQOBJECT& object, std::string& name)
 	{
-		return GetProperty<SQBool>(object, name);
+		return getProperty<SQBool>(object, name);
 	}
 
 	template <>
-	inline std::string GetProperty<std::string>(HSQOBJECT& object, std::string& name)
+	inline std::string getProperty<std::string>(HSQOBJECT& object, std::string& name)
 	{
 		const SQChar* result{};
 
@@ -58,11 +58,11 @@ namespace nonut
 
 
 	template <typename T>
-	void SetProperty(HSQOBJECT& object, std::string& name, T value)
+	void setProperty(HSQOBJECT& object, std::string& name, T value)
 	{
 		sq_pushobject(vm, object);
 		sq_pushstring(vm, name.c_str(), name.length());
-		sq_pushvalue(vm, value);
+		sqPushValue(vm, value);
 
 		auto result = sq_set(vm, -3); // pops name and value
 
@@ -78,14 +78,14 @@ namespace nonut
 		{
 		}
 
-		T Get()
+		T get()
 		{
-			return GetProperty<T>(object, propertyName);
+			return getProperty<T>(object, propertyName);
 		}
 
-		void Set(T value)
+		void set(T value)
 		{
-			SetProperty<T>(object, propertyName, value);
+			setProperty<T>(object, propertyName, value);
 		}
 
 	private:

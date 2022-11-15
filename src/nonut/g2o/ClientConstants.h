@@ -7,7 +7,7 @@ namespace nonut::g2o
 	class ClientConstants
 	{
 	public:
-		static void Init();
+		static void init();
 
 		static inline int ATTACK_FRONT = 0;
 		static inline int ATTACK_SWORD_LEFT = 0;

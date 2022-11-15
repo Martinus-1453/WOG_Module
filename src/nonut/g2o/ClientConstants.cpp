@@ -5,12 +5,12 @@
 
 namespace nonut::g2o
 {
-	void ClientConstants::Init()
+	void ClientConstants::init()
 	{
-		HSQOBJECT constTable = GetConstTable();
+		HSQOBJECT constTable = getConstTable();
 
 #define GET_CONST(constName) Property<int> constName ## Prop(#constName, constTable); \
-	(constName) = constName ## Prop.Get()
+	(constName) = constName ## Prop.get()
 
 		GET_CONST(ATTACK_FRONT);
 		GET_CONST(ATTACK_SWORD_LEFT);

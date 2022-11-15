@@ -6,15 +6,15 @@
 
 using namespace SqModule;
 
-typedef nonut::g2o::ClientConstants ClientConstants;
-typedef nonut::g2o::ClientEventHandlers ClientEventHandlers;
+using ClientConstants = nonut::g2o::ClientConstants;
+using ClientEventHandlers = nonut::g2o::ClientEventHandlers;
 
 namespace wog
 {
 	inline void init()
 	{
-		nonut::g2o::ClientEventHandlers::Init();
-		nonut::g2o::ClientConstants::Init();
+		nonut::g2o::ClientEventHandlers::init();
+		nonut::g2o::ClientConstants::init();
 
 		ClientEventHandlers::onMouseClickHandler.emplace_back([](int key)
 			{

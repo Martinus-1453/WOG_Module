@@ -345,9 +345,9 @@ namespace nonut::g2o
 #define BIND_EVENT_HANDLER(eventName) Sqrat::RootTable(vm).Func(#eventName "Cpp", &eventName); \
 	Function<void, std::string, HSQOBJECT, int> eventName ## AddEventHandler("addEventHandler"); \
 	Function<void> eventName ## TestHandler(#eventName "Cpp"); \
-	eventName ## AddEventHandler(#eventName, eventName ## TestHandler.GetObject(), 1)
+	eventName ## AddEventHandler(#eventName, eventName ## TestHandler.getObject(), 1)
 
-	void ClientEventHandlers::Init()
+	void ClientEventHandlers::init()
 	{
 		static bool isInitialized = false;
 
