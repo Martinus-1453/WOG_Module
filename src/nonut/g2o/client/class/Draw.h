@@ -1,12 +1,10 @@
 #pragma once
 #ifndef DRAW_H
 #define DRAW_H
-
 #include <string>
 
-#include "nonut/Class.h"
-#include "nonut/Function.h"
-#include "nonut/Property.h"
+#include "nonut/core/Class.h"
+#include "nonut/core/Property.h"
 
 namespace nonut::g2o
 {

@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "ClientEventHandlers.h"
+#include "nonut/core/Function.h"
 
-#include "nonut/Function.h"
+using namespace SqModule;
 
 namespace nonut::g2o
 {

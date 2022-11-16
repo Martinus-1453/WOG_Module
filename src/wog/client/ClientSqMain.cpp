@@ -1,9 +1,8 @@
 #include "pch.h"
-#include "nonut/Function.h"
-#include "nonut/g2o/Draw.h"
-#include "wog/Init.h"
 #include "SquirrelTemplateConfig.h"
-#include "nonut/g2o/ClientFunctions.h"
+#include "nonut/g2o/client/class/Draw.h"
+#include "nonut/g2o/client/function/ClientFunctions.h"
+#include "wog/client/ClientInit.h"
 
 using namespace SqModule;
 

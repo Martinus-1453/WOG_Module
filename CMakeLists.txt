@@ -20,27 +20,32 @@ file(GLOB SRC
 	"src/api/module_api.h"
 	"src/api/module_api.cpp"
 
-	"src/nonut/Array.h"
-	"src/nonut/Array.cpp"
-	"src/nonut/Class.h"
-	"src/nonut/Class.cpp"
-	"src/nonut/Function.h"
-	"src/nonut/Property.h"
-	"src/nonut/Constant.cpp"
-	"src/nonut/Constant.h"
+	"src/nonut/core/Array.h"
+	"src/nonut/core/Array.cpp"
+	"src/nonut/core/Class.h"
+	"src/nonut/core/Class.cpp"
+	"src/nonut/core/Function.h"
+	"src/nonut/core/Property.h"
+	"src/nonut/core/Constant.cpp"
+	"src/nonut/core/Constant.h"
 
-	"src/nonut/g2o/Draw.h"
-	"src/nonut/g2o/Draw.cpp"
-	"src/nonut/g2o/ClientFunctions.cpp"
-	"src/nonut/g2o/ClientEventHandlers.h"
-	"src/nonut/g2o/ClientEventHandlers.cpp"
-	"src/nonut/g2o/ClientConstants.cpp"
-	"src/nonut/g2o/CustomTypes.cpp"
+	"src/nonut/g2o/client/class/Draw.h"
+	"src/nonut/g2o/client/class/Draw.cpp"
 
-	"src/wog/Init.h"
+	"src/nonut/g2o/client/function/ClientFunctions.cpp"
+
+	"src/nonut/g2o/client/event/ClientEventHandlers.h"
+	"src/nonut/g2o/client/event/ClientEventHandlers.cpp"
+
+	"src/nonut/g2o/client/constant/ClientConstants.cpp"
+
+	"src/nonut/g2o/shared/CustomTypes.h"
+	"src/nonut/g2o/shared/CustomTypes.cpp"
+
+	"src/wog/client/ClientInit.h"
+	"src/wog/client/ClientSqMain.cpp"
 
 	"src/pch.h"
-	"src/sqmain.cpp"
 )
 
 add_library(squirrel-template SHARED ${SRC})

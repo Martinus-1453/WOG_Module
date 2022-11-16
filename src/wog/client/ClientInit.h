@@ -1,8 +1,10 @@
 #pragma once
+#ifndef CLIENT_INIT_H
+#define CLIENT_INIT_H
 #include "pch.h"
-#include "nonut/g2o/ClientConstants.h"
-#include "nonut/g2o/ClientEventHandlers.h"
-#include "nonut/g2o/ClientFunctions.h"
+
+#include "nonut/g2o/client/constant/ClientConstants.h"
+#include "nonut/g2o/client/event/ClientEventHandlers.h"
 
 using namespace SqModule;
 
@@ -45,3 +47,4 @@ namespace wog
 			});
 	}
 }
+#endif

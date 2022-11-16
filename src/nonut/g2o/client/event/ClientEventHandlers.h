@@ -1,4 +1,7 @@
 #pragma once
+#ifndef CLIENT_EVENT_HANDLERS_H
+#define CLIENT_EVENT_HANDLERS_H
+
 #include <functional>
 #include <string>
 #include <vector>
@@ -121,3 +124,4 @@ namespace nonut::g2o
 		static inline HANDLER_INIT(void(), onWorldEnter);
 	};
 }
+#endif

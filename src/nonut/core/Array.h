@@ -1,9 +1,8 @@
 #pragma once
 #ifndef ARRAY_H
 #define ARRAY_H
-#include <vector>
-
 #include "pch.h"
+
 #include "Utils.h"
 
 using namespace SqModule;

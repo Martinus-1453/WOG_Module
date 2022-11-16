@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Draw.h"
 
-#include "nonut/Function.h"
+#include "nonut/core/Function.h"
 
 namespace nonut::g2o
 {

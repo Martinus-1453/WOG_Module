@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "nonut/Utils.h"
+#include "nonut/core/Utils.h"
 
 namespace nonut::g2o
 {
@@ -49,9 +49,9 @@ namespace nonut::g2o
 	struct Item : CustomType
 	{
 		void convert(HSQOBJECT object) override;
-		int instance;
-		int amount;
-		std::string name;
+		int instance{};
+		int amount{};
+		std::string name{};
 	};
 
 	struct Color : CustomType
@@ -65,10 +65,10 @@ namespace nonut::g2o
 	struct BodyVisual : CustomType
 	{
 		void convert(HSQOBJECT object) override;
-		std::string bodyModel;
-		int bodyTxt;
-		std::string headModel;
-		int headTxt;
+		std::string bodyModel{};
+		int bodyTxt{};
+		std::string headModel{};
+		int headTxt{};
 	};
 
 	struct NetworkStats : CustomType

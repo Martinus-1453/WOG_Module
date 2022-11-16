@@ -1,13 +1,12 @@
 #pragma once
 #ifndef OBJECT_H
 #define OBJECT_H
+#include "pch.h"
 
 #include <tuple>
 #include <string>
 #include <array>
 
-#include "api/squirrel_api.h"
-#include "pch.h"
 #include "Property.h"
 
 namespace nonut {
