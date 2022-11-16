@@ -20,6 +20,8 @@ file(GLOB SRC
 	"src/api/module_api.h"
 	"src/api/module_api.cpp"
 
+	"src/nonut/Array.h"
+	"src/nonut/Array.cpp"
 	"src/nonut/Class.h"
 	"src/nonut/Class.cpp"
 	"src/nonut/Function.h"
@@ -33,6 +35,7 @@ file(GLOB SRC
 	"src/nonut/g2o/ClientEventHandlers.h"
 	"src/nonut/g2o/ClientEventHandlers.cpp"
 	"src/nonut/g2o/ClientConstants.cpp"
+	"src/nonut/g2o/CustomTypes.cpp"
 
 	"src/wog/Init.h"
 

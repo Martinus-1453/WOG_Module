@@ -8,6 +8,11 @@ using namespace SqModule;
 
 namespace nonut
 {
+	struct CustomType
+	{
+		virtual void convert(HSQOBJECT object) = 0;
+	};
+
 	template <typename T>
 	void sqGetValue(HSQUIRRELVM vm, SQInteger idx, T outPtr)
 	{
@@ -28,7 +33,10 @@ namespace nonut
 		if constexpr (std::is_same_v<T, SQChar**>)
 			sq_getstring(vm, idx, outPtr);
 		if constexpr (std::is_same_v<T, HSQOBJECT*>)
+		{
 			sq_getstackobj(vm, idx, outPtr);
+			sq_addref(vm, outPtr);
+		}
 	}
 
 	template <typename T>
@@ -70,10 +78,11 @@ namespace nonut
 			std::is_same_v<T, int> ||
 			std::is_same_v<T, std::string>,
 			"Not supported return type");
-		T result;
-		sq_getvalue(vm, -1, &result);
-		sq_pop(vm, 1); // pops result
-		return result;
+
+			T result{};
+			sqGetValue(vm, -1, &result);
+			sq_pop(vm, 1); // pops result
+			return result;
 	}
 
 	template <>

@@ -15,6 +15,7 @@ namespace nonut
 	template <typename T>
 	T getProperty(HSQOBJECT& object, std::string& name)
 	{
+		const SQInteger top = sq_gettop(vm);
 		T result{};
 
 		sq_pushobject(vm, object);
@@ -27,7 +28,7 @@ namespace nonut
 		}
 
 		sq_pop(vm, 1); // pops object
-
+		sq_settop(vm, top);
 		return result;
 	}
 
@@ -40,6 +41,7 @@ namespace nonut
 	template <>
 	inline std::string getProperty<std::string>(HSQOBJECT& object, std::string& name)
 	{
+		const SQInteger top = sq_gettop(vm);
 		const SQChar* result{};
 
 		sq_pushobject(vm, object);
@@ -52,7 +54,7 @@ namespace nonut
 		}
 
 		sq_pop(vm, 1); // pops object
-
+		sq_settop(vm, top);
 		return result;
 	}
 

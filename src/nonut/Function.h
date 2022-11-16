@@ -105,7 +105,21 @@ namespace nonut
 			else
 			{
 				auto returnCode = sq_call(vm, argCount + 1, SQTrue, SQFalse); // TODO: HANDLE ERROR RETURN CODE
-				auto result = returnVar<ReturnType>();
+
+				ReturnType result{};
+
+				if constexpr (std::derived_from<ReturnType, CustomType>)
+				{
+					HSQOBJECT intermediateResult = returnVar<HSQOBJECT>();
+					result.convert(intermediateResult);
+					sq_release(vm, &intermediateResult);
+					sq_resetobject(&intermediateResult);
+				}
+				else
+				{
+					result = returnVar<ReturnType>();
+				}
+				
 				sq_pop(vm, 2);
 				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
 				return result;

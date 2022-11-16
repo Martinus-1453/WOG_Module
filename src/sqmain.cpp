@@ -18,8 +18,7 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	CLIENT_FUNCTIONS->print("Print z szablonu :D");
 
 	// Test getWorld function + print
-	nonut::Function<std::string> getWorld("getWorld");
-	CLIENT_FUNCTIONS->print(getWorld());
+	CLIENT_FUNCTIONS->print(CLIENT_FUNCTIONS->getWorld());
 
 	// Test Draw class
 	const std::string corner_message = std::to_string(squirrel_template_VERSION_MAJOR) + "." +

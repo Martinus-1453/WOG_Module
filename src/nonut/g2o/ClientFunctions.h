@@ -2,6 +2,7 @@
 #ifndef CLIENT_FUNCTIONS_H
 #define CLIENT_FUNCTIONS_H
 #include "nonut/Function.h"
+#include "CustomTypes.h"
 
 #define CLIENT_FUNCTIONS nonut::g2o::ClientFunctions::getInstance()
 
@@ -24,7 +25,7 @@ namespace nonut::g2o
 		Function<void> chatInputClear;
 		Function<void> chatInputClose;
 		Function<std::string> chatInputGetFont;
-		//Function < {x,y} > chatInputGetPosition;
+		Function <Position2D> chatInputGetPosition;
 		Function<std::string> chatInputGetText;
 		Function<bool> chatInputIsOpen;
 		Function<void> chatInputOpen;
@@ -45,12 +46,10 @@ namespace nonut::g2o
 		Function<int> getFpsRate;
 		Function<float> getLODStrengthModifier;
 		Function<float> getLODStrengthOverride;
-		//Function<{packetReceived, packetlossTotal, packetlossLastSecond,
-		//			messagesInResendBuffer, messageInSendBuffer, bytesInResendBuffer,
-		//			bytesInSendBuffer}> getNetworkStats;
+		Function<NetworkStats> getNetworkStats;
 		Function<float> getSightFactor;
-		//Function< {day, hour, min} > getTime;
-		//Function<int, userpointer> getVobType;
+		Function<GameTime> getTime;
+		Function<int, SQUserPointer> getVobType;
 		Function<bool, std::string> playVideo;
 		Function<void, int> setBloodMode;
 		Function<void, float> setDayLength;
@@ -90,7 +89,7 @@ namespace nonut::g2o
 		[[deprecated]] Function<void, bool> enableKeys;
 		Function<int> getKeyLayout;
 		Function<std::string, int> getKeyLetter;
-		//Function< ??? , int> getLogicalKeyBinding;
+		//Function< array<int>? , int> getLogicalKeyBinding;
 		Function<bool> isControlsDisabled;
 		Function<bool, int> isKeyDisabled;
 		Function<bool, int> isKeyPressed;
@@ -103,22 +102,22 @@ namespace nonut::g2o
 		Function<void> saveLogicalKeys;
 		Function<void, std::string> setClipboardText;
 		Function<void, int> setKeyLayout;
-		//Function<void, int, array?> setLogicalKeyBinding;
+		//Function<void, int, array<int>?> setLogicalKeyBinding;
 
 		// Interface
 		Function<int, int> anx;
 		Function<int, int> any;
 		//Function < {x, y, bpp} ... > getAvailableResolutions;
-		//Function < {x, y}, int > getBarPosition;
-		//Function < {width, height}, int > getBarSize;
-		//Function < {x, y} > getCursorPosition;
-		//Function < {x, y} > getCursorPositionPx;
+		Function<Position2D, int> getBarPosition;
+		Function<Size2D, int> getBarSize;
+		Function<Position2D> getCursorPosition;
+		Function<Position2D> getCursorPositionPx;
 		Function<float> getCursorSensitivity;
-		//Function < {width, height} > getCursorSize;
-		//Function < {width, height} > getCursorSizePx;
+		Function<Position2D> getCursorSize;
+		Function<Position2D> getCursorSizePx;
 		Function<std::string> getCursorTxt;
 		Function<int, int> getHudMode;
-		//Function < {x, y, bpp} > getResolution;
+		Function<Resolution> getResolution;
 		Function<bool> isConsoleOpen;
 		Function<bool> isCursorVisible;
 		Function<int> letterDistance;
@@ -149,7 +148,7 @@ namespace nonut::g2o
 		Function<void> closeInventory;
 		Function<int> getCurrentInventorySlot;
 		//Function < {instance, amount, name}... > getEq;
-		//Function < {instance, amount, name}, int > getItemBySlot;
+		Function<Item, int> getItemBySlot;
 		Function<int, int> hasItem;
 		Function<bool> isInventoryOpen;
 		Function<void> openInventory;
@@ -200,12 +199,12 @@ namespace nonut::g2o
 		//Function<Vec3, int> getPlayerAtVector;
 		Function<int, int> getPlayerBelt;
 		Function<bool, int> getPlayerCollision;
-		//Function < {r, g, b}, int > getPlayerColor;
+		Function<Color, int > getPlayerColor;
 		Function<int, int> getPlayerDexterity;
 		Function<float, int> getPlayerFatness;
 		Function<int, int> getPlayerHealth;
 		Function<int, int> getPlayerHelmet;
-		//Function<int, userpointer> getPlayerIdByPtr;
+		Function<int, SQUserPointer> getPlayerIdByPtr;
 		Function<std::string, int> getPlayerInstance;
 		Function<int, int> getPlayerMagicLevel;
 		Function<int, int> getPlayerMana;
@@ -215,20 +214,20 @@ namespace nonut::g2o
 		Function<int, int> getPlayerMeleeWeapon;
 		Function<std::string, int> getPlayerName;
 		Function<int, int> getPlayerPing;
-		//Function < {x, y, z}, int > getPlayerPosition;
+		Function<Position3D, int > getPlayerPosition;
 		Function<int, int, int> getPlayerProtection;
-		//Function<userpointer, int> getPlayerPtr;
+		Function<SQUserPointer, int> getPlayerPtr;
 		Function<int, int> getPlayerRangedWeapon;
 		Function<int, int> getPlayerReadiedWeapon;
 		Function<int, int, int> getPlayerRing;
-		//Function < {x, y, z}, int > getPlayerScale;
+		Function<Position3D, int > getPlayerScale;
 		Function<int, int> getPlayerShield;
 		Function<int, int, int> getPlayerSkillWeapon;
 		Function<int, int, int> getPlayerSpell;
 		Function<int, int> getPlayerStrength;
-		Function<void, int, int, bool> getPlayerTalent; // SUS
+		//Function<void, int, int, bool> getPlayerTalent; // SUS
 		Function<int, int> getPlayerType;
-		//Function < {bodyModel, bodyTxt, headModel, headTxt}, int > getPlayerVisual;
+		Function<BodyVisual, int> getPlayerVisual;
 		Function<float, int> getPlayerVisualAlpha;
 		Function<int, int> getPlayerWeaponMode;
 		Function<void, int, int, int> giveItem;
@@ -264,7 +263,7 @@ namespace nonut::g2o
 		Function<void, int, int, int> setPlayerSkillWeapon;
 		Function<void, int, int> setPlayerStrength;
 		Function<void, int, int, bool> setPlayerTalent;
-		Function<void, int, int, std::string, int> setPlayerVisual;
+		Function<void, int, std::string, int, std::string, int> setPlayerVisual;
 		Function<bool, int, float> setPlayerVisualAlpha;
 		Function<void, int, int> setPlayerWeaponMode;
 		Function<bool, int, std::string> startFaceAni;

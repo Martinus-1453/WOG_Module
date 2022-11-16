@@ -1,0 +1,83 @@
+#include "CustomTypes.h"
+
+#include "nonut/Array.h"
+#include "nonut/Property.h"
+
+namespace nonut::g2o
+{
+#define GET_SLOT(slot, type) slot = arrayWrapper.get<type>(#slot)
+	void GameTime::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(day, int);
+		GET_SLOT(hour, int);
+		GET_SLOT(min, int);
+	}
+
+	void Position2D::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(x, int);
+		GET_SLOT(y, int);
+	}
+
+	void Position3D::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(x, int);
+		GET_SLOT(y, int);
+		GET_SLOT(z, int);
+	}
+
+	void Size2D::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(width, int);
+		GET_SLOT(height, int);
+	}
+
+	void Resolution::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(x, int);
+		GET_SLOT(y, int);
+		GET_SLOT(bpp, int);
+	}
+
+	void Item::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(instance, int);
+		GET_SLOT(amount, int);
+		GET_SLOT(name, std::string);
+	}
+
+	void Color::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(r, int);
+		GET_SLOT(g, int);
+		GET_SLOT(b, int);
+	}
+
+	void BodyVisual::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(bodyModel, std::string);
+		GET_SLOT(bodyTxt, int);
+		GET_SLOT(headModel, std::string);
+		GET_SLOT(headTxt, int);
+	}
+
+	void NetworkStats::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(packetReceived, int);
+		GET_SLOT(packetlossTotal, int);
+		GET_SLOT(packetlossLastSecond, int);
+		GET_SLOT(messagesInResendBuffer, int);
+		GET_SLOT(messageInSendBuffer, int);
+		GET_SLOT(bytesInResendBuffer, int);
+		GET_SLOT(bytesInSendBuffer, int);
+	}
+}
