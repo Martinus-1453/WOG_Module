@@ -15,11 +15,13 @@ option(INSTALL_AFTER_BUILD "Run cmake --install separately for every target afte
 set(GAME_PATH "" CACHE PATH "This option specifies the game location. It's only used for the installation step.")
 set(SERVER_PATH "" CACHE PATH "This option specifies the server location. It's only used for the installation step.")
 
-file(GLOB SRC
+file(GLOB SRC_CLIENT_FILES
 	"src/api/squirrel_api.h"
 	"src/api/module_api.h"
 	"src/api/module_api.cpp"
+)
 
+file(GLOB SRC_SHARED_FILES
 	"src/nonut/Array.h"
 	"src/nonut/Array.cpp"
 	"src/nonut/Class.h"
@@ -43,7 +45,11 @@ file(GLOB SRC
 	"src/sqmain.cpp"
 )
 
-add_library(squirrel-template SHARED ${SRC})
+file(GLOB SRC_SERVER_FILES
+	
+)
+
+add_library(squirrel-template SHARED ${SRC_CLIENT_FILES} ${SRC_SHARED_FILES})
 target_precompile_headers(squirrel-template PRIVATE "src/pch.h")
 
 target_include_directories(squirrel-template
