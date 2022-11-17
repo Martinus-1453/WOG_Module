@@ -5,6 +5,8 @@
 #include <string>
 
 #include "Function.h"
+// ReSharper disable once CppUnusedIncludeDirective
+#include "Property.h"
 
 #define METHOD_CTOR(methodName) methodName(#methodName, this->classObjectInstance, this->classObject)
 #define PROPERTY_CTOR(propertyName) propertyName(#propertyName, this->classObjectInstance)

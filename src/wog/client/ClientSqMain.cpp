@@ -23,8 +23,11 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	const std::string corner_message = std::to_string(squirrel_template_VERSION_MAJOR) + "." +
 		std::to_string(squirrel_template_VERSION_MINOR) + " - " + squirrel_template_COMPILE_TIME_str;
 	const auto draw = new nonut::g2o::Draw(0, 0, corner_message);
+	draw->visible = true;
 
+	const bool abc = draw->visible;
+	CLIENT_FUNCTIONS->print("TEST PROPERTY ASSIGNMENT:");
+	CLIENT_FUNCTIONS->print(std::to_string(draw->visible));
 
-	draw->visible.set(true);
 	return SQ_OK;
 }

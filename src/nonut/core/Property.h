@@ -71,13 +71,24 @@ namespace nonut
 		sq_pop(vm, 1); // pops object
 	}
 
-	template <typename T>
+	template <typename T, bool IsReadOnly = false>
 	class Property
 	{
 	public:
 		Property(std::string propertyName, const HSQOBJECT object) : object(object),
 		                                                             propertyName(std::move(propertyName))
 		{
+		}
+
+		Property<T>& operator=(const T& other) noexcept
+		{
+			set(other);
+			return *this;
+		}
+
+		operator T()
+		{
+			return this->get();
 		}
 
 		T get()
@@ -87,6 +98,7 @@ namespace nonut
 
 		void set(T value)
 		{
+			static_assert(!IsReadOnly, "Cannot set read-only property.");
 			setProperty<T>(object, propertyName, value);
 		}
 

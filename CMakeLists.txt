@@ -31,6 +31,10 @@ file(GLOB SRC
 
 	"src/nonut/g2o/client/class/Draw.h"
 	"src/nonut/g2o/client/class/Draw.cpp"
+	"src/nonut/g2o/client/class/Draw3d.h"
+	"src/nonut/g2o/client/class/Draw3d.cpp"
+	"src/nonut/g2o/client/class/ItemRenderer.h"
+	"src/nonut/g2o/client/class/ItemRenderer.cpp"
 
 	"src/nonut/g2o/client/function/ClientFunctions.cpp"
 
