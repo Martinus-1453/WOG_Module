@@ -20,33 +20,30 @@ file(GLOB SRC
 	"src/api/module_api.h"
 	"src/api/module_api.cpp"
 
-	"src/nonut/core/Array.h"
 	"src/nonut/core/Array.cpp"
-	"src/nonut/core/Class.h"
 	"src/nonut/core/Class.cpp"
-	"src/nonut/core/Function.h"
-	"src/nonut/core/Property.h"
 	"src/nonut/core/Constant.cpp"
-	"src/nonut/core/Constant.h"
 
-	"src/nonut/g2o/client/class/Draw.h"
 	"src/nonut/g2o/client/class/Draw.cpp"
-	"src/nonut/g2o/client/class/Draw3d.h"
 	"src/nonut/g2o/client/class/Draw3d.cpp"
-	"src/nonut/g2o/client/class/ItemRenderer.h"
 	"src/nonut/g2o/client/class/ItemRenderer.cpp"
+	"src/nonut/g2o/client/class/Line.cpp"
+	"src/nonut/g2o/client/class/Line3d.cpp"
+	"src/nonut/g2o/client/class/Texture.cpp"
+	"src/nonut/g2o/client/class/Sound.cpp"
+	"src/nonut/g2o/client/class/Sound3d.cpp"
+	"src/nonut/g2o/client/class/Timestep.cpp"
+	"src/nonut/g2o/client/class/World.cpp"
+	"src/nonut/g2o/client/class/Way.cpp"
 
 	"src/nonut/g2o/client/function/ClientFunctions.cpp"
 
-	"src/nonut/g2o/client/event/ClientEventHandlers.h"
 	"src/nonut/g2o/client/event/ClientEventHandlers.cpp"
 
 	"src/nonut/g2o/client/constant/ClientConstants.cpp"
 
-	"src/nonut/g2o/shared/CustomTypes.h"
 	"src/nonut/g2o/shared/CustomTypes.cpp"
 
-	"src/wog/client/ClientInit.h"
 	"src/wog/client/ClientSqMain.cpp"
 
 	"src/pch.h"

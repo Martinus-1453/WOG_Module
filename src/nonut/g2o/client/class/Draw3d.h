@@ -27,11 +27,11 @@ namespace nonut::g2o
 		Function<void, int, std::string> setLineText;
 		Function<std::string, int> getLineText;
 		Function<void, int, int> setPosition;
-		Function<Position2D> getPosition;
+		Function<Position2d> getPosition;
 		Function<void, int, int> setPositionPx;
-		Function<Position2D> getPositionPx;
+		Function<Position2d> getPositionPx;
 		Function<void, float, float, float> setWorldPosition;
-		Function<Position3D> getWorldPosition;
+		Function<Position3d> getWorldPosition;
 
 		// Properties
 		Property<bool> visible;

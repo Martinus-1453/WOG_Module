@@ -4,7 +4,6 @@
 #include <string>
 
 #include "nonut/core/Class.h"
-#include "nonut/core/Property.h"
 #include "nonut/g2o/Shared/CustomTypes.h"
 
 namespace nonut::g2o
@@ -19,15 +18,15 @@ namespace nonut::g2o
 		Function<void,int, int, int> setColor;
 		Function<Color> getColor;
 		Function<void, float, float> setScale;
-		Function<Size2D> getScale;
+		Function<Size2d> getScale;
 		Function<void, int, int> setPosition;
-		Function<Position2D> getPosition;
+		Function<Position2d> getPosition;
 		Function<void, int, int> setPositionPx;
-		Function<Position2D> getPositionPx;
+		Function<Position2d> getPositionPx;
 		Function<void, int, int> setPivotPoint;
 		Function<void, int, int> setPivotPointPx;
-		Function<Position2D> getPivotPoint;
-		Function<Position2D> getPivotPointPx;
+		Function<Position2d> getPivotPoint;
+		Function<Position2d> getPivotPointPx;
 
 		// Properties
 		Property<bool> visible;
@@ -43,4 +42,4 @@ namespace nonut::g2o
 		Property<int, true> heightPx;
 	};
 }
-#endif // DRAW_H
+#endif

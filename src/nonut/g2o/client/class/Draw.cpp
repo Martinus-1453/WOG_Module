@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "Draw.h"
 
-#include "nonut/core/Function.h"
-
 namespace nonut::g2o
 {
 	Draw::Draw(int x, int y, std::string text) :

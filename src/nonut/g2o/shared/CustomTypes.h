@@ -16,26 +16,44 @@ namespace nonut::g2o
 		int min{};
 	};
 
-	struct Position2D : CustomType
+	struct Position2d : CustomType
 	{
 		void convert(HSQOBJECT object) override;
 		int x{};
 		int y{};
 	};
 
-	struct Position3D : CustomType
+	struct Position3d : CustomType
 	{
 		void convert(HSQOBJECT object) override;
-		int x{};
-		int y{};
-		int z{};
+		float x{};
+		float y{};
+		float z{};
 	};
 
-	struct Size2D : CustomType
+	struct Size2d : CustomType
 	{
 		void convert(HSQOBJECT object) override;
 		int width{};
 		int height{};
+	};
+
+	struct Rect : CustomType
+	{
+		void convert(HSQOBJECT object) override;
+		int x;
+		int y;
+		int width;
+		int height;
+	};
+
+	struct UV : CustomType
+	{
+		void convert(HSQOBJECT object) override;
+		float x;
+		float y;
+		float width;
+		float height;
 	};
 
 	struct Resolution : CustomType

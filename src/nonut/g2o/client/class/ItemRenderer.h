@@ -18,10 +18,10 @@ namespace nonut::g2o
 		Function<void, int, int> setPositionPx;
 		Function<void, int, int> setSize;
 		Function<void, int, int> setSizePx;
-		Function<Position2D> getPosition;
-		Function<Position2D> getPositionPx;
-		Function<Size2D> getSize;
-		Function<Size2D> getSizePx;
+		Function<Position2d> getPosition;
+		Function<Position2d> getPositionPx;
+		Function<Size2d> getSize;
+		Function<Size2d> getSizePx;
 
 		// Properties
 		Property<bool> visible;
@@ -34,4 +34,4 @@ namespace nonut::g2o
 		Property<std::string> instance;
 	};
 }
-#endif // !ITEM_RENDERER_H
+#endif

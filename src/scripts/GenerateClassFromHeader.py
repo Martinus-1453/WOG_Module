@@ -81,7 +81,7 @@ f"""
     new_class_line += "}\n"
 
     dir_path = os.path.dirname(os.path.realpath(header_path))
-    new_class_file = open(os.path.join(dir_path, f'{header_name}.cpp'), 'x', encoding='utf8')
+    new_class_file = open(os.path.join(dir_path, f'{header_name}.cpp'), 'w', encoding='utf8')
     new_class_file.write(new_class_line)
 
 

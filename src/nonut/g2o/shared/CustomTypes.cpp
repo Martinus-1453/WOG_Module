@@ -14,26 +14,44 @@ namespace nonut::g2o
 		GET_SLOT(min, int);
 	}
 
-	void Position2D::convert(HSQOBJECT object)
+	void Position2d::convert(HSQOBJECT object)
 	{
 		Array arrayWrapper(object);
 		GET_SLOT(x, int);
 		GET_SLOT(y, int);
 	}
 
-	void Position3D::convert(HSQOBJECT object)
+	void Position3d::convert(HSQOBJECT object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(x, int);
-		GET_SLOT(y, int);
-		GET_SLOT(z, int);
+		GET_SLOT(x, float);
+		GET_SLOT(y, float);
+		GET_SLOT(z, float);
 	}
 
-	void Size2D::convert(HSQOBJECT object)
+	void Size2d::convert(HSQOBJECT object)
 	{
 		Array arrayWrapper(object);
 		GET_SLOT(width, int);
 		GET_SLOT(height, int);
+	}
+
+	void Rect::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(x, int);
+		GET_SLOT(y, int);
+		GET_SLOT(width, int);
+		GET_SLOT(height, int);
+	}
+
+	void UV::convert(HSQOBJECT object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(x, float);
+		GET_SLOT(y, float);
+		GET_SLOT(width, float);
+		GET_SLOT(height, float);
 	}
 
 	void Resolution::convert(HSQOBJECT object)
