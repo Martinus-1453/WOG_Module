@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "ClientEventHandlers.h"
-#include "nonut/core/Function.h"
+#include "Function.h"
 
 using namespace SqModule;
 

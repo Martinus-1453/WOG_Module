@@ -4,7 +4,7 @@
 
 #include <string>
 
-#include "nonut/core/Utils.h"
+#include "Utils.h"
 
 namespace nonut::g2o
 {

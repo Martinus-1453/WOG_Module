@@ -1,8 +1,8 @@
 #pragma once
 #ifndef DRAW3D_H
 #define DRAW3D_H
-#include "nonut/core/Class.h"
-#include "nonut/g2o/Shared/CustomTypes.h"
+#include "Class.h"
+#include "CustomTypes.h"
 
 namespace nonut::g2o
 {

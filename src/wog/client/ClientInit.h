@@ -3,8 +3,8 @@
 #define CLIENT_INIT_H
 #include "pch.h"
 
-#include "nonut/g2o/client/constant/ClientConstants.h"
-#include "nonut/g2o/client/event/ClientEventHandlers.h"
+#include "constant/ClientConstants.h"
+#include "event/ClientEventHandlers.h"
 
 using namespace SqModule;
 

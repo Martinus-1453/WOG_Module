@@ -2,8 +2,8 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-#include "nonut/core/Class.h"
-#include "nonut/g2o/Shared/CustomTypes.h"
+#include "Class.h"
+#include "CustomTypes.h"
 
 namespace nonut::g2o
 {
