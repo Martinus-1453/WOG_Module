@@ -4,8 +4,8 @@
 
 #include <string>
 
-#include "api/squirrel_api.h"
-#include "api/module_api.h"
+#include "squirrel_api.h"
+#include "module_api.h"
 #include "Utils.h"
 
 using namespace SqModule;

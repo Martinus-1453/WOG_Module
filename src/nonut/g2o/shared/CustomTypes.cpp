@@ -1,7 +1,7 @@
 #include "CustomTypes.h"
 
-#include "nonut/core/Array.h"
-#include "nonut/core/Property.h"
+#include "Array.h"
+#include "Property.h"
 
 namespace nonut::g2o
 {

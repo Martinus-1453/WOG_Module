@@ -1,8 +1,8 @@
 #pragma once
 #ifndef CLIENT_FUNCTIONS_H
 #define CLIENT_FUNCTIONS_H
-#include "nonut/core/Function.h"
-#include "nonut/g2o/shared/CustomTypes.h"
+#include "Function.h"
+#include "CustomTypes.h"
 
 #define CLIENT_FUNCTIONS nonut::g2o::ClientFunctions::getInstance()
 

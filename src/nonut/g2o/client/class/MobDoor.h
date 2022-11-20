@@ -3,8 +3,8 @@
 #define MOB_DOOR_H
 #include <string>
 
-#include "nonut/core/MobLockable.h"
-#include "nonut/g2o/Shared/CustomTypes.h"
+#include "MobLockable.h"
+#include "CustomTypes.h"
 
 namespace nonut::g2o
 {

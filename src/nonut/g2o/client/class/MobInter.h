@@ -3,8 +3,8 @@
 #define MOB_INTER_H
 #include <string>
 
-#include "nonut/core/Mob.h"
-#include "nonut/g2o/Shared/CustomTypes.h"
+#include "Mob.h"
+#include "CustomTypes.h"
 
 namespace nonut::g2o
 {

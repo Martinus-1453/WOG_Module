@@ -3,8 +3,8 @@
 #define MOB_H
 #include <string>
 
-#include "nonut/core/Vob.h"
-#include "nonut/g2o/Shared/CustomTypes.h"
+#include "Vob.h"
+#include "CustomTypes.h"
 
 namespace nonut::g2o
 {

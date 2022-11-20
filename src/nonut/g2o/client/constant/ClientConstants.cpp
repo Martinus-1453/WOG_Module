@@ -1,7 +1,7 @@
 #include "ClientConstants.h"
 
-#include "nonut/core/Constant.h"
-#include "nonut/core/Property.h"
+#include "Constant.h"
+#include "Property.h"
 
 namespace nonut::g2o
 {
