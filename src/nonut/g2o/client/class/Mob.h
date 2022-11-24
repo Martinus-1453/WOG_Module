@@ -14,15 +14,15 @@ namespace nonut::g2o
 		// Inheritance Ctor
 		Mob(constexpr const char* className);
 	public:
-		Mob(std::string model);
+		Mob(String model);
 		Mob(SQUserPointer ptr);
 
 		// Properties
-		Property<std::string> name;
-		Property<bool> focusOverride;
+		Property<String> name;
+		Property<Bool> focusOverride;
 
 		// Read-only properties
-		Property<std::string, true> scemeName;
+		Property<String, true> scemeName;
 	};
 }
 #endif

@@ -3,7 +3,7 @@
         
 namespace nonut::g2o
 {
-	Way::Way(std::string fileName) :
+	Way::Way(String fileName) :
 		Class("Way"),
 		//METHOD_CTOR(getWaypoints),
 		METHOD_CTOR(getCountWaypoints),

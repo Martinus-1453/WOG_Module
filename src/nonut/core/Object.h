@@ -13,14 +13,14 @@ namespace nonut {
 	class Object
 	{
 	public:
-		Object(HSQOBJECT object);
+		Object(SQObject object);
 		~Object();
 
 		template<typename... Rets>
 		std::tuple<Rets...> Unpack(std::array < std::string, { sizeof...(Rets) } > argNames);
 
 	private:
-		HSQOBJECT object;
+		SQObject object;
 	};
 
 	template<typename... Rets>

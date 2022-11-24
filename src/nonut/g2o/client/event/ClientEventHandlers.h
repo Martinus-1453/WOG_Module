@@ -14,59 +14,59 @@ namespace nonut::g2o
 	static void onChangeResolution();
 	static void onExit();
 	static void onRender();
-	static void onRenderFocus(int type, int id, int x, int y, std::string name);
+	static void onRenderFocus(Int type, Int id, Int x, Int y, String name);
 	// Hero
-	static void onAnim(int id);
-	static void onDamage(int damage, int flags);
-	static void onEquip(std::string instance);
-	static void onFocus(int currentId, int previousId);
-	static void onLostFocus(int type, int id, std::string name);
-	static void onPlayerUseItem(int id, int itemId, int from, int to);
+	static void onAnim(Int id);
+	static void onDamage(Int damage, Int flags);
+	static void onEquip(String instance);
+	static void onFocus(Int currentId, Int previousId);
+	static void onLostFocus(Int type, Int id, String name);
+	static void onPlayerUseItem(Int id, Int itemId, Int from, Int to);
 	static void onRespawn();
 	static void onShoot();
 	static void onSink();
-	static void onSpellCast(int id);
-	static void onTakeFocus(int type, int id, std::string name);
-	static void onTakeItem(std::string instance, int amount);
-	static void onUnequip(std::string instance);
+	static void onSpellCast(Int id);
+	static void onTakeFocus(Int type, Int id, String name);
+	static void onTakeItem(String instance, Int amount);
+	static void onUnequip(String instance);
 	// Input
-	static void onCommand(std::string command, std::string params);
-	static void onConsole(std::string command, std::string params);
-	static void onKey(int key);
-	static void onPaste(std::string clipboard);
+	static void onCommand(String command, String params);
+	static void onConsole(String command, String params);
+	static void onKey(Int key);
+	static void onPaste(String clipboard);
 	// Inventory
 	static void onCloseInventory();
-	static void onInventorySlotChange(int from, int to);
+	static void onInventorySlotChange(Int from, Int to);
 	void onOpenInventory();
 	// Mouse
-	static void onMouseClick(int button);
-	static void onMouseMove(int x, int y);
-	static void onMouseRelease(int button);
-	static void onMouseWheel(int z);
+	static void onMouseClick(Int button);
+	static void onMouseMove(Int x, Int y);
+	static void onMouseRelease(Int button);
+	static void onMouseWheel(Int z);
 	// Network
 	// TODO: Packet missing implementation
 	// void onPacket(Packet packet);
 	// Mob
 	// TODO: needs work: userdata missing
-	//void onMobClose(userdata address, int type);
-	//void onMobInteract(userdata address, int type, int from, int to);
-	//void onMobOpen(userdata address, int type);
+	//void onMobClose(userdata address, Int type);
+	//void onMobInteract(userdata address, Int type, Int from, Int to);
+	//void onMobOpen(userdata address, Int type);
 
 	// Player
-	static void onPlayerChangeColor(int id, int r, int g, int b);
-	static void onPlayerChangeNickname(int id, std::string nickname);
-	static void onPlayerChangePing(int id, int ping);
-	static void onPlayerChangeWeaponMode(int playerId, int oldWeaponMode, int newWeaponMode);
-	static void onPlayerCreate(int id);
-	static void onPlayerDead(int id);
-	static void onPlayerDestroy(int id);
-	static void onPlayerHit(int killerId, int playerId, int damage);
-	static void onPlayerMessage(int id, int r, int g, int b, std::string message);
-	static void onPlayerSpawn(int id);
-	static void onPlayerTeleport(int id, std::string vobName);
-	static void onPlayerUnspawn(int id);
+	static void onPlayerChangeColor(Int id, Int r, Int g, Int b);
+	static void onPlayerChangeNickname(Int id, String nickname);
+	static void onPlayerChangePing(Int id, Int ping);
+	static void onPlayerChangeWeaponMode(Int playerId, Int oldWeaponMode, Int newWeaponMode);
+	static void onPlayerCreate(Int id);
+	static void onPlayerDead(Int id);
+	static void onPlayerDestroy(Int id);
+	static void onPlayerHit(Int killerId, Int playerId, Int damage);
+	static void onPlayerMessage(Int id, Int r, Int g, Int b, String message);
+	static void onPlayerSpawn(Int id);
+	static void onPlayerTeleport(Int id, String vobName);
+	static void onPlayerUnspawn(Int id);
 	// World
-	static void onWorldChange(std::string world);
+	static void onWorldChange(String world);
 	static void onWorldEnter();
 
 
@@ -79,48 +79,48 @@ namespace nonut::g2o
 		static inline HANDLER_INIT(void(), onChangeResolution);
 		static inline HANDLER_INIT(void(), onExit);
 		static inline HANDLER_INIT(void(), onRender);
-		static inline HANDLER_INIT(void(int, int, int, int, std::string), onRenderFocus);
+		static inline HANDLER_INIT(void(Int, Int, Int, Int, String), onRenderFocus);
 
-		static inline HANDLER_INIT(void(int), onAnim);
-		static inline HANDLER_INIT(void(int, int), onDamage);
-		static inline HANDLER_INIT(void(std::string), onEquip);
-		static inline HANDLER_INIT(void(int, int), onFocus);
-		static inline HANDLER_INIT(void(int, int, std::string), onLostFocus);
-		static inline HANDLER_INIT(void(int, int, int, int), onPlayerUseItem);
+		static inline HANDLER_INIT(void(Int), onAnim);
+		static inline HANDLER_INIT(void(Int, Int), onDamage);
+		static inline HANDLER_INIT(void(String), onEquip);
+		static inline HANDLER_INIT(void(Int, Int), onFocus);
+		static inline HANDLER_INIT(void(Int, Int, String), onLostFocus);
+		static inline HANDLER_INIT(void(Int, Int, Int, Int), onPlayerUseItem);
 		static inline HANDLER_INIT(void(), onRespawn);
 		static inline HANDLER_INIT(void(), onShoot);
 		static inline HANDLER_INIT(void(), onSink);
-		static inline HANDLER_INIT(void(int), onSpellCast);
-		static inline HANDLER_INIT(void(int, int, std::string), onTakeFocus);
-		static inline HANDLER_INIT(void(std::string, int), onTakeItem);
-		static inline HANDLER_INIT(void(std::string), onUnequip);
+		static inline HANDLER_INIT(void(Int), onSpellCast);
+		static inline HANDLER_INIT(void(Int, Int, String), onTakeFocus);
+		static inline HANDLER_INIT(void(String, Int), onTakeItem);
+		static inline HANDLER_INIT(void(String), onUnequip);
 
-		static inline HANDLER_INIT(void(std::string, std::string), onCommand);
-		static inline HANDLER_INIT(void(std::string, std::string), onConsole);
-		static inline HANDLER_INIT(void(int), onKey);
-		static inline HANDLER_INIT(void(std::string), onPaste);
+		static inline HANDLER_INIT(void(String, String), onCommand);
+		static inline HANDLER_INIT(void(String, String), onConsole);
+		static inline HANDLER_INIT(void(Int), onKey);
+		static inline HANDLER_INIT(void(String), onPaste);
 		static inline HANDLER_INIT(void(), onCloseInventory);
-		static inline HANDLER_INIT(void(int, int), onInventorySlotChange);
+		static inline HANDLER_INIT(void(Int, Int), onInventorySlotChange);
 		static inline HANDLER_INIT(void(), onOpenInventory);
-		static inline HANDLER_INIT(void(int), onMouseClick);
-		static inline HANDLER_INIT(void(int, int), onMouseMove);
-		static inline HANDLER_INIT(void(int), onMouseRelease);
-		static inline HANDLER_INIT(void(int), onMouseWheel);
+		static inline HANDLER_INIT(void(Int), onMouseClick);
+		static inline HANDLER_INIT(void(Int, Int), onMouseMove);
+		static inline HANDLER_INIT(void(Int), onMouseRelease);
+		static inline HANDLER_INIT(void(Int), onMouseWheel);
 
-		static inline HANDLER_INIT(void(int, int, int, int), onPlayerChangeColor);
-		static inline HANDLER_INIT(void(int, std::string), onPlayerChangeNickname);
-		static inline HANDLER_INIT(void(int, int), onPlayerChangePing);
-		static inline HANDLER_INIT(void(int, int, int), onPlayerChangeWeaponMode);
-		static inline HANDLER_INIT(void(int), onPlayerCreate);
-		static inline HANDLER_INIT(void(int), onPlayerDead);
-		static inline HANDLER_INIT(void(int), onPlayerDestroy);
-		static inline HANDLER_INIT(void(int, int, int), onPlayerHit);
-		static inline HANDLER_INIT(void(int, int, int, int, std::string), onPlayerMessage);
-		static inline HANDLER_INIT(void(int), onPlayerSpawn);
-		static inline HANDLER_INIT(void(int, std::string), onPlayerTeleport);
-		static inline HANDLER_INIT(void(int), onPlayerUnspawn);
+		static inline HANDLER_INIT(void(Int, Int, Int, Int), onPlayerChangeColor);
+		static inline HANDLER_INIT(void(Int, String), onPlayerChangeNickname);
+		static inline HANDLER_INIT(void(Int, Int), onPlayerChangePing);
+		static inline HANDLER_INIT(void(Int, Int, Int), onPlayerChangeWeaponMode);
+		static inline HANDLER_INIT(void(Int), onPlayerCreate);
+		static inline HANDLER_INIT(void(Int), onPlayerDead);
+		static inline HANDLER_INIT(void(Int), onPlayerDestroy);
+		static inline HANDLER_INIT(void(Int, Int, Int), onPlayerHit);
+		static inline HANDLER_INIT(void(Int, Int, Int, Int, String), onPlayerMessage);
+		static inline HANDLER_INIT(void(Int), onPlayerSpawn);
+		static inline HANDLER_INIT(void(Int, String), onPlayerTeleport);
+		static inline HANDLER_INIT(void(Int), onPlayerUnspawn);
 
-		static inline HANDLER_INIT(void(std::string), onWorldChange);
+		static inline HANDLER_INIT(void(String), onWorldChange);
 		static inline HANDLER_INIT(void(), onWorldEnter);
 	};
 }

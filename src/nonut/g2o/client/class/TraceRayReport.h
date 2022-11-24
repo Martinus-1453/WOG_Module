@@ -11,7 +11,7 @@ namespace nonut::g2o
 	class TraceRayReport : public Class
 	{
 	public:
-		TraceRayReport(std::string fileName);
+		TraceRayReport(String fileName);
 
 		// Properties
 		Property<Vec3> intersect;

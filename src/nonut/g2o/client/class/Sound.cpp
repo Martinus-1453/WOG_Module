@@ -3,7 +3,7 @@
         
 namespace nonut::g2o
 {
-	Sound::Sound(std::string fileName) :
+	Sound::Sound(String fileName) :
 		Class("Sound"),
 		METHOD_CTOR(play),
 		METHOD_CTOR(stop),

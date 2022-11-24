@@ -9,41 +9,41 @@ namespace nonut::g2o
 	class Draw3d : public Class
 	{
 	public:
-		Draw3d(float x, float y, float z);
+		Draw3d(Float x, Float y, Float z);
 
 		// Methods
 		Function<void> top;
-		Function<void, int, int> setLineFont;
-		Function<int, int> getLineFont;
-		Function<void, int, int, int> setColor;
+		Function<void, Int, Int> setLineFont;
+		Function<Int, Int> getLineFont;
+		Function<void, Int, Int, Int> setColor;
 		Function<Color> getColor;
-		Function<void, int, int, int, int> setLineColor;
-		Function<Color, int> getLineColor;
-		Function<void, int, int> setLineAlpha;
-		Function<int, int> getLineAlpha;
-		Function<void, std::string> insertText;
-		Function<void, int> removeText;
-		Function<std::string, int> getText;
-		Function<void, int, std::string> setLineText;
-		Function<std::string, int> getLineText;
-		Function<void, int, int> setPosition;
+		Function<void, Int, Int, Int, Int> setLineColor;
+		Function<Color, Int> getLineColor;
+		Function<void, Int, Int> setLineAlpha;
+		Function<Int, Int> getLineAlpha;
+		Function<void, String> insertText;
+		Function<void, Int> removeText;
+		Function<String, Int> getText;
+		Function<void, Int, String> setLineText;
+		Function<String, Int> getLineText;
+		Function<void, Int, Int> setPosition;
 		Function<Position2d> getPosition;
-		Function<void, int, int> setPositionPx;
+		Function<void, Int, Int> setPositionPx;
 		Function<Position2d> getPositionPx;
-		Function<void, float, float, float> setWorldPosition;
+		Function<void, Float, Float, Float> setWorldPosition;
 		Function<Position3d> getWorldPosition;
 
 		// Properties
-		Property<bool> visible;
-		Property<std::string> font;
-		Property<int> alpha;
-		Property<int> distance;
+		Property<Bool> visible;
+		Property<String> font;
+		Property<Int> alpha;
+		Property<Int> distance;
 
 		// Read-only properties
-		Property<int, true> width;
-		Property<int, true> widthPx;
-		Property<int, true> height;
-		Property<int, true> heightPx;
+		Property<Int, true> width;
+		Property<Int, true> widthPx;
+		Property<Int, true> height;
+		Property<Int, true> heightPx;
 	};
 }
 #endif

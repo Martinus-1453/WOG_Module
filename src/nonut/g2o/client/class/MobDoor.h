@@ -14,7 +14,7 @@ namespace nonut::g2o
 		// Inheritance Ctor
 		MobDoor(constexpr const char* className);
 	public:
-		MobDoor(std::string model);
+		MobDoor(String model);
 		MobDoor(SQUserPointer ptr);
 	};
 }

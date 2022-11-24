@@ -12,13 +12,13 @@ namespace nonut
 	class Array
 	{
 	public:
-		explicit Array(HSQOBJECT object);
+		explicit Array(SQObject object);
 		~Array();
 
 		[[nodiscard]] size_t size() const;
 
 		template<typename T>
-		T get(std::string index)
+		T get(String index)
 		{
 			T result{};
 			sq_pushobject(vm, object);
@@ -28,7 +28,7 @@ namespace nonut
 				sq_pop(vm, 1);
 				return result;
 			}
-			if constexpr (std::is_same_v<T, std::string>)
+			if constexpr (std::is_same_v<T, String>)
 			{
 				const SQChar* intermediateResult = nullptr;
 				sq_getstring(vm, -1, &intermediateResult);
@@ -44,7 +44,7 @@ namespace nonut
 
 		}
 	private:
-		HSQOBJECT object;
+		SQObject object;
 		size_t cachedSize;
 	};
 }

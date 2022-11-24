@@ -15,23 +15,23 @@ namespace nonut::g2o
 
 		// Methods
 		Function<void> reset;
-		Function<void, int> send;
-		Function<void, bool> writeBool;
-		Function<void, int> writeInt8;
-		Function<void, int> writeUInt8;
-		Function<void, int> writeInt16;
-		Function<void, int> writeUInt16;
-		Function<void, int> writeUInt32;
-		Function<void, float> writeFloat;
-		Function<void, std::string> writeString;
-		Function<bool> readBool;
-		Function<int> readInt8;
-		Function<int> readUInt8;
-		Function<int> readInt16;
-		Function<int> readUInt16;
-		Function<int> readUInt32;
-		Function<float> readFloat;
-		Function<std::string> readString;
+		Function<void, Int> send;
+		Function<void, Bool> writeBool;
+		Function<void, Int> writeInt8;
+		Function<void, Int> writeUInt8;
+		Function<void, Int> writeInt16;
+		Function<void, Int> writeUInt16;
+		Function<void, Int> writeUInt32;
+		Function<void, Float> writeFloat;
+		Function<void, String> writeString;
+		Function<Bool> readBool;
+		Function<Int> readInt8;
+		Function<Int> readUInt8;
+		Function<Int> readInt16;
+		Function<Int> readUInt16;
+		Function<Int> readUInt32;
+		Function<Float> readFloat;
+		Function<String> readString;
 	};
 }
 #endif

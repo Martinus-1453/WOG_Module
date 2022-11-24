@@ -7,7 +7,7 @@ namespace nonut
 {
 	Class::Class(std::string className)
 	{
-		const SQInteger top = sq_gettop(vm);
+		const auto top = sq_gettop(vm);
 
 		sq_pushroottable(vm); //push root table
 		sq_pushstring(vm, className.c_str(), className.length()); //push class name

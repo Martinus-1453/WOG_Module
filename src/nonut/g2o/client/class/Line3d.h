@@ -9,19 +9,19 @@ namespace nonut::g2o
 {
 	class Line3d : public Class
 	{
-		Line3d(float x1, float y1, float z1, float x2, float y2, float z2);
+		Line3d(Float x1, Float y1, Float z1, Float x2, Float y2, Float z2);
 
 		// Methods
 		Function<void> top;
-		Function<void, float, float, float> setBegin;
-		Function<void, float, float, float> setEnd;
-		Function<void, int, int, int> setColor;
+		Function<void, Float, Float, Float> setBegin;
+		Function<void, Float, Float, Float> setEnd;
+		Function<void, Int, Int, Int> setColor;
 		Function<Position3d> getBegin;
 		Function<Position3d> getEnd;
 		Function<Color> getColor;
 
 		// Properties
-		Property<bool> visible;
+		Property<Bool> visible;
 
 	};
 }

@@ -6,96 +6,96 @@
 namespace nonut::g2o
 {
 #define GET_SLOT(slot, type) slot = arrayWrapper.get<type>(#slot)
-	void GameTime::convert(HSQOBJECT object)
+	void GameTime::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(day, int);
-		GET_SLOT(hour, int);
-		GET_SLOT(min, int);
+		GET_SLOT(day, Int);
+		GET_SLOT(hour, Int);
+		GET_SLOT(min, Int);
 	}
 
-	void Position2d::convert(HSQOBJECT object)
+	void Position2d::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(x, int);
-		GET_SLOT(y, int);
+		GET_SLOT(x, Int);
+		GET_SLOT(y, Int);
 	}
 
-	void Position3d::convert(HSQOBJECT object)
+	void Position3d::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(x, float);
-		GET_SLOT(y, float);
-		GET_SLOT(z, float);
+		GET_SLOT(x, Float);
+		GET_SLOT(y, Float);
+		GET_SLOT(z, Float);
 	}
 
-	void Size2d::convert(HSQOBJECT object)
+	void Size2d::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(width, int);
-		GET_SLOT(height, int);
+		GET_SLOT(width, Int);
+		GET_SLOT(height, Int);
 	}
 
-	void Rect::convert(HSQOBJECT object)
+	void Rect::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(x, int);
-		GET_SLOT(y, int);
-		GET_SLOT(width, int);
-		GET_SLOT(height, int);
+		GET_SLOT(x, Int);
+		GET_SLOT(y, Int);
+		GET_SLOT(width, Int);
+		GET_SLOT(height, Int);
 	}
 
-	void UV::convert(HSQOBJECT object)
+	void UV::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(x, float);
-		GET_SLOT(y, float);
-		GET_SLOT(width, float);
-		GET_SLOT(height, float);
+		GET_SLOT(x, Float);
+		GET_SLOT(y, Float);
+		GET_SLOT(width, Float);
+		GET_SLOT(height, Float);
 	}
 
-	void Resolution::convert(HSQOBJECT object)
+	void Resolution::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(x, int);
-		GET_SLOT(y, int);
-		GET_SLOT(bpp, int);
+		GET_SLOT(x, Int);
+		GET_SLOT(y, Int);
+		GET_SLOT(bpp, Int);
 	}
 
-	void Item::convert(HSQOBJECT object)
+	void Item::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(instance, int);
-		GET_SLOT(amount, int);
-		GET_SLOT(name, std::string);
+		GET_SLOT(instance, Int);
+		GET_SLOT(amount, Int);
+		GET_SLOT(name, String);
 	}
 
-	void Color::convert(HSQOBJECT object)
+	void Color::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(r, int);
-		GET_SLOT(g, int);
-		GET_SLOT(b, int);
+		GET_SLOT(r, Int);
+		GET_SLOT(g, Int);
+		GET_SLOT(b, Int);
 	}
 
-	void BodyVisual::convert(HSQOBJECT object)
+	void BodyVisual::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(bodyModel, std::string);
-		GET_SLOT(bodyTxt, int);
-		GET_SLOT(headModel, std::string);
-		GET_SLOT(headTxt, int);
+		GET_SLOT(bodyModel, String);
+		GET_SLOT(bodyTxt, Int);
+		GET_SLOT(headModel, String);
+		GET_SLOT(headTxt, Int);
 	}
 
-	void NetworkStats::convert(HSQOBJECT object)
+	void NetworkStats::convert(SQObject object)
 	{
 		Array arrayWrapper(object);
-		GET_SLOT(packetReceived, int);
-		GET_SLOT(packetlossTotal, int);
-		GET_SLOT(packetlossLastSecond, int);
-		GET_SLOT(messagesInResendBuffer, int);
-		GET_SLOT(messageInSendBuffer, int);
-		GET_SLOT(bytesInResendBuffer, int);
-		GET_SLOT(bytesInSendBuffer, int);
+		GET_SLOT(packetReceived, Int);
+		GET_SLOT(packetlossTotal, Int);
+		GET_SLOT(packetlossLastSecond, Int);
+		GET_SLOT(messagesInResendBuffer, Int);
+		GET_SLOT(messageInSendBuffer, Int);
+		GET_SLOT(bytesInResendBuffer, Int);
+		GET_SLOT(bytesInSendBuffer, Int);
 	}
 }

@@ -14,44 +14,44 @@ namespace nonut::g2o
 		// Inheritance Ctor
 		Vob(constexpr const char* className);
 	public:
-		Vob(std::string model);
+		Vob(String model);
 		Vob(SQUserPointer ptr);
 
 		// Methods
 		Function<void> beginMovement;
 		Function<void> endMovement;
 		Function<void, Vec3> setHeadingAtWorld;
-		Function<Mat4, std::string> getTrafoModelNodeToWorld;
-		Function<void, float, float, float> setPosition;
+		Function<Mat4, String> getTrafoModelNodeToWorld;
+		Function<void, Float, Float, Float> setPosition;
 		Function<Position3d> getPosition;
-		Function<void, float, float, float> setRotation;
+		Function<void, Float, Float, Float> setRotation;
 		Function<Position3d> getRotation;
 		Function<void> addToWorld;
 		Function<void> removeFromWorld;
 		Function<void> floor;
 
 		// Properties
-		Property<std::string> objectName;
+		Property<String> objectName;
 		Property<Mat4> matrix;
-		Property<bool> cdDynamic;
-		Property<bool> cdStatic;
-		Property<float> farClipZScale;
-		Property<std::string> visual;
-		Property<float> visualAlpha;
-		Property<bool> sleeping;
-		Property<bool> physicsEnabled;
-		Property<bool> drawBBox3d;
-		Property<bool> castDynShadow;
+		Property<Bool> cdDynamic;
+		Property<Bool> cdStatic;
+		Property<Float> farClipZScale;
+		Property<String> visual;
+		Property<Float> visualAlpha;
+		Property<Bool> sleeping;
+		Property<Bool> physicsEnabled;
+		Property<Bool> drawBBox3d;
+		Property<Bool> castDynShadow;
 		Property<BBox3d&> bbox3dWorld;
 		Property<BBox3d&> bbox3dLocal;
 		
 		
 
 		// Read-only properties
-		Property<bool, true> isProjectile;
-		Property<bool, true> isWater;
+		Property<Bool, true> isProjectile;
+		Property<Bool, true> isWater;
 		Property<Vec3, true> velocity;
-		Property<bool, true> isInMovement;
+		Property<Bool, true> isInMovement;
 		Property<SQUserPointer, true> ptr;
 	};
 }

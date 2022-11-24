@@ -11,20 +11,20 @@ namespace nonut::g2o
 	class World : public Class
 	{
 	public:
-		World(std::string fileName);
+		World(String fileName);
 
 		// Methods
-		Function<SQUserData, std::string> searchVobByName;
+		Function<SQUserData, String> searchVobByName;
 
 		Function<void> stop;
-		Function<bool> isPlaying;
+		Function<Bool> isPlaying;
 
 		// Properties
-		Property<std::string> fileName;
-		Property<std::string> name;
+		Property<String> fileName;
+		Property<String> name;
 		//Property<zlistsort&> vobs;
-		Property<bool> showWaynet;
-		Property<bool> showZonesDebugInfo;
+		Property<Bool> showWaynet;
+		Property<Bool> showZonesDebugInfo;
 	};
 }
 #endif

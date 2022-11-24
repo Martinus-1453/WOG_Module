@@ -3,7 +3,7 @@
 
 namespace nonut::g2o
 {
-	Draw::Draw(int x, int y, std::string text) :
+	Draw::Draw(Int x, Int y, String text) :
 		Class("Draw"),
 		METHOD_CTOR(top),
 		METHOD_CTOR(setColor),

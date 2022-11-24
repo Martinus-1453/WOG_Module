@@ -11,15 +11,15 @@ namespace nonut::g2o
 	class Way : public Class
 	{
 	public:
-		Way(std::string fileName);
+		Way(String fileName);
 
 		// Methods
-		//Function<std::vector<std::string>> getWaypoints;
-		Function<int> getCountWaypoints;
+		//Function<std::vector<String>> getWaypoints;
+		Function<Int> getCountWaypoints;
 
 		// Read-only properties
-		Property<std::string, true> start;
-		Property<std::string, true> end;
+		Property<String, true> start;
+		Property<String, true> end;
 	};
 }
 #endif

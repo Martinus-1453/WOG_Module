@@ -13,9 +13,9 @@ using namespace SqModule;
 namespace nonut
 {
 	template <typename T>
-	T getProperty(HSQOBJECT& object, std::string& name)
+	T getProperty(SQObject& object, String& name)
 	{
-		const SQInteger top = sq_gettop(vm);
+		const auto top = sq_gettop(vm);
 		T result{};
 
 		sq_pushobject(vm, object);
@@ -33,15 +33,15 @@ namespace nonut
 	}
 
 	template <>
-	inline bool getProperty<bool>(HSQOBJECT& object, std::string& name)
+	inline bool getProperty<bool>(SQObject& object, String& name)
 	{
-		return getProperty<SQBool>(object, name);
+		return getProperty<Bool>(object, name);
 	}
 
 	template <>
-	inline std::string getProperty<std::string>(HSQOBJECT& object, std::string& name)
+	inline String getProperty<String>(SQObject& object, String& name)
 	{
-		const SQInteger top = sq_gettop(vm);
+		const Int top = sq_gettop(vm);
 		const SQChar* result{};
 
 		sq_pushobject(vm, object);
@@ -60,7 +60,7 @@ namespace nonut
 
 
 	template <typename T>
-	void setProperty(HSQOBJECT& object, std::string& name, T value)
+	void setProperty(SQObject& object, String& name, T value)
 	{
 		sq_pushobject(vm, object);
 		sq_pushstring(vm, name.c_str(), name.length());
@@ -75,7 +75,7 @@ namespace nonut
 	class Property
 	{
 	public:
-		Property(std::string propertyName, const HSQOBJECT object) : object(object),
+		Property(String propertyName, const SQObject object) : object(object),
 		                                                             propertyName(std::move(propertyName))
 		{
 		}
@@ -103,8 +103,8 @@ namespace nonut
 		}
 
 	private:
-		HSQOBJECT object;
-		std::string propertyName;
+		SQObject object;
+		String propertyName;
 	};
 }
 #endif

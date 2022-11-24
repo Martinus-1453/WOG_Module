@@ -16,13 +16,13 @@ namespace nonut::g2o
 		
 		// Methods
 		Function<Position3d> getPosition;
-		Function<void, float, float, float> setPosition;
+		Function<void, Float, Float, Float> setPosition;
 		Function<Position3d> getRotation;
-		Function<void, float, float, float> setRotation;
-		Function<Position2d, float, float, float> project;
+		Function<void, Float, Float, Float> setRotation;
+		Function<Position2d, Float, Float, Float> project;
 		// TODO: Handle classes as function parameter o.o
 		Function<void, Vob> setTargetVob;
-		Function<void, int> setTargetPlayer;
+		Function<void, Int> setTargetPlayer;
 
 		// Properties
 		Property<Mat4> vobMatrix;
@@ -30,9 +30,9 @@ namespace nonut::g2o
 		Property<Mat4> projectionMatrix;
 		Property<Mat4> worldMatrix;
 		Property<Mat4> worldViewMatrix;
-		Property<bool> modeChangeEnabled;
-		Property<std::string> mode;
-		Property<bool> movementEnabled;
+		Property<Bool> modeChangeEnabled;
+		Property<String> mode;
+		Property<Bool> movementEnabled;
 	};
 }
 #endif

@@ -3,7 +3,7 @@
         
 namespace nonut::g2o
 {
-	ItemRenderer::ItemRenderer(int x, int y, int width, int height, std::string instance) :
+	ItemRenderer::ItemRenderer(Int x, Int y, Int width, Int height, String instance) :
 		Class("ItemRenderer"),
 		METHOD_CTOR(top),
 		METHOD_CTOR(setPosition),

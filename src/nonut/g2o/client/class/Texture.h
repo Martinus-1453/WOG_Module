@@ -9,36 +9,36 @@ namespace nonut::g2o
 {
 	class Texture : public Class
 	{
-		Texture(int x, int y, int width, int height, std::string txt);
+		Texture(Int x, Int y, Int width, Int height, String txt);
 
 		// Methods
 		Function<void> top;
-		Function<void, int, int, int> setColor;
+		Function<void, Int, Int, Int> setColor;
 		Function<Color> getColor;
-		Function<void, int, int> setPosition;
-		Function<void, int, int> setPositionPx;
+		Function<void, Int, Int> setPosition;
+		Function<void, Int, Int> setPositionPx;
 		Function<Position2d> getPosition;
 		Function<Position2d> getPositionPx;
-		Function<void, int, int> setPivotPoint;
-		Function<void, int, int> setPivotPointPx;
+		Function<void, Int, Int> setPivotPoint;
+		Function<void, Int, Int> setPivotPointPx;
 		Function<Position2d> getPivotPoint;
 		Function<Position2d> getPivotPointPx;
-		Function<void, int, int> setSize;
-		Function<void, int, int> setSizePx;
+		Function<void, Int, Int> setSize;
+		Function<void, Int, Int> setSizePx;
 		Function<Size2d> getSize;
 		Function<Size2d> getSizePx;
-		Function<void, int, int, int, int> setRect;
-		Function<void, int, int, int, int> setRectPx;
+		Function<void, Int, Int, Int, Int> setRect;
+		Function<void, Int, Int, Int, Int> setRectPx;
 		Function<Rect> getRect;
 		Function<Rect> getRectPx;
-		Function<void, float, float, float, float> setUV;
+		Function<void, Float, Float, Float, Float> setUV;
 		Function<UV> getUV;
 
 		// Properties
-		Property<bool> visible;
-		Property<std::string> file;
-		Property<int> alpha;
-		Property<float> rotation;
+		Property<Bool> visible;
+		Property<String> file;
+		Property<Int> alpha;
+		Property<Float> rotation;
 	};
 }
 #endif

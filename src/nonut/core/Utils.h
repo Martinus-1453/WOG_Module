@@ -14,21 +14,21 @@ namespace nonut
 	};
 
 	template <typename T>
-	void sqGetValue(HSQUIRRELVM vm, SQInteger idx, T outPtr)
+	void sqGetValue(SQVM* vm, SQInteger idx, T outPtr)
 	{
 		static_assert(
-			std::is_same_v<T, SQBool*> ||
-			std::is_same_v<T, SQInteger*> ||
-			std::is_same_v<T, SQFloat*> ||
+			std::is_same_v<T, Bool*> ||
+			std::is_same_v<T, Int*> ||
+			std::is_same_v<T, Float*> ||
 			std::is_same_v<T, SQChar**> ||
 			std::is_same_v<T, HSQOBJECT*>,
 			"Not supported return type");
 
-		if constexpr (std::is_same_v<T, SQBool*>)
+		if constexpr (std::is_same_v<T, Bool*>)
 			sq_getbool(vm, idx, outPtr);
-		if constexpr (std::is_same_v<T, SQInteger*>)
+		if constexpr (std::is_same_v<T, Int*>)
 			sq_getinteger(vm, idx, outPtr);
-		if constexpr (std::is_same_v<T, SQFloat*>)
+		if constexpr (std::is_same_v<T, Float*>)
 			sq_getfloat(vm, idx, outPtr);
 		if constexpr (std::is_same_v<T, SQChar**>)
 			sq_getstring(vm, idx, outPtr);
@@ -40,31 +40,31 @@ namespace nonut
 	}
 
 	template <typename T>
-	void sqPushValue(HSQUIRRELVM vm, T value)
+	void sqPushValue(SQVM* vm, T value)
 	{
 		static_assert(
 			std::is_same_v<T, bool> ||
-			std::is_same_v<T, SQBool> ||
-			std::is_same_v<T, SQInteger> ||
-			std::is_same_v<T, SQFloat> ||
-			std::is_same_v<T, SQChar*> ||
-			std::is_same_v<T, HSQOBJECT> ||
-			std::is_same_v<T, std::string>,
+			std::is_same_v<T, Bool> ||
+			std::is_same_v<T, Int> ||
+			std::is_same_v<T, Float> ||
+			std::is_same_v<T, const SQChar*> ||
+			std::is_same_v<T, SQObject> ||
+			std::is_same_v<T, String>,
 			"Not supported return type");
 
 		if constexpr (std::is_same_v<T, bool>)
 			sq_pushbool(vm, value);
-		if constexpr (std::is_same_v<T, SQBool>)
+		if constexpr (std::is_same_v<T, Bool>)
 			sq_pushbool(vm, value);
-		if constexpr (std::is_same_v<T, SQInteger>)
+		if constexpr (std::is_same_v<T, Int>)
 			sq_pushinteger(vm, value);
-		if constexpr (std::is_same_v<T, SQFloat>)
+		if constexpr (std::is_same_v<T, Float>)
 			sq_pushfloat(vm, value);
 		if constexpr (std::is_same_v<T, SQChar*>)
 			sq_pushstring(vm, value, -1);
-		if constexpr (std::is_same_v<T, HSQOBJECT>)
+		if constexpr (std::is_same_v<T, SQObject>)
 			sq_pushobject(vm, value);
-		if constexpr (std::is_same_v<T, std::string>)
+		if constexpr (std::is_same_v<T, String>)
 			sq_pushstring(vm, value.c_str(), value.length());
 	}
 
@@ -72,11 +72,11 @@ namespace nonut
 	T returnVar()
 	{
 		static_assert(
-			std::is_same_v<T, HSQOBJECT> ||
+			std::is_same_v<T, SQObject> ||
 			std::is_same_v<T, bool> ||
 			std::is_same_v<T, float> ||
 			std::is_same_v<T, int> ||
-			std::is_same_v<T, std::string>,
+			std::is_same_v<T, String>,
 			"Not supported return type");
 
 			T result{};
@@ -86,12 +86,12 @@ namespace nonut
 	}
 
 	template <>
-	inline std::string returnVar<std::string>()
+	inline std::string returnVar<String>()
 	{
 		const SQChar* result = nullptr;
 		sq_getstring(vm, -1, &result);
 		sq_pop(vm, 1); // pops result
-		return std::string(result);
+		return String(result);
 	}
 }
 #endif

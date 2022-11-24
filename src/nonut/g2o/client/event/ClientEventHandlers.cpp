@@ -30,7 +30,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onRenderFocus(int type, int id, int x, int y, std::string name)
+	void onRenderFocus(Int type, Int id, Int x, Int y, String name)
 	{
 		for (auto&& function : ClientEventHandlers::onRenderFocusHandler)
 		{
@@ -38,7 +38,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onAnim(int id)
+	void onAnim(Int id)
 	{
 		for (auto&& function : ClientEventHandlers::onAnimHandler)
 		{
@@ -46,7 +46,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onDamage(int damage, int flags)
+	void onDamage(Int damage, Int flags)
 	{
 		for (auto&& function : ClientEventHandlers::onDamageHandler)
 		{
@@ -54,7 +54,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onEquip(std::string instance)
+	void onEquip(String instance)
 	{
 		for (auto&& function : ClientEventHandlers::onEquipHandler)
 		{
@@ -62,7 +62,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onFocus(int currentId, int previousId)
+	void onFocus(Int currentId, Int previousId)
 	{
 		for (auto&& function : ClientEventHandlers::onFocusHandler)
 		{
@@ -70,7 +70,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onLostFocus(int type, int id, std::string name)
+	void onLostFocus(Int type, Int id, String name)
 	{
 		for (auto&& function : ClientEventHandlers::onLostFocusHandler)
 		{
@@ -78,7 +78,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerUseItem(int id, int itemId, int from, int to)
+	void onPlayerUseItem(Int id, Int itemId, Int from, Int to)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerUseItemHandler)
 		{
@@ -110,7 +110,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onSpellCast(int id)
+	void onSpellCast(Int id)
 	{
 		for (auto&& function : ClientEventHandlers::onSpellCastHandler)
 		{
@@ -118,7 +118,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onTakeFocus(int type, int id, std::string name)
+	void onTakeFocus(Int type, Int id, String name)
 	{
 		for (auto&& function : ClientEventHandlers::onTakeFocusHandler)
 		{
@@ -126,7 +126,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onTakeItem(std::string instance, int amount)
+	void onTakeItem(String instance, Int amount)
 	{
 		for (auto&& function : ClientEventHandlers::onTakeItemHandler)
 		{
@@ -134,7 +134,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onUnequip(std::string instance)
+	void onUnequip(String instance)
 	{
 		for (auto&& function : ClientEventHandlers::onUnequipHandler)
 		{
@@ -142,7 +142,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onCommand(std::string command, std::string params)
+	void onCommand(String command, String params)
 	{
 		for (auto&& function : ClientEventHandlers::onCommandHandler)
 		{
@@ -150,7 +150,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onConsole(std::string command, std::string params)
+	void onConsole(String command, String params)
 	{
 		for (auto&& function : ClientEventHandlers::onConsoleHandler)
 		{
@@ -158,7 +158,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onKey(int key)
+	void onKey(Int key)
 	{
 		for (auto&& function : ClientEventHandlers::onKeyHandler)
 		{
@@ -166,7 +166,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPaste(std::string clipboard)
+	void onPaste(String clipboard)
 	{
 		for (auto&& function : ClientEventHandlers::onPasteHandler)
 		{
@@ -182,7 +182,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onInventorySlotChange(int from, int to)
+	void onInventorySlotChange(Int from, Int to)
 	{
 		for (auto&& function : ClientEventHandlers::onInventorySlotChangeHandler)
 		{
@@ -198,7 +198,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onMouseClick(int button)
+	void onMouseClick(Int button)
 	{
 		for (auto&& function : ClientEventHandlers::onMouseClickHandler)
 		{
@@ -206,7 +206,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onMouseMove(int x, int y)
+	void onMouseMove(Int x, Int y)
 	{
 		for (auto&& function : ClientEventHandlers::onMouseMoveHandler)
 		{
@@ -214,7 +214,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onMouseRelease(int button)
+	void onMouseRelease(Int button)
 	{
 		for (auto&& function : ClientEventHandlers::onMouseReleaseHandler)
 		{
@@ -222,7 +222,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onMouseWheel(int z)
+	void onMouseWheel(Int z)
 	{
 		for (auto&& function : ClientEventHandlers::onMouseWheelHandler)
 		{
@@ -230,7 +230,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerChangeColor(int id, int r, int g, int b)
+	void onPlayerChangeColor(Int id, Int r, Int g, Int b)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerChangeColorHandler)
 		{
@@ -238,7 +238,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerChangeNickname(int id, std::string nickname)
+	void onPlayerChangeNickname(Int id, String nickname)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerChangeNicknameHandler)
 		{
@@ -246,7 +246,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerChangePing(int id, int ping)
+	void onPlayerChangePing(Int id, Int ping)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerChangePingHandler)
 		{
@@ -254,7 +254,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerChangeWeaponMode(int playerId, int oldWeaponMode, int newWeaponMode)
+	void onPlayerChangeWeaponMode(Int playerId, Int oldWeaponMode, Int newWeaponMode)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerChangeWeaponModeHandler)
 		{
@@ -262,7 +262,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerCreate(int id)
+	void onPlayerCreate(Int id)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerCreateHandler)
 		{
@@ -270,7 +270,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerDead(int id)
+	void onPlayerDead(Int id)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerCreateHandler)
 		{
@@ -278,7 +278,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerDestroy(int id)
+	void onPlayerDestroy(Int id)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerDestroyHandler)
 		{
@@ -286,7 +286,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerHit(int killerId, int playerId, int damage)
+	void onPlayerHit(Int killerId, Int playerId, Int damage)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerHitHandler)
 		{
@@ -294,7 +294,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerMessage(int id, int r, int g, int b, std::string message)
+	void onPlayerMessage(Int id, Int r, Int g, Int b, String message)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerMessageHandler)
 		{
@@ -302,7 +302,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerSpawn(int id)
+	void onPlayerSpawn(Int id)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerSpawnHandler)
 		{
@@ -310,7 +310,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerTeleport(int id, std::string vobName)
+	void onPlayerTeleport(Int id, String vobName)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerTeleportHandler)
 		{
@@ -318,7 +318,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onPlayerUnspawn(int id)
+	void onPlayerUnspawn(Int id)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerUnspawnHandler)
 		{
@@ -326,7 +326,7 @@ namespace nonut::g2o
 		}
 	}
 
-	void onWorldChange(std::string world)
+	void onWorldChange(String world)
 	{
 		for (auto&& function : ClientEventHandlers::onWorldChangeHandler)
 		{
@@ -344,7 +344,7 @@ namespace nonut::g2o
 
 	//TODO: MAKE IT BETTER AND NOT SQRAT DEPENDANT
 #define BIND_EVENT_HANDLER(eventName) Sqrat::RootTable(vm).Func(#eventName "Cpp", &eventName); \
-	Function<void, std::string, HSQOBJECT, int> eventName ## AddEventHandler("addEventHandler"); \
+	Function<void, String, SQObject, Int> eventName ## AddEventHandler("addEventHandler"); \
 	Function<void> eventName ## TestHandler(#eventName "Cpp"); \
 	eventName ## AddEventHandler(#eventName, eventName ## TestHandler.getObject(), 1)
 

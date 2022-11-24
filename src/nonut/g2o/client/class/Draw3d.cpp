@@ -2,7 +2,7 @@
 
 namespace nonut::g2o
 {
-	Draw3d::Draw3d(float x, float y, float z) :
+	Draw3d::Draw3d(Float x, Float y, Float z) :
 		Class("Draw3d"),
 		METHOD_CTOR(top),
 		METHOD_CTOR(setLineFont),

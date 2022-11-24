@@ -16,6 +16,8 @@ file(GLOB SHARED_SRC
 
 	"src/nonut/g2o/shared/CustomTypes.cpp"
 
+	"src/nonut/g2o/shared/function/SharedFunctions.cpp"
+
 	"src/pch/pch.h"
 )
 
@@ -42,13 +44,14 @@ file(GLOB CLIENT_SRC
 )
 
 file(GLOB SERVER_SRC
-
+	"src/wog/server/ServerSqMain.cpp"
 )
 
 add_library(wog-module-client SHARED ${SHARED_SRC})
 add_library(wog-module-server SHARED ${SHARED_SRC})
 
 target_sources(wog-module-client PRIVATE ${CLIENT_SRC})
+target_sources(wog-module-server PRIVATE ${SERVER_SRC})
 
 
 target_precompile_headers(wog-module-client PRIVATE "src/pch/pch.h")

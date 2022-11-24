@@ -3,7 +3,7 @@
         
 namespace nonut::g2o
 {
-	Texture::Texture(int x, int y, int width, int height, std::string txt) :
+	Texture::Texture(Int x, Int y, Int width, Int height, String txt) :
 		Class("Texture"),
 		METHOD_CTOR(top),
 		METHOD_CTOR(setColor),

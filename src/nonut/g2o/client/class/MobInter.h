@@ -14,7 +14,7 @@ namespace nonut::g2o
 		// Inheritance Ctor
 		MobInter(constexpr const char* className);
 	public:
-		MobInter(std::string model);
+		MobInter(String model);
 		MobInter(SQUserPointer ptr);
 	};
 }

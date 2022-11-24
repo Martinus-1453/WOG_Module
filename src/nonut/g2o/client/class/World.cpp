@@ -3,7 +3,7 @@
         
 namespace nonut::g2o
 {
-	World::World(std::string fileName) :
+	World::World(String fileName) :
 		Class("World"),
 		METHOD_CTOR(searchVobByName),
 		METHOD_CTOR(stop),

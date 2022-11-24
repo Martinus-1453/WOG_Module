@@ -16,16 +16,16 @@ namespace nonut::g2o
 
 		// Methods
 		Function<void> reset;
-		Function<void, float> update;
+		Function<void, Float> update;
 
 		// Properties
-		Property<float> factorMotion;
+		Property<Float> factorMotion;
 
 		// Read-only properties
-		Property<float, true> frameTime;
-		Property<float, true> totalTime;
-		Property<float, true> frameTimeSecs;
-		Property<float, true> totalTimeSecs;
+		Property<Float, true> frameTime;
+		Property<Float, true> totalTime;
+		Property<Float, true> frameTimeSecs;
+		Property<Float, true> totalTimeSecs;
 	};
 }
 #endif

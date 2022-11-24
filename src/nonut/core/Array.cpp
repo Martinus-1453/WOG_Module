@@ -5,7 +5,7 @@ using namespace SqModule;
 
 namespace nonut
 {
-	Array::Array(HSQOBJECT object) : object(object), cachedSize(size())
+	Array::Array(SQObject object) : object(object), cachedSize(size())
 	{
 	}
 

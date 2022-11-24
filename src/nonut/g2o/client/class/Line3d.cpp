@@ -3,7 +3,7 @@
         
 namespace nonut::g2o
 {
-	Line3d::Line3d(float x1, float y1, float z1, float x2, float y2, float z2) :
+	Line3d::Line3d(Float x1, Float y1, Float z1, Float x2, Float y2, Float z2) :
 		Class("Line3d"),
 		METHOD_CTOR(top),
 		METHOD_CTOR(setBegin),

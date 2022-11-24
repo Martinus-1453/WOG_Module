@@ -15,24 +15,24 @@ namespace nonut::g2o
 		Sky();
 
 		// Methods
-		Function<void, int, int> setRainStartTime;
+		Function<void, Int, Int> setRainStartTime;
 		Function<TimeHM> getRainStartTime;
-		Function<void, int, int> setRainStopTime;
+		Function<void, Int, Int> setRainStopTime;
 		Function<TimeHM> getRainStopTime;
-		Function<void, int, int, int> setFogColor;
-		Function<void, int, int, int> setCloudsColor;
-		Function<void, int, int> setPlanterSize;
-		Function<void, int, int, int, int, int> setPlanetColor;
-		Function<void, int, int, int> setLightingColor;
+		Function<void, Int, Int, Int> setFogColor;
+		Function<void, Int, Int, Int> setCloudsColor;
+		Function<void, Int, Int> setPlanterSize;
+		Function<void, Int, Int, Int, Int, Int> setPlanetColor;
+		Function<void, Int, Int, Int> setLightingColor;
 
 		// Properties
-		Property<int> weather;
-		Property<bool> raining;
-		Property<bool> renderLightning;
-		Property<float> windScale;
-		Property<float> weatherWeight;
-		Property<bool> dontRain;
-		Property<bool> darkSky;
+		Property<Int> weather;
+		Property<Bool> raining;
+		Property<Bool> renderLightning;
+		Property<Float> windScale;
+		Property<Float> weatherWeight;
+		Property<Bool> dontRain;
+		Property<Bool> darkSky;
 	};
 }
 #endif

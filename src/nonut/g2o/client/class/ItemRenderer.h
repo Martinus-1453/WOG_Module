@@ -10,28 +10,28 @@ namespace nonut::g2o
 	class ItemRenderer : public Class
 	{
 	public:
-		ItemRenderer(int x, int y, int width, int height, std::string instance);
+		ItemRenderer(Int x, Int y, Int width, Int height, String instance);
 
 		// Methods
 		Function<void> top;
-		Function<void, int, int> setPosition;
-		Function<void, int, int> setPositionPx;
-		Function<void, int, int> setSize;
-		Function<void, int, int> setSizePx;
+		Function<void, Int, Int> setPosition;
+		Function<void, Int, Int> setPositionPx;
+		Function<void, Int, Int> setSize;
+		Function<void, Int, Int> setSizePx;
 		Function<Position2d> getPosition;
 		Function<Position2d> getPositionPx;
 		Function<Size2d> getSize;
 		Function<Size2d> getSizePx;
 
 		// Properties
-		Property<bool> visible;
-		Property<int> rotX;
-		Property<int> rotY;
-		Property<int> rotZ;
-		Property<int> zbias;
-		Property<bool> lightingswell;
-		Property<std::string> visual;
-		Property<std::string> instance;
+		Property<Bool> visible;
+		Property<Int> rotX;
+		Property<Int> rotY;
+		Property<Int> rotZ;
+		Property<Int> zbias;
+		Property<Bool> lightingswell;
+		Property<String> visual;
+		Property<String> instance;
 	};
 }
 #endif

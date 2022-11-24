@@ -11,21 +11,21 @@ namespace nonut::g2o
 	class Sound : public Class
 	{
 	public:
-		Sound(std::string fileName);
+		Sound(String fileName);
 
 		// Methods
 		Function<void> play;
 		Function<void> stop;
-		Function<bool> isPlaying;
+		Function<Bool> isPlaying;
 
 		// Properties
-		Property<std::string> file;
-		Property<float> volume;
-		Property<bool> looping;
-		Property<float> balance;
+		Property<String> file;
+		Property<Float> volume;
+		Property<Bool> looping;
+		Property<Float> balance;
 
 		// Read-only properties
-		Property<float, true> playingTime;
+		Property<Float, true> playingTime;
 	};
 }
 #endif

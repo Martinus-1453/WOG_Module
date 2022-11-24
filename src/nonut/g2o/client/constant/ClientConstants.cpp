@@ -7,9 +7,9 @@ namespace nonut::g2o
 {
 	void ClientConstants::init()
 	{
-		HSQOBJECT constTable = getConstTable();
+		SQObject constTable = getConstTable();
 
-#define GET_CONST(constName) Property<int> constName ## Prop(#constName, constTable); \
+#define GET_CONST(constName) Property<Int> constName ## Prop(#constName, constTable); \
 	(constName) = constName ## Prop.get()
 
 		GET_CONST(ATTACK_FRONT);

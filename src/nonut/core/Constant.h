@@ -5,6 +5,6 @@
 
 namespace nonut
 {
-	HSQOBJECT getConstTable();
+	SQObject getConstTable();
 };
 #endif

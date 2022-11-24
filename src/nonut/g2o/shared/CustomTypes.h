@@ -10,95 +10,95 @@ namespace nonut::g2o
 {
 	struct GameTime : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		int day{};
-		int hour{};
-		int min{};
+		void convert(SQObject object) override;
+		Int day{};
+		Int hour{};
+		Int min{};
 	};
 
 	struct Position2d : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		int x{};
-		int y{};
+		void convert(SQObject object) override;
+		Int x{};
+		Int y{};
 	};
 
 	struct Position3d : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		float x{};
-		float y{};
-		float z{};
+		void convert(SQObject object) override;
+		Float x{};
+		Float y{};
+		Float z{};
 	};
 
 	struct Size2d : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		int width{};
-		int height{};
+		void convert(SQObject object) override;
+		Int width{};
+		Int height{};
 	};
 
 	struct Rect : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		int x;
-		int y;
-		int width;
-		int height;
+		void convert(SQObject object) override;
+		Int x;
+		Int y;
+		Int width;
+		Int height;
 	};
 
 	struct UV : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		float x;
-		float y;
-		float width;
-		float height;
+		void convert(SQObject object) override;
+		Float x;
+		Float y;
+		Float width;
+		Float height;
 	};
 
 	struct Resolution : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		int x{};
-		int y{};
-		int bpp{};
+		void convert(SQObject object) override;
+		Int x{};
+		Int y{};
+		Int bpp{};
 	};
 
 	struct Item : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		int instance{};
-		int amount{};
-		std::string name{};
+		void convert(SQObject object) override;
+		Int instance{};
+		Int amount{};
+		String name{};
 	};
 
 	struct Color : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		int r{};
-		int g{};
-		int b{};
+		void convert(SQObject object) override;
+		Int r{};
+		Int g{};
+		Int b{};
 	};
 
 	struct BodyVisual : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		std::string bodyModel{};
-		int bodyTxt{};
-		std::string headModel{};
-		int headTxt{};
+		void convert(SQObject object) override;
+		String bodyModel{};
+		Int bodyTxt{};
+		String headModel{};
+		Int headTxt{};
 	};
 
 	struct NetworkStats : CustomType
 	{
-		void convert(HSQOBJECT object) override;
-		int packetReceived{};
-		int packetlossTotal{};
-		int packetlossLastSecond{};
-		int messagesInResendBuffer{};
-		int messageInSendBuffer{};
-		int bytesInResendBuffer{};
-		int bytesInSendBuffer{};
+		void convert(SQObject object) override;
+		Int packetReceived{};
+		Int packetlossTotal{};
+		Int packetlossLastSecond{};
+		Int messagesInResendBuffer{};
+		Int messageInSendBuffer{};
+		Int bytesInResendBuffer{};
+		Int bytesInSendBuffer{};
 	};
 }
 

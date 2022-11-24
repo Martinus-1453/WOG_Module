@@ -23,9 +23,9 @@ namespace nonut
 
 	protected:
 		// Object holding information about class
-		HSQOBJECT classObject{};
+		SQObject classObject{};
 		// Class object instance
-		HSQOBJECT classObjectInstance{};
+		SQObject classObjectInstance{};
 
 		template <typename... Args>
 		void classCtor(Args ... args)

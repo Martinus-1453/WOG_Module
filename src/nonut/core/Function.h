@@ -19,7 +19,7 @@ namespace nonut
 	{
 	public:
 		// Ctor for functions
-		Function(const std::string& functionName, const HSQOBJECT env = getRootTable()) : envObj(env)
+		Function(const String& functionName, const SQObject env = getRootTable()) : envObj(env)
 		{
 			sq_pushobject(vm, envObj);
 			sq_pushstring(vm, functionName.c_str(), functionName.length());
@@ -47,8 +47,8 @@ namespace nonut
 		}
 
 		// Ctor for class methods
-		Function(const std::string& functionName, const HSQOBJECT classObjectInstance,
-		         const HSQOBJECT classObject) : envObj(classObjectInstance)
+		Function(const String& functionName, const SQObject classObjectInstance,
+		         const SQObject classObject) : envObj(classObjectInstance)
 		{
 			isClassMethod = true; // Prevent release of the resources cause we don't own them
 			sq_pushobject(vm, classObject);
@@ -89,7 +89,7 @@ namespace nonut
 
 		ReturnType operator()(Args ... args)
 		{
-			const SQInteger top = sq_gettop(vm);
+			const auto top = sq_gettop(vm);
 			sq_pushobject(vm, funcObj);
 			sq_pushobject(vm, envObj);
 
@@ -110,7 +110,7 @@ namespace nonut
 
 				if constexpr (std::derived_from<ReturnType, CustomType>)
 				{
-					HSQOBJECT intermediateResult = returnVar<HSQOBJECT>();
+					auto intermediateResult = returnVar<SQObject>();
 					result.convert(intermediateResult);
 					sq_release(vm, &intermediateResult);
 					sq_resetobject(&intermediateResult);
@@ -126,20 +126,20 @@ namespace nonut
 			}
 		}
 
-		[[nodiscard]] HSQOBJECT getObject() const
+		[[nodiscard]] SQObject getObject() const
 		{
 			return funcObj;
 		}
 
 	private:
-		HSQOBJECT funcObj{};
-		HSQOBJECT envObj{};
+		SQObject funcObj{};
+		SQObject envObj{};
 		bool isClassMethod = false;
 		static constexpr auto argCount{sizeof...(Args)};
 
-		static HSQOBJECT getRootTable()
+		static SQObject getRootTable()
 		{
-			HSQOBJECT rootTable{};
+			SQObject rootTable{};
 			sq_pushroottable(vm);
 			sq_getstackobj(vm, -1, &rootTable);
 			sq_addref(vm, &rootTable);

@@ -6,3 +6,10 @@
 #include "module_api.h"
 #include "squirrel_api.h"
 #include "sqrat.h"
+
+using Int = SQInteger;
+using UInt = SQUnsignedInteger;
+using UInt32 = SQUnsignedInteger32;
+using Float = SQFloat;
+using Bool = SQBool;
+using String = std::string;

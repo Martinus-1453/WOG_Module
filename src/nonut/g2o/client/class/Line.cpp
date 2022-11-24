@@ -3,7 +3,7 @@
         
 namespace nonut::g2o
 {
-	Line::Line(int x1, int y1, int x2, int y2) :
+	Line::Line(Int x1, Int y1, Int x2, Int y2) :
 		Class("Line"),
 		METHOD_CTOR(top),
 		METHOD_CTOR(setBegin),

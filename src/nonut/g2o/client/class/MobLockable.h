@@ -14,13 +14,13 @@ namespace nonut::g2o
 		// Inheritance Ctor
 		MobLockable(constexpr const char* className);
 	public:
-		MobLockable(std::string model);
+		MobLockable(String model);
 		MobLockable(SQUserPointer ptr);
 
 		// Properties
-		Property<bool> locked;
-		Property<std::string> keyInstance;
-		Property<std::string> pickLockStr;
+		Property<Bool> locked;
+		Property<String> keyInstance;
+		Property<String> pickLockStr;
 	};
 }
 #endif
