@@ -92,11 +92,12 @@ namespace nonut
 			const auto top = sq_gettop(vm);
 			sq_pushobject(vm, funcObj);
 			sq_pushobject(vm, envObj);
-
+			auto debug = sq_gettop(vm);
 			(sqPushValue(vm, args), ...);
-
+			
 			if constexpr (std::is_same_v<ReturnType, void>)
 			{
+				debug = sq_gettop(vm);
 				auto returnCode = sq_call(vm, argCount + 1, SQFalse, SQFalse); // TODO: HANDLE ERROR RETURN CODE
 				sq_pop(vm, 2);
 				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY

@@ -23,6 +23,8 @@ file(GLOB SHARED_SRC
 
 	"src/nonut/g2o/shared/function/SharedFunctions.cpp"
 
+	"src/nonut/g2o/shared/constant/SharedConstants.cpp"
+
 	"src/pch/pch.h"
 )
 
@@ -38,6 +40,7 @@ file(GLOB CLIENT_SRC
 	"src/nonut/g2o/client/class/Timestep.cpp"
 	"src/nonut/g2o/client/class/World.cpp"
 	"src/nonut/g2o/client/class/Way.cpp"
+	"src/nonut/g2o/client/class/Packet.cpp"
 
 	"src/nonut/g2o/client/function/ClientFunctions.cpp"
 
@@ -49,6 +52,11 @@ file(GLOB CLIENT_SRC
 )
 
 file(GLOB SERVER_SRC
+	
+	"src/nonut/g2o/server/class/Packet.cpp"
+
+	"src/nonut/g2o/server/event/ServerEventHandlers.cpp"
+	
 	"src/wog/server/ServerSqMain.cpp"
 )
 

@@ -1,12 +1,13 @@
 #include "pch.h"
 #include "Packet.h"
-
+        
 namespace nonut::g2o
 {
 	Packet::Packet() :
 		Class("Packet"),
 		METHOD_CTOR(reset),
 		METHOD_CTOR(send),
+		METHOD_CTOR(sendToAll),
 		METHOD_CTOR(writeBool),
 		METHOD_CTOR(writeInt8),
 		METHOD_CTOR(writeUInt8),
@@ -33,6 +34,7 @@ namespace nonut::g2o
 		Class(object, "Packet"),
 		METHOD_CTOR(reset),
 		METHOD_CTOR(send),
+		METHOD_CTOR(sendToAll),
 		METHOD_CTOR(writeBool),
 		METHOD_CTOR(writeInt8),
 		METHOD_CTOR(writeUInt8),

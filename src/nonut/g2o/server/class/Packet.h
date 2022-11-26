@@ -12,11 +12,12 @@ namespace nonut::g2o
 	{
 	public:
 		Packet();
-		Packet(SQObject object);
+		explicit Packet(SQObject object);
 
 		// Methods
 		Function<void> reset;
-		Function<void, Int> send;
+		Function<void, Int, Int> send;
+		Function<void, Int> sendToAll;
 		Function<void, Bool> writeBool;
 		Function<void, Int> writeInt8;
 		Function<void, Int> writeUInt8;

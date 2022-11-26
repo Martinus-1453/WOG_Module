@@ -20,6 +20,7 @@ namespace nonut::g2o
 
 		// G2O functions
 		Function<void, String> print;
+		
 	};
 }
 #endif

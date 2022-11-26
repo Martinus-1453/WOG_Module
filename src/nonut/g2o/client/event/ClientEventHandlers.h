@@ -5,6 +5,7 @@
 #include <functional>
 #include <string>
 #include <vector>
+#include "class/Packet.h"
 
 namespace nonut::g2o
 {
@@ -45,7 +46,7 @@ namespace nonut::g2o
 	static void onMouseWheel(Int z);
 	// Network
 	// TODO: Packet missing implementation
-	// void onPacket(Packet packet);
+	static void onPacket(SQObject object);
 	// Mob
 	// TODO: needs work: userdata missing
 	//void onMobClose(userdata address, Int type);
@@ -76,29 +77,31 @@ namespace nonut::g2o
 		// !!!INITIALIZATION!!!
 		static void init();
 
+		static inline HANDLER_INIT(void(Packet&), onPacket);
+
 		static inline HANDLER_INIT(void(), onChangeResolution);
 		static inline HANDLER_INIT(void(), onExit);
 		static inline HANDLER_INIT(void(), onRender);
-		static inline HANDLER_INIT(void(Int, Int, Int, Int, String), onRenderFocus);
+		static inline HANDLER_INIT(void(Int, Int, Int, Int, String&), onRenderFocus);
 
 		static inline HANDLER_INIT(void(Int), onAnim);
 		static inline HANDLER_INIT(void(Int, Int), onDamage);
-		static inline HANDLER_INIT(void(String), onEquip);
+		static inline HANDLER_INIT(void(String&), onEquip);
 		static inline HANDLER_INIT(void(Int, Int), onFocus);
-		static inline HANDLER_INIT(void(Int, Int, String), onLostFocus);
+		static inline HANDLER_INIT(void(Int, Int, String&), onLostFocus);
 		static inline HANDLER_INIT(void(Int, Int, Int, Int), onPlayerUseItem);
 		static inline HANDLER_INIT(void(), onRespawn);
 		static inline HANDLER_INIT(void(), onShoot);
 		static inline HANDLER_INIT(void(), onSink);
 		static inline HANDLER_INIT(void(Int), onSpellCast);
-		static inline HANDLER_INIT(void(Int, Int, String), onTakeFocus);
-		static inline HANDLER_INIT(void(String, Int), onTakeItem);
-		static inline HANDLER_INIT(void(String), onUnequip);
+		static inline HANDLER_INIT(void(Int, Int, String&), onTakeFocus);
+		static inline HANDLER_INIT(void(String&, Int), onTakeItem);
+		static inline HANDLER_INIT(void(String&), onUnequip);
 
-		static inline HANDLER_INIT(void(String, String), onCommand);
-		static inline HANDLER_INIT(void(String, String), onConsole);
+		static inline HANDLER_INIT(void(String&, String&), onCommand);
+		static inline HANDLER_INIT(void(String&, String&), onConsole);
 		static inline HANDLER_INIT(void(Int), onKey);
-		static inline HANDLER_INIT(void(String), onPaste);
+		static inline HANDLER_INIT(void(String&), onPaste);
 		static inline HANDLER_INIT(void(), onCloseInventory);
 		static inline HANDLER_INIT(void(Int, Int), onInventorySlotChange);
 		static inline HANDLER_INIT(void(), onOpenInventory);
@@ -108,19 +111,19 @@ namespace nonut::g2o
 		static inline HANDLER_INIT(void(Int), onMouseWheel);
 
 		static inline HANDLER_INIT(void(Int, Int, Int, Int), onPlayerChangeColor);
-		static inline HANDLER_INIT(void(Int, String), onPlayerChangeNickname);
+		static inline HANDLER_INIT(void(Int, String&), onPlayerChangeNickname);
 		static inline HANDLER_INIT(void(Int, Int), onPlayerChangePing);
 		static inline HANDLER_INIT(void(Int, Int, Int), onPlayerChangeWeaponMode);
 		static inline HANDLER_INIT(void(Int), onPlayerCreate);
 		static inline HANDLER_INIT(void(Int), onPlayerDead);
 		static inline HANDLER_INIT(void(Int), onPlayerDestroy);
 		static inline HANDLER_INIT(void(Int, Int, Int), onPlayerHit);
-		static inline HANDLER_INIT(void(Int, Int, Int, Int, String), onPlayerMessage);
+		static inline HANDLER_INIT(void(Int, Int, Int, Int, String&), onPlayerMessage);
 		static inline HANDLER_INIT(void(Int), onPlayerSpawn);
-		static inline HANDLER_INIT(void(Int, String), onPlayerTeleport);
+		static inline HANDLER_INIT(void(Int, String&), onPlayerTeleport);
 		static inline HANDLER_INIT(void(Int), onPlayerUnspawn);
 
-		static inline HANDLER_INIT(void(String), onWorldChange);
+		static inline HANDLER_INIT(void(String&), onWorldChange);
 		static inline HANDLER_INIT(void(), onWorldEnter);
 	};
 }

@@ -49,7 +49,8 @@ namespace nonut
 			std::is_same_v<T, Float> ||
 			std::is_same_v<T, const SQChar*> ||
 			std::is_same_v<T, SQObject> ||
-			std::is_same_v<T, String>,
+			std::is_same_v<T, String> ||
+			std::is_same_v<T, String&>,
 			"Not supported return type");
 
 		if constexpr (std::is_same_v<T, bool>)
@@ -64,7 +65,7 @@ namespace nonut
 			sq_pushstring(vm, value, -1);
 		if constexpr (std::is_same_v<T, SQObject>)
 			sq_pushobject(vm, value);
-		if constexpr (std::is_same_v<T, String>)
+		if constexpr (std::is_same_v<T, String> || std::is_same_v<T, String&>)
 			sq_pushstring(vm, value.c_str(), value.length());
 	}
 
@@ -73,9 +74,9 @@ namespace nonut
 	{
 		static_assert(
 			std::is_same_v<T, SQObject> ||
-			std::is_same_v<T, bool> ||
-			std::is_same_v<T, float> ||
-			std::is_same_v<T, int> ||
+			std::is_same_v<T, Bool> ||
+			std::is_same_v<T, Float> ||
+			std::is_same_v<T, Int> ||
 			std::is_same_v<T, String>,
 			"Not supported return type");
 
@@ -86,12 +87,12 @@ namespace nonut
 	}
 
 	template <>
-	inline std::string returnVar<String>()
+	inline String returnVar<String>()
 	{
 		const SQChar* result = nullptr;
 		sq_getstring(vm, -1, &result);
 		sq_pop(vm, 1); // pops result
-		return String(result);
+		return { result };
 	}
 }
 #endif

@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "ClientEventHandlers.h"
+
+#include "Bind.h"
 #include "Function.h"
 
 using namespace SqModule;
@@ -230,6 +232,17 @@ namespace nonut::g2o
 		}
 	}
 
+	void onPacket(SQObject object)
+	{
+		int abc = 0;
+		/*Packet packet(object);
+		for (auto&& function : ClientEventHandlers::onPacketHandler)
+		{
+			function(packet);
+		}
+		packet.reset();*/
+	}
+
 	void onPlayerChangeColor(Int id, Int r, Int g, Int b)
 	{
 		for (auto&& function : ClientEventHandlers::onPlayerChangeColorHandler)
@@ -343,10 +356,22 @@ namespace nonut::g2o
 	}
 
 	//TODO: MAKE IT BETTER AND NOT SQRAT DEPENDANT
-#define BIND_EVENT_HANDLER(eventName) Sqrat::RootTable(vm).Func(#eventName "Cpp", &eventName); \
+#define BIND_EVENT_HANDLER(eventName) Sqrat::RootTable(vm).Func(#eventName "Wrapper", &eventName); \
 	Function<void, String, SQObject, Int> eventName ## AddEventHandler("addEventHandler"); \
-	Function<void> eventName ## TestHandler(#eventName "Cpp"); \
+	Function<void> eventName ## TestHandler(#eventName "Wrapper"); \
 	eventName ## AddEventHandler(#eventName, eventName ## TestHandler.getObject(), 1)
+
+	SQInteger onPacketWrapper(HSQUIRRELVM v)
+	{
+		auto numArgs = sq_gettop(v); //number of arguments
+		SQObject packet;
+
+		sq_getstackobj(v, 1, &packet);
+
+		onPacket(packet);
+
+		return 0;
+	}
 
 	void ClientEventHandlers::init()
 	{
@@ -355,6 +380,7 @@ namespace nonut::g2o
 		// Prevent calling bind more than once
 		if (!isInitialized)
 		{
+			BIND_EVENT_HANDLER(onPacket);
 			BIND_EVENT_HANDLER(onChangeResolution);
 			BIND_EVENT_HANDLER(onExit);
 			BIND_EVENT_HANDLER(onRender);

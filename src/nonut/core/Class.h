@@ -18,7 +18,8 @@ namespace nonut
 	class Class
 	{
 	public:
-		Class(std::string className);
+		Class(SQObject classObjectInstance, String className);
+		Class(String className);
 		~Class();
 
 	protected:

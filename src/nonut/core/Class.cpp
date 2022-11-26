@@ -5,7 +5,24 @@ using namespace SqModule;
 
 namespace nonut
 {
-	Class::Class(std::string className)
+	Class::Class(SQObject classObjectInstance, String className) : classObjectInstance(classObjectInstance)
+	{
+		const auto top = sq_gettop(vm);
+		sq_addref(vm, &this->classObject);
+
+		sq_pushroottable(vm); //push root table
+		sq_pushstring(vm, className.c_str(), className.length()); //push class name
+
+		if (sq_get(vm, -2) == SQ_OK) //retrieve class
+		{
+			sq_getstackobj(vm, -1, &classObject);
+			sq_addref(vm, &classObject);
+		}
+
+		sq_settop(vm, top);
+	}
+
+	Class::Class(String className)
 	{
 		const auto top = sq_gettop(vm);
 
