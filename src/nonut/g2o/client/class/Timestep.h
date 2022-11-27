@@ -1,6 +1,5 @@
-#pragma once
-#ifndef TIMESTEP_H
-#define TIMESTEP_H
+#ifndef NONUT_G2O_CLIENT_CLASS_TIMESTEP_H
+#define NONUT_G2O_CLIENT_CLASS_TIMESTEP_H
 #include <string>
 
 #include "Class.h"
@@ -28,4 +27,4 @@ namespace nonut::g2o
 		Property<Float, true> totalTimeSecs;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_TIMESTEP_H

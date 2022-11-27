@@ -1,6 +1,5 @@
-#pragma once
-#ifndef SERVER_EVENT_HANDLERS_H
-#define SERVER_EVENT_HANDLERS_H
+#ifndef NONUT_G2O_SERVER_EVENT_SERVER_EVENT_HANDLERS_H
+#define NONUT_G2O_SERVER_EVENT_SERVER_EVENT_HANDLERS_H
 
 #include <functional>
 #include <string>
@@ -27,4 +26,4 @@ namespace nonut::g2o
 		static inline HANDLER_INIT(void(Int, Int, Int), onPlayerChangeWeaponMode);
 	};
 }
-#endif
+#endif // NONUT_G2O_SERVER_EVENT_SERVER_EVENT_HANDLERS_H

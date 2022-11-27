@@ -1,6 +1,5 @@
-#pragma once
-#ifndef MOB_INTER_H
-#define MOB_INTER_H
+#ifndef NONUT_G2O_CLIENT_CLASS_MOB_INTER_H
+#define NONUT_G2O_CLIENT_CLASS_MOB_INTER_H
 #include <string>
 
 #include "Mob.h"
@@ -18,4 +17,4 @@ namespace nonut::g2o
 		MobInter(SQUserPointer ptr);
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_MOB_INTER_H

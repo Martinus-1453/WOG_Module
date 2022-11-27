@@ -1,6 +1,5 @@
-#pragma once
-#ifndef CAMERA_H
-#define CAMERA_H
+#ifndef NONUT_G2O_CLIENT_CLASS_CAMERA_H
+#define NONUT_G2O_CLIENT_CLASS_CAMERA_H
 #include <string>
 
 #include "Class.h"
@@ -35,4 +34,4 @@ namespace nonut::g2o
 		Property<Bool> movementEnabled;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_CAMERA_H

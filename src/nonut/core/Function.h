@@ -1,6 +1,5 @@
-#pragma once
-#ifndef FUNCTION_H
-#define FUNCTION_H
+#ifndef NONUT_CORE_FUNCTION_H
+#define NONUT_CORE_FUNCTION_H
 
 #include <string>
 
@@ -149,4 +148,4 @@ namespace nonut
 		}
 	};
 }
-#endif // FUNCTION_H
+#endif // NONUT_CORE_FUNCTION_H

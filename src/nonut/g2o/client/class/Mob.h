@@ -1,6 +1,5 @@
-#pragma once
-#ifndef MOB_H
-#define MOB_H
+#ifndef NONUT_G2O_CLIENT_CLASS_MOB_H
+#define NONUT_G2O_CLIENT_CLASS_MOB_H
 #include <string>
 
 #include "Vob.h"
@@ -25,4 +24,4 @@ namespace nonut::g2o
 		Property<String, true> scemeName;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_MOB_H

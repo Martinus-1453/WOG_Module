@@ -1,6 +1,5 @@
-#pragma once
-#ifndef CLIENT_CONSTANTS_H
-#define CLIENT_CONSTANTS_H
+#ifndef NONUT_G2O_CLIENT_CONSTANT_CLIENT_CONSTANTS_H
+#define NONUT_G2O_CLIENT_CONSTANT_CLIENT_CONSTANTS_H
 #include "pch.h"
 
 namespace nonut::g2o
@@ -244,4 +243,4 @@ namespace nonut::g2o
 		static inline Int WEATHER_RAIN = 0;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CONSTANT_CLIENT_CONSTANTS_H

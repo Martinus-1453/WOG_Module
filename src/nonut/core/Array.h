@@ -1,6 +1,5 @@
-#pragma once
-#ifndef ARRAY_H
-#define ARRAY_H
+#ifndef NONUT_CORE_ARRAY_H
+#define NONUT_CORE_ARRAY_H
 #include "pch.h"
 
 #include "Utils.h"
@@ -48,4 +47,4 @@ namespace nonut
 		size_t cachedSize;
 	};
 }
-#endif
+#endif // NONUT_CORE_ARRAY_H

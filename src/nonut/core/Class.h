@@ -1,6 +1,5 @@
-#pragma once
-#ifndef CLASS_H
-#define CLASS_H
+#ifndef NONUT_CORE_CLASS_H
+#define NONUT_CORE_CLASS_H
 #include "pch.h"
 #include <string>
 
@@ -36,4 +35,4 @@ namespace nonut
 		}
 	};
 }
-#endif // CLASS_H
+#endif // NONUT_CORE_CLASS_H

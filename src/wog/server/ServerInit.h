@@ -1,6 +1,5 @@
-#pragma once
-#ifndef SERVER_INIT_H
-#define SERVER_INIT_H
+#ifndef WOG_SERVER_SERVER_INIT_H
+#define WOG_SERVER_SERVER_INIT_H
 #include "pch.h"
 
 //#include "constant/ServerConstants.h"
@@ -36,4 +35,4 @@ namespace wog
 		
 	}
 }
-#endif
+#endif // WOG_SERVER_SERVER_INIT_H

@@ -1,6 +1,5 @@
-#pragma once
-#ifndef WORLD_H
-#define WORLD_H
+#ifndef NONUT_G2O_CLIENT_CLASS_WORLD_H
+#define NONUT_G2O_CLIENT_CLASS_WORLD_H
 #include <string>
 
 #include "Class.h"
@@ -27,4 +26,4 @@ namespace nonut::g2o
 		Property<Bool> showZonesDebugInfo;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_WORLD_H

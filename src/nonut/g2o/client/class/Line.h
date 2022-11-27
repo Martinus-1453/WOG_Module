@@ -1,6 +1,5 @@
-#pragma once
-#ifndef LINE_H
-#define LINE_H
+#ifndef NONUT_G2O_CLIENT_CLASS_LINE_H
+#define NONUT_G2O_CLIENT_CLASS_LINE_H
 
 #include "Class.h"
 #include "CustomTypes.h"
@@ -25,4 +24,4 @@ namespace nonut::g2o
 		
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_LINE_H

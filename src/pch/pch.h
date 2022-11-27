@@ -1,3 +1,5 @@
+#ifndef PCH_PCH_H
+#define PCH_PCH_H
 #define QUOTIFY(arg) #arg
 #define STRINGIFY(arg) QUOTIFY(arg)
 
@@ -13,3 +15,6 @@ using UInt32 = SQUnsignedInteger32;
 using Float = SQFloat;
 using Bool = SQBool;
 using String = std::string;
+
+
+#endif // PCH_PCH_H

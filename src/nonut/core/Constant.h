@@ -1,10 +1,9 @@
-#pragma once
-#ifndef CONSTANT_H
-#define CONSTANT_H
+#ifndef NONUT_CORE_CONSTANT_H
+#define NONUT_CORE_CONSTANT_H
 #include "pch.h"
 
 namespace nonut
 {
 	SQObject getConstTable();
 };
-#endif
+#endif // NONUT_CORE_CONSTANT_H

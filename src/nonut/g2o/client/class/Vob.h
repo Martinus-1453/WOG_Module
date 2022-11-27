@@ -1,6 +1,5 @@
-#pragma once
-#ifndef VOB_H
-#define VOB_H
+#ifndef NONUT_G2O_CLIENT_CLASS_VOB_H
+#define NONUT_G2O_CLIENT_CLASS_VOB_H
 #include <string>
 
 #include "Class.h"
@@ -55,4 +54,4 @@ namespace nonut::g2o
 		Property<SQUserPointer, true> ptr;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_VOB_H

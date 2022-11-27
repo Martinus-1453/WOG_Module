@@ -1,6 +1,5 @@
-#pragma once
-#ifndef DAEDALUS_H
-#define DAEDALUS_H
+#ifndef NONUT_G2O_CLIENT_CLASS_DAEDALUS_H
+#define NONUT_G2O_CLIENT_CLASS_DAEDALUS_H
 #include <string>
 
 #include "Class.h"
@@ -16,4 +15,4 @@ namespace nonut::g2o
 		// HOPE WE WILL NEVER NEED THAT CLASS!
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_DAEDALUS_H

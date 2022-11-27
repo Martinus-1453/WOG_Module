@@ -1,6 +1,5 @@
-#pragma once
-#ifndef PACKET_H
-#define PACKET_H
+#ifndef NONUT_G2O_CLIENT_CLASS_PACKET_H
+#define NONUT_G2O_CLIENT_CLASS_PACKET_H
 #include <string>
 
 #include "Class.h"
@@ -37,4 +36,4 @@ namespace nonut::g2o
 		Function<String> readString;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_PACKET_H

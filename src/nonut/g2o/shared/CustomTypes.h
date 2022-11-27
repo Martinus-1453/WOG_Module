@@ -1,6 +1,5 @@
-#pragma once
-#ifndef CUSTOM_TYPES_H
-#define CUSTOM_TYPES_H
+#ifndef NONUT_G2O_SHARED_CUSTOM_TYPES_H
+#define NONUT_G2O_SHARED_CUSTOM_TYPES_H
 
 #include <string>
 
@@ -102,4 +101,4 @@ namespace nonut::g2o
 	};
 }
 
-#endif
+#endif // NONUT_G2O_SHARED_CUSTOM_TYPES_H
