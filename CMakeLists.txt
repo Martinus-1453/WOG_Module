@@ -5,6 +5,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project(wog-module VERSION 0.1)
 
+# exporting compile time variables into WogConfig.h
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+string(TIMESTAMP COMPILE_TIME "%Y-%m-%d %H:%M:%S")
+configure_file(WogConfig.h.in WogConfig.h)
+
 file(GLOB SHARED_SRC
 	"src/api/squirrel_api.h"
 	"src/api/module_api.h"
