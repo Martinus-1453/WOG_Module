@@ -7,6 +7,7 @@
 #include "event/ServerEventHandlers.h"
 #include "function/SharedFunctions.h"
 #include "constant/SharedConstants.h"
+#include "StringHelpers.h"
 
 using namespace SqModule;
 
@@ -23,7 +24,7 @@ namespace wog
 		ServerEventHandlers::onPacketHandler.emplace_back([](Int playerId, nonut::g2o::Packet& packet)
 		{
 			SHARED_FUNCTIONS->print(std::to_string(packet.readInt32()));
-			SHARED_FUNCTIONS->print(packet.readString());
+			SHARED_FUNCTIONS->print(nonut::win1250ToUTF8(packet.readString()));
 		});
 
 		ServerEventHandlers::onPlayerChangeWeaponModeHandler.emplace_back([](Int playerId, Int oldWeaponMode, Int newWeaponMode)

@@ -89,10 +89,10 @@ namespace nonut
 	template <>
 	inline String returnVar<String>()
 	{
-		const SQChar* result = nullptr;
+		const SQChar* result = "";
 		sq_getstring(vm, -1, &result);
 		sq_pop(vm, 1); // pops result
-		return { result };
+		return result;
 	}
 }
 #endif

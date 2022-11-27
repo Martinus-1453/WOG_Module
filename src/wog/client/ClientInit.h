@@ -7,6 +7,7 @@
 #include "constant/SharedConstants.h"
 #include "event/ClientEventHandlers.h"
 #include "function/SharedFunctions.h"
+#include "StringHelpers.h"
 
 using namespace SqModule;
 
@@ -33,6 +34,7 @@ namespace wog
 				nonut::g2o::Packet packet{};
 				packet.writeInt32(key);
 				String tekst = "twój stary";
+				tekst = tekst;
 				packet.writeString(tekst);
 				packet.send(SharedConstants::RELIABLE_ORDERED);
 
