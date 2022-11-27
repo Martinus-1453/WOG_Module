@@ -1,6 +1,5 @@
-#pragma once
-#ifndef SHARED_FUNCTIONS_H
-#define SHARED_FUNCTIONS_H
+#ifndef NONUT_G2O_SHARED_FUNCTION_SHARED_FUNCTIONS_H
+#define NONUT_G2O_SHARED_FUNCTION_SHARED_FUNCTIONS_H
 #include "Function.h"
 #include "CustomTypes.h"
 
@@ -23,4 +22,4 @@ namespace nonut::g2o
 		
 	};
 }
-#endif
+#endif // NONUT_G2O_SHARED_FUNCTION_SHARED_FUNCTIONS_H

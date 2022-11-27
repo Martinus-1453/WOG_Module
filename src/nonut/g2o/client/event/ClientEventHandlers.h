@@ -1,6 +1,5 @@
-#pragma once
-#ifndef CLIENT_EVENT_HANDLERS_H
-#define CLIENT_EVENT_HANDLERS_H
+#ifndef NONUT_G2O_CLIENT_EVENT_CLIENT_EVENT_HANDLERS_H
+#define NONUT_G2O_CLIENT_EVENT_CLIENT_EVENT_HANDLERS_H
 
 #include <functional>
 #include <string>
@@ -127,4 +126,4 @@ namespace nonut::g2o
 		static inline HANDLER_INIT(void(), onWorldEnter);
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_EVENT_CLIENT_EVENT_HANDLERS_H

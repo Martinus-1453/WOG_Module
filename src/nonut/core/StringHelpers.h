@@ -1,6 +1,5 @@
-#pragma once
-#ifndef STRING_HELPERS_H
-#define STRING_HELPERS_H
+#ifndef NONUT_CORE_STRING_HELPERS_H
+#define NONUT_CORE_STRING_HELPERS_H
 #include <string>
 #include <map>
 
@@ -345,4 +344,4 @@ namespace nonut
 		return result;
 	}
 }
-#endif
+#endif // NONUT_CORE_STRING_HELPERS_H

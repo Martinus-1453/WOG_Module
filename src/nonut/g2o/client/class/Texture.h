@@ -1,6 +1,5 @@
-#pragma once
-#ifndef TEXTURE_H
-#define TEXTURE_H
+#ifndef NONUT_G2O_CLIENT_CLASS_TEXTURE_H
+#define NONUT_G2O_CLIENT_CLASS_TEXTURE_H
 
 #include "Class.h"
 #include "CustomTypes.h"
@@ -41,4 +40,4 @@ namespace nonut::g2o
 		Property<Float> rotation;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_TEXTURE_H

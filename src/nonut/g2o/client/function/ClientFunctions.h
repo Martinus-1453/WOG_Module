@@ -1,6 +1,5 @@
-#pragma once
-#ifndef CLIENT_FUNCTIONS_H
-#define CLIENT_FUNCTIONS_H
+#ifndef NONUT_G2O_CLIENT_FUNCTION_CLIENT_FUNCTIONS_H
+#define NONUT_G2O_CLIENT_FUNCTION_CLIENT_FUNCTIONS_H
 #include "Function.h"
 #include "CustomTypes.h"
 
@@ -284,4 +283,4 @@ namespace nonut::g2o
 		Function<String> getWorld;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_FUNCTION_CLIENT_FUNCTIONS_H

@@ -1,6 +1,5 @@
-#pragma once
-#ifndef MOB_DOOR_H
-#define MOB_DOOR_H
+#ifndef NONUT_G2O_CLIENT_CLASS_MOB_DOOR_H
+#define NONUT_G2O_CLIENT_CLASS_MOB_DOOR_H
 #include <string>
 
 #include "MobLockable.h"
@@ -18,4 +17,4 @@ namespace nonut::g2o
 		MobDoor(SQUserPointer ptr);
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_MOB_DOOR_H

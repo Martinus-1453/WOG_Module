@@ -1,6 +1,5 @@
-#pragma once
-#ifndef CLIENT_INIT_H
-#define CLIENT_INIT_H
+#ifndef WOG_CLIENT_CLIENT_INIT_H
+#define WOG_CLIENT_CLIENT_INIT_H
 #include "pch.h"
 
 #include "constant/ClientConstants.h"
@@ -33,7 +32,7 @@ namespace wog
 			{
 				nonut::g2o::Packet packet{};
 				packet.writeInt32(key);
-				String tekst = "twój stary";
+				String tekst = "twï¿½j stary";
 				tekst = tekst;
 				packet.writeString(tekst);
 				packet.send(SharedConstants::RELIABLE_ORDERED);
@@ -58,4 +57,4 @@ namespace wog
 			});
 	}
 }
-#endif
+#endif // WOG_CLIENT_CLIENT_INIT_H

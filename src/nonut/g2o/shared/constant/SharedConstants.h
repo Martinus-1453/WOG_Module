@@ -1,6 +1,5 @@
-#pragma once
-#ifndef SHARED_CONSTANTS_H
-#define SHARED_CONSTANTS_H
+#ifndef NONUT_G2O_SHARED_CONSTANT_SHARED_CONSTANTS_H
+#define NONUT_G2O_SHARED_CONSTANT_SHARED_CONSTANTS_H
 #include "pch.h"
 
 namespace nonut::g2o
@@ -17,4 +16,4 @@ namespace nonut::g2o
 		static inline Int RELIABLE_SEQUENCED = 0;
 	};
 }
-#endif
+#endif // NONUT_G2O_SHARED_CONSTANT_SHARED_CONSTANTS_H

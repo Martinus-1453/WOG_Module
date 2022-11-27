@@ -1,4 +1,9 @@
+#ifndef WOG_CONFIG_H
+#define WOG_CONFIG_H
 #define wog_module_VERSION_MAJOR @wog-module_VERSION_MAJOR@
 #define wog_module_VERSION_MINOR @wog-module_VERSION_MINOR@
 
 const char* wog_module_COMPILE_TIME_str = "@COMPILE_TIME@";
+
+
+#endif // WOG_CONFIG_H

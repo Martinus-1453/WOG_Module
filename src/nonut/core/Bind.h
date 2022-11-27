@@ -1,6 +1,5 @@
-#pragma once
-#ifndef BIND_H
-#define BIND_H
+#ifndef NONUT_CORE_BIND_H
+#define NONUT_CORE_BIND_H
 
 #include "pch.h"
 
@@ -33,4 +32,4 @@ namespace nonut
 		//}
 	};
 }
-#endif
+#endif // NONUT_CORE_BIND_H

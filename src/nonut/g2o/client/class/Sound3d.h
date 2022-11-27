@@ -1,6 +1,5 @@
-#pragma once
-#ifndef SOUND3D_H
-#define SOUND3D_H
+#ifndef NONUT_G2O_CLIENT_CLASS_SOUND3D_H
+#define NONUT_G2O_CLIENT_CLASS_SOUND3D_H
 #include <string>
 
 #include "Class.h"
@@ -35,4 +34,4 @@ namespace nonut::g2o
 		Property<Float, true> playingTime;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_SOUND3D_H

@@ -1,6 +1,5 @@
-#pragma once
-#ifndef TRACE_RAY_REPORT_H
-#define TRACE_RAY_REPORT_H
+#ifndef NONUT_G2O_CLIENT_CLASS_TRACE_RAY_REPORT_H
+#define NONUT_G2O_CLIENT_CLASS_TRACE_RAY_REPORT_H
 #include <string>
 
 #include "Class.h"
@@ -21,4 +20,4 @@ namespace nonut::g2o
 		Property<SQUserData, true> vob;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_TRACE_RAY_REPORT_H

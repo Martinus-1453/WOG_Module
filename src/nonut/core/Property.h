@@ -1,6 +1,5 @@
-#pragma once
-#ifndef PROPERTY_H
-#define PROPERTY_H
+#ifndef NONUT_CORE_PROPERTY_H
+#define NONUT_CORE_PROPERTY_H
 
 #include <string>
 
@@ -107,4 +106,4 @@ namespace nonut
 		String propertyName;
 	};
 }
-#endif
+#endif // NONUT_CORE_PROPERTY_H

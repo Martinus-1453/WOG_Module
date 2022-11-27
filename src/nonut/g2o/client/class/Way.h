@@ -1,6 +1,5 @@
-#pragma once
-#ifndef WAY_H
-#define WAY_H
+#ifndef NONUT_G2O_CLIENT_CLASS_WAY_H
+#define NONUT_G2O_CLIENT_CLASS_WAY_H
 #include <string>
 
 #include "Class.h"
@@ -22,4 +21,4 @@ namespace nonut::g2o
 		Property<String, true> end;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_WAY_H

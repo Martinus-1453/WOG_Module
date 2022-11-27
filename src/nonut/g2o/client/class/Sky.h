@@ -1,6 +1,5 @@
-#pragma once
-#ifndef SKY_H
-#define SKY_H
+#ifndef NONUT_G2O_CLIENT_CLASS_SKY_H
+#define NONUT_G2O_CLIENT_CLASS_SKY_H
 #include <string>
 
 #include "Class.h"
@@ -35,4 +34,4 @@ namespace nonut::g2o
 		Property<Bool> darkSky;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_SKY_H

@@ -1,6 +1,5 @@
-#pragma once
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef NONUT_CORE_UTILS_H
+#define NONUT_CORE_UTILS_H
 
 #include "pch.h"
 
@@ -95,4 +94,4 @@ namespace nonut
 		return result;
 	}
 }
-#endif
+#endif // NONUT_CORE_UTILS_H

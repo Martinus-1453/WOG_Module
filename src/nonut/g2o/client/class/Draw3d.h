@@ -1,6 +1,5 @@
-#pragma once
-#ifndef DRAW3D_H
-#define DRAW3D_H
+#ifndef NONUT_G2O_CLIENT_CLASS_DRAW3D_H
+#define NONUT_G2O_CLIENT_CLASS_DRAW3D_H
 #include "Class.h"
 #include "CustomTypes.h"
 
@@ -46,4 +45,4 @@ namespace nonut::g2o
 		Property<Int, true> heightPx;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_DRAW3D_H

@@ -1,6 +1,5 @@
-#pragma once
-#ifndef ITEM_RENDERER_H
-#define ITEM_RENDERER_H
+#ifndef NONUT_G2O_CLIENT_CLASS_ITEM_RENDERER_H
+#define NONUT_G2O_CLIENT_CLASS_ITEM_RENDERER_H
 
 #include "Class.h"
 #include "CustomTypes.h"
@@ -34,4 +33,4 @@ namespace nonut::g2o
 		Property<String> instance;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_ITEM_RENDERER_H

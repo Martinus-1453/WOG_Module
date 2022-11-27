@@ -1,6 +1,5 @@
-#pragma once
-#ifndef MOB_LOCKABLE_H
-#define MOB_LOCKABLE_H
+#ifndef NONUT_G2O_CLIENT_CLASS_MOB_LOCKABLE_H
+#define NONUT_G2O_CLIENT_CLASS_MOB_LOCKABLE_H
 #include <string>
 
 #include "MobInter.h"
@@ -23,4 +22,4 @@ namespace nonut::g2o
 		Property<String> pickLockStr;
 	};
 }
-#endif
+#endif // NONUT_G2O_CLIENT_CLASS_MOB_LOCKABLE_H
