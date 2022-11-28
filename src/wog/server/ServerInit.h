@@ -20,18 +20,22 @@ namespace wog
 		//ServerConstants::init();
 		ServerEventHandlers::init();
 
-		ServerEventHandlers::onPacketHandler.emplace_back([](Int playerId, nonut::g2o::Packet& packet)
-		{
-			SHARED_FUNCTIONS->print(std::to_string(packet.readInt32()));
-			SHARED_FUNCTIONS->print(nonut::win1250ToUTF8(packet.readString()));
-		});
+		ServerEventHandlers::onPacketHandler.emplace(
+			nonut::ClientPacketType::HelloServer,
+			[](Int playerId, nonut::g2o::Packet& packet)
+			{
+				SHARED_FUNCTIONS->print(std::to_string(packet.readInt32()));
+				SHARED_FUNCTIONS->print(nonut::win1250ToUTF8(packet.readString()));
+			});
 
-		ServerEventHandlers::onPlayerChangeWeaponModeHandler.emplace_back([](Int playerId, Int oldWeaponMode, Int newWeaponMode)
-		{
-				nonut::g2o::Packet packet{};
-				packet.writeInt32(69);
+		ServerEventHandlers::onPlayerChangeWeaponModeHandler.emplace_back(
+			[](Int playerId, Int oldWeaponMode, Int newWeaponMode)
+			{
+				nonut::g2o::Packet packet{ nonut::ServerPacketType::HelloClient };
+				String text = "Hello Client!";
+				packet.writeString(text);
 				packet.send(playerId, nonut::g2o::SharedConstants::RELIABLE_ORDERED);
-		});
+			});
 		
 	}
 }

@@ -22,18 +22,19 @@ namespace wog
 		ClientConstants::init();
 		SharedConstants::init();
 
-		ClientEventHandlers::onPacketHandler.emplace_back([] (nonut::g2o::Packet& packet)
-		{
-			auto result = packet.readInt32();
-			SHARED_FUNCTIONS->print(std::to_string(result));
-		});
+		ClientEventHandlers::onPacketHandler.emplace(
+			nonut::ServerPacketType::HelloClient,
+			[](nonut::g2o::Packet& packet)
+			{
+				auto result = packet.readString();
+				SHARED_FUNCTIONS->print(result);
+			});
 
 		ClientEventHandlers::onMouseClickHandler.emplace_back([](Int key)
 			{
-				nonut::g2o::Packet packet{};
+				nonut::g2o::Packet packet{nonut::ClientPacketType::HelloServer};
 				packet.writeInt32(key);
-				String tekst = "tw�j stary";
-				tekst = tekst;
+				String tekst = "Hello Server!";
 				packet.writeString(tekst);
 				packet.send(SharedConstants::RELIABLE_ORDERED);
 

@@ -1,17 +1,21 @@
 #ifndef NONUT_G2O_CLIENT_CLASS_PACKET_H
 #define NONUT_G2O_CLIENT_CLASS_PACKET_H
 #include <string>
+#include <variant>
 
 #include "Class.h"
 #include "CustomTypes.h"
+#include "PacketTypes.h"
 
 namespace nonut::g2o
 {
 	class Packet : public Class
 	{
 	public:
-		Packet();
+		Packet(ClientPacketType packetType);
 		Packet(SQObject object);
+
+		[[nodiscard]] ServerPacketType getType() const;
 
 		// Methods
 		Function<void> reset;
@@ -34,6 +38,9 @@ namespace nonut::g2o
 		Function<Int> readUInt32;
 		Function<Float> readFloat;
 		Function<String> readString;
+
+	private:
+		ServerPacketType packetType;
 	};
 }
 #endif // NONUT_G2O_CLIENT_CLASS_PACKET_H

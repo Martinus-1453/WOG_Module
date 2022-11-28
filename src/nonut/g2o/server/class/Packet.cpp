@@ -3,7 +3,7 @@
         
 namespace nonut::g2o
 {
-	Packet::Packet() :
+	Packet::Packet(ServerPacketType packetType) :
 		Class("Packet"),
 		METHOD_CTOR(reset),
 		METHOD_CTOR(send),
@@ -28,6 +28,8 @@ namespace nonut::g2o
 		METHOD_CTOR(readString)
 	{
 		classCtor();
+		// Write packetType to identify packet
+		writeInt32(static_cast<Int>(packetType));
 	}
 
 	Packet::Packet(SQObject object) :
@@ -54,5 +56,11 @@ namespace nonut::g2o
 		METHOD_CTOR(readFloat),
 		METHOD_CTOR(readString)
 	{
+		packetType = static_cast<ClientPacketType>(readInt32());
+	}
+
+	ClientPacketType Packet::getType() const
+	{
+		return packetType;
 	}
 }

@@ -1,9 +1,6 @@
 #include "pch.h"
 #include "ServerEventHandlers.h"
 
-#include <thread>
-#include <chrono>
-
 #include "Function.h"
 #include "Bind.h"
 
@@ -14,8 +11,9 @@ namespace nonut::g2o
 	void onPacket(Int playerId, SQObject object)
 	{
 		Packet packet(object);
-		for (auto&& function : ServerEventHandlers::onPacketHandler)
+		if (ServerEventHandlers::onPacketHandler.contains(packet.getType()))
 		{
+			const auto& function = ServerEventHandlers::onPacketHandler.at(packet.getType());
 			function(playerId, packet);
 		}
 	}
@@ -54,12 +52,12 @@ namespace nonut::g2o
 		// Prevent calling bind more than once
 		if (!isInitialized)
 		{
-			//std::this_thread::sleep_for(std::chrono::seconds(10));
-			Bind::registerFunction("chuj", &onPacketWrapper, sizeof(&onPacketWrapper));
+			// Binding for onPacket
+			Bind::registerFunction("pckwrappserv", &onPacketWrapper, sizeof(&onPacketWrapper));
 			Function<void, String, SQObject, Int> onPacketAddEventHandler("addEventHandler");
-			Function<void> onPacketTestHandler("chuj");
+			Function<void> onPacketTestHandler("pckwrappserv");
 			onPacketAddEventHandler("onPacket", onPacketTestHandler.getObject(), 1);
-			//BIND_EVENT_HANDLER(onPacket);
+
 			BIND_EVENT_HANDLER(onPlayerChangeWeaponMode);
 
 			isInitialized = true;

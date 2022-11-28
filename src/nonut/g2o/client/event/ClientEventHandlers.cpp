@@ -234,13 +234,12 @@ namespace nonut::g2o
 
 	void onPacket(SQObject object)
 	{
-		int abc = 0;
-		/*Packet packet(object);
-		for (auto&& function : ClientEventHandlers::onPacketHandler)
+		Packet packet(object);
+		if (ClientEventHandlers::onPacketHandler.contains(packet.getType()))
 		{
+			const auto& function = ClientEventHandlers::onPacketHandler.at(packet.getType());
 			function(packet);
 		}
-		packet.reset();*/
 	}
 
 	void onPlayerChangeColor(Int id, Int r, Int g, Int b)
@@ -366,7 +365,7 @@ namespace nonut::g2o
 		auto numArgs = sq_gettop(v); //number of arguments
 		SQObject packet;
 
-		sq_getstackobj(v, 1, &packet);
+		sq_getstackobj(v, -1, &packet);
 
 		onPacket(packet);
 
@@ -380,7 +379,12 @@ namespace nonut::g2o
 		// Prevent calling bind more than once
 		if (!isInitialized)
 		{
-			BIND_EVENT_HANDLER(onPacket);
+			// Binding for onPacket
+			Bind::registerFunction("pckwrappclient", &onPacketWrapper, sizeof(&onPacketWrapper));
+			Function<void, String, SQObject, Int> onPacketAddEventHandler("addEventHandler");
+			Function<void> onPacketTestHandler("pckwrappclient");
+			onPacketAddEventHandler("onPacket", onPacketTestHandler.getObject(), 1);
+
 			BIND_EVENT_HANDLER(onChangeResolution);
 			BIND_EVENT_HANDLER(onExit);
 			BIND_EVENT_HANDLER(onRender);

@@ -22,7 +22,7 @@ namespace nonut::g2o
 		// !!!INITIALIZATION!!!
 		static void init();
 
-		static inline HANDLER_INIT(void(Int ,Packet&), onPacket);
+		static inline std::map<ClientPacketType ,std::function<void(Int ,Packet&)>> onPacketHandler{};
 		static inline HANDLER_INIT(void(Int, Int, Int), onPlayerChangeWeaponMode);
 	};
 }

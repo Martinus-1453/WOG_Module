@@ -76,7 +76,7 @@ namespace nonut::g2o
 		// !!!INITIALIZATION!!!
 		static void init();
 
-		static inline HANDLER_INIT(void(Packet&), onPacket);
+		static inline std::map<ServerPacketType, std::function<void(Packet&)>> onPacketHandler{};
 
 		static inline HANDLER_INIT(void(), onChangeResolution);
 		static inline HANDLER_INIT(void(), onExit);
