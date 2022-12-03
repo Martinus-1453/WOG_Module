@@ -1,17 +1,17 @@
-#ifndef NONUT_G2O_SERVER_CLASS_ITEM_GROUND_H
-#define NONUT_G2O_SERVER_CLASS_ITEM_GROUND_H
+#ifndef NONUT_G2O_SERVER_CLASS_ITEM_GROUND
+#define NONUT_G2O_SERVER_CLASS_ITEM_GROUND
 #include <string>
 
 #include "Class.h"
 #include "CustomTypes.h"
-
+// TODO: Static
 namespace nonut::g2o
 {
     /// @brief This class represents item on the ground.
     class ItemGround : public Class
     {
     public:
-        ItemGround(void);
+        ItemGround(SQObject object);
         // Properties
 
         /// @brief Represents the unique id of the item ground.
@@ -32,4 +32,4 @@ namespace nonut::g2o
     };
 }
 
-#endif // NONUT_G2O_SERVER_CLASS_ITEM_GROUND_H
+#endif // NONUT_G2O_SERVER_CLASS_ITEM_GROUND

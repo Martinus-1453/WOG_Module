@@ -55,6 +55,8 @@ file(GLOB SERVER_SRC
 	
 	"src/nonut/g2o/server/class/Packet.cpp"
 	"src/nonut/g2o/server/class/ItemGround.cpp"
+	"src/nonut/g2o/server/class/ItemsGround.cpp"
+	"src/nonut/g2o/server/class/Way.cpp"
 
 	"src/nonut/g2o/server/event/ServerEventHandlers.cpp"
 	

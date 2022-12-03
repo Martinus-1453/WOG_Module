@@ -1,5 +1,5 @@
-#ifndef NONUT_G2O_SERVER_CLASS_PACKET_H
-#define NONUT_G2O_SERVER_CLASS_PACKET_H
+#ifndef NONUT_G2O_SERVER_CLASS_PACKET
+#define NONUT_G2O_SERVER_CLASS_PACKET
 #include <string>
 
 #include "Class.h"
@@ -43,4 +43,4 @@ namespace nonut::g2o
 		ClientPacketType packetType;
 	};
 }
-#endif // NONUT_G2O_SERVER_CLASS_PACKET_H
+#endif // NONUT_G2O_SERVER_CLASS_PACKET

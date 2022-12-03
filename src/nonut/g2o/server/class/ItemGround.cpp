@@ -3,7 +3,7 @@
         
 namespace nonut::g2o
 {
-	ItemGround::ItemGround(void) :
+	ItemGround::ItemGround(SQObject object) :
 		Class("ItemGround"),
 		METHOD_CTOR(getPosition),
 		PROPERTY_CTOR(id),
@@ -12,6 +12,6 @@ namespace nonut::g2o
 		PROPERTY_CTOR(world),
 		PROPERTY_CTOR(virtualWorld)
 	{
-		classCtor(void);
+		classCtor(object);
 	}
 }
