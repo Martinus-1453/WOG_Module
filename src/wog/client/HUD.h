@@ -10,15 +10,23 @@ namespace wog
 	public:
 		static HUD* get();
 
-		void refresh(float deltaTime);
+		void draw(float deltaTime);
+		void drawHp(float deltaTime);
+		void drawMp(float deltaTime);
+		void drawStamina(float deltaTime);
 
 	private:
 		static inline HUD* instance = nullptr;
 		HUD();
 		nonut::g2o::Texture healthBarEmpty;
 		nonut::g2o::Texture healthBarFull;
+
 		nonut::g2o::Texture manaBarEmpty;
 		nonut::g2o::Texture manaBarFull;
+
+		nonut::g2o::Texture sprintBarEmpty;
+		nonut::g2o::Texture sprintBarExhausted;
+		nonut::g2o::Texture sprintBarFull;
 	};
 }
 #endif // WOG_CLIENT_HUD_H

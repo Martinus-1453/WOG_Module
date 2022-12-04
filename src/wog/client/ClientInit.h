@@ -2,6 +2,7 @@
 #define WOG_CLIENT_CLIENT_INIT_H
 #include "HUD.h"
 #include "pch.h"
+#include "Sprint.h"
 
 #include "constant/ClientConstants.h"
 #include "constant/SharedConstants.h"
@@ -22,7 +23,8 @@ namespace wog
 		ClientEventHandlers::init();
 		ClientConstants::init();
 		SharedConstants::init();
-		const auto hud = HUD::get();
+		std::ignore = HUD::get();
+		std::ignore = Sprint::get();
 
 		ClientEventHandlers::onPacketHandler.emplace(
 			nonut::ServerPacketType::HelloClient,

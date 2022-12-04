@@ -52,6 +52,7 @@ file(GLOB CLIENT_SRC
 
 	"src/wog/client/ClientSqMain.cpp"
 	"src/wog/client/HUD.cpp"
+	"src/wog/client/Sprint.cpp"
 )
 
 file(GLOB SERVER_SRC
