@@ -35,6 +35,7 @@ namespace nonut::g2o
 
 		GET_CONST(heroId);
 
+		GET_CONST(HUD_ALL);
 		GET_CONST(HUD_HEALTH_BAR);
 		GET_CONST(HUD_MANA_BAR);
 		GET_CONST(HUD_SWIM_BAR);

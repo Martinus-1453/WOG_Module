@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ClientEventHandlers.h"
 
+#include <chrono>
+
 #include "Bind.h"
 #include "Function.h"
 
@@ -26,10 +28,20 @@ namespace nonut::g2o
 
 	void onRender()
 	{
+		static auto previousFrame{ std::chrono::high_resolution_clock::now() };
+		static auto currentFrame{ std::chrono::high_resolution_clock::now() };
+
+		currentFrame = std::chrono::high_resolution_clock::now();
+
+		const float deltaTime =
+			std::chrono::duration_cast<std::chrono::duration<float>>(currentFrame - previousFrame).count();
+
 		for (auto&& function : ClientEventHandlers::onRenderHandler)
 		{
-			function();
+			function(deltaTime);
 		}
+
+		previousFrame = currentFrame;
 	}
 
 	void onRenderFocus(Int type, Int id, Int x, Int y, String name)

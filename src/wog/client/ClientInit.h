@@ -1,5 +1,6 @@
 #ifndef WOG_CLIENT_CLIENT_INIT_H
 #define WOG_CLIENT_CLIENT_INIT_H
+#include "HUD.h"
 #include "pch.h"
 
 #include "constant/ClientConstants.h"
@@ -21,6 +22,7 @@ namespace wog
 		ClientEventHandlers::init();
 		ClientConstants::init();
 		SharedConstants::init();
+		const auto hud = HUD::get();
 
 		ClientEventHandlers::onPacketHandler.emplace(
 			nonut::ServerPacketType::HelloClient,
@@ -36,25 +38,30 @@ namespace wog
 				packet.writeInt32(key);
 				String tekst = "Hello Server!";
 				packet.writeString(tekst);
-				packet.send(SharedConstants::RELIABLE_ORDERED);
 
 				if (key == ClientConstants::MOUSE_LMB)
 				{
 					SHARED_FUNCTIONS->print("LMB");
-					return;
-				}
 
-				if (key == ClientConstants::MOUSE_MMB)
+					packet.writeInt32(
+						CLIENT_FUNCTIONS->getPlayerHealth(ClientConstants::heroId) + 5);
+				}
+				else if (key == ClientConstants::MOUSE_MMB)
 				{
 					SHARED_FUNCTIONS->print("MMB");
-					return;
-				}
 
-				if (key == ClientConstants::MOUSE_RMB)
+					packet.writeInt32(
+						CLIENT_FUNCTIONS->getPlayerHealth(ClientConstants::heroId) - 5);
+
+				}
+				else if (key == ClientConstants::MOUSE_RMB)
 				{
 					SHARED_FUNCTIONS->print("RMB");
-					return;
+
+					packet.writeInt32(
+						CLIENT_FUNCTIONS->getPlayerMaxHealth(ClientConstants::heroId));
 				}
+				packet.send(SharedConstants::RELIABLE_ORDERED);
 			});
 	}
 }

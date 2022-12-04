@@ -32,6 +32,7 @@ namespace nonut::g2o
 
 		static inline Int heroId = 0;
 
+		static inline Int HUD_ALL = 0;
 		static inline Int HUD_HEALTH_BAR = 0;
 		static inline Int HUD_MANA_BAR = 0;
 		static inline Int HUD_SWIM_BAR = 0;

@@ -7,6 +7,7 @@
 #include "function/SharedFunctions.h"
 #include "constant/SharedConstants.h"
 #include "StringHelpers.h"
+#include "function/ServerFunctions.h"
 
 using namespace SqModule;
 
@@ -24,8 +25,12 @@ namespace wog
 			nonut::ClientPacketType::HelloServer,
 			[](Int playerId, nonut::g2o::Packet& packet)
 			{
-				SHARED_FUNCTIONS->print(std::to_string(packet.readInt32()));
-				SHARED_FUNCTIONS->print(nonut::win1250ToUTF8(packet.readString()));
+				SH_F->print(std::to_string(packet.readInt32()));
+				SH_F->print(nonut::win1250ToUTF8(packet.readString()));
+				auto val = packet.readInt32();
+				
+				S_F->setPlayerHealth(playerId, val);
+				S_F->setPlayerMana(playerId, val);
 			});
 
 		ServerEventHandlers::onPlayerChangeWeaponModeHandler.emplace_back(
@@ -33,6 +38,8 @@ namespace wog
 			{
 				nonut::g2o::Packet packet{ nonut::ServerPacketType::HelloClient };
 				String text = "Hello Client!";
+				S_F->setPlayerMaxHealth(playerId, 100);
+				S_F->setPlayerMaxMana(playerId, 100);
 				packet.writeString(text);
 				packet.send(playerId, nonut::g2o::SharedConstants::RELIABLE_ORDERED);
 			});

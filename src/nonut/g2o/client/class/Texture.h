@@ -8,6 +8,7 @@ namespace nonut::g2o
 {
 	class Texture : public Class
 	{
+	public:
 		Texture(Int x, Int y, Int width, Int height, String txt);
 
 		// Methods

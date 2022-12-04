@@ -4,6 +4,7 @@
 #include "CustomTypes.h"
 
 #define CLIENT_FUNCTIONS nonut::g2o::ClientFunctions::getInstance()
+#define C_F CLIENT_FUNCTIONS
 
 namespace nonut::g2o
 {
@@ -11,7 +12,7 @@ namespace nonut::g2o
 	{
 	protected:
 		ClientFunctions();
-		static ClientFunctions* instance;
+		static inline ClientFunctions* instance = nullptr;
 	public:
 		ClientFunctions(ClientFunctions& other) = delete;
 		void operator=(const ClientFunctions&) = delete;

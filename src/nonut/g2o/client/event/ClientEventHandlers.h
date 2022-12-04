@@ -80,7 +80,7 @@ namespace nonut::g2o
 
 		static inline HANDLER_INIT(void(), onChangeResolution);
 		static inline HANDLER_INIT(void(), onExit);
-		static inline HANDLER_INIT(void(), onRender);
+		static inline HANDLER_INIT(void(Float), onRender);
 		static inline HANDLER_INIT(void(Int, Int, Int, Int, String&), onRenderFocus);
 
 		static inline HANDLER_INIT(void(Int), onAnim);

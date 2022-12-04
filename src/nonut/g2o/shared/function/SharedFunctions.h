@@ -4,6 +4,7 @@
 #include "CustomTypes.h"
 
 #define SHARED_FUNCTIONS nonut::g2o::SharedFunctions::getInstance()
+#define SH_F SHARED_FUNCTIONS
 
 namespace nonut::g2o
 {

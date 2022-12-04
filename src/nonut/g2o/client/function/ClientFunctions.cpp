@@ -2,8 +2,6 @@
 
 namespace nonut::g2o
 {
-	ClientFunctions* ClientFunctions::instance = nullptr;
-
 	ClientFunctions::ClientFunctions() :
 		FUNCTION_CTOR(chatInputClear),
 		FUNCTION_CTOR(chatInputClose),

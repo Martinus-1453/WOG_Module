@@ -29,6 +29,8 @@ file(GLOB SHARED_SRC
 )
 
 file(GLOB CLIENT_SRC
+	"src/nonut/g2o/client/Virt.cpp"
+
 	"src/nonut/g2o/client/class/Draw.cpp"
 	"src/nonut/g2o/client/class/Draw3d.cpp"
 	"src/nonut/g2o/client/class/ItemRenderer.cpp"
@@ -49,6 +51,7 @@ file(GLOB CLIENT_SRC
 	"src/nonut/g2o/client/constant/ClientConstants.cpp"
 
 	"src/wog/client/ClientSqMain.cpp"
+	"src/wog/client/HUD.cpp"
 )
 
 file(GLOB SERVER_SRC
@@ -57,6 +60,8 @@ file(GLOB SERVER_SRC
 	"src/nonut/g2o/server/class/ItemGround.cpp"
 	"src/nonut/g2o/server/class/ItemsGround.cpp"
 	"src/nonut/g2o/server/class/Way.cpp"
+
+	"src/nonut/g2o/server/function/ServerFunctions.cpp"
 
 	"src/nonut/g2o/server/event/ServerEventHandlers.cpp"
 	
