@@ -17,7 +17,10 @@ file(GLOB SHARED_SRC
 
 	"src/nonut/core/Array.cpp"
 	"src/nonut/core/Class.cpp"
+	"src/nonut/core/StaticClass.cpp"
 	"src/nonut/core/Constant.cpp"
+
+	"src/nonut/g2o/shared/class/Mds.cpp"
 
 	"src/nonut/g2o/shared/CustomTypes.cpp"
 
@@ -31,6 +34,7 @@ file(GLOB SHARED_SRC
 file(GLOB CLIENT_SRC
 	"src/nonut/g2o/client/Virt.cpp"
 
+	"src/nonut/g2o/client/class/Camera.cpp"
 	"src/nonut/g2o/client/class/Draw.cpp"
 	"src/nonut/g2o/client/class/Draw3d.cpp"
 	"src/nonut/g2o/client/class/ItemRenderer.cpp"
