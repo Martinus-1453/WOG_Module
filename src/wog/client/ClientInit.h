@@ -9,6 +9,7 @@
 #include "event/ClientEventHandlers.h"
 #include "function/SharedFunctions.h"
 #include "StringHelpers.h"
+#include "class/Camera.h"
 
 using namespace SqModule;
 
@@ -62,6 +63,12 @@ namespace wog
 
 					packet.writeInt32(
 						CLIENT_FUNCTIONS->getPlayerMaxHealth(ClientConstants::heroId));
+					auto pos = nonut::g2o::Camera::get()->getPosition();
+					String coord = std::to_string(pos.x) + " " + std::to_string(pos.y) + " " + std::to_string(pos.z);
+					SH_F->print(coord);
+					nonut::g2o::Camera::get()->setPosition(0, 0, 0);
+					coord = std::to_string(pos.x) + " " + std::to_string(pos.y) + " " + std::to_string(pos.z);
+					SH_F->print(coord);
 				}
 				packet.send(SharedConstants::RELIABLE_ORDERED);
 			});
