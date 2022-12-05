@@ -6,11 +6,10 @@
       "configurationType": "Debug",
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
-      "cmakeCommandArgs": "",
-      "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "msvc_x86" ],
-      "cmakeToolchain": "windows-x86.cmake"
+      "cmakeToolchain": "windows-x86.cmake",
+      "buildCommandArgs": "wog-module-client"
     },
     {
       "name": "x86-Release",
@@ -19,7 +18,7 @@
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
-      "buildCommandArgs": "",
+      "buildCommandArgs": "wog-module-client",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "msvc_x86" ],
       "cmakeToolchain": "windows-x86.cmake"
@@ -31,7 +30,7 @@
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
-      "buildCommandArgs": "",
+      "buildCommandArgs": "wog-module-server",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "msvc_x64_x64" ],
       "cmakeToolchain": "windows-x64.cmake"
@@ -43,7 +42,7 @@
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
-      "buildCommandArgs": "",
+      "buildCommandArgs": "wog-module-server",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "msvc_x64_x64" ],
       "cmakeToolchain": "windows-x64.cmake"
