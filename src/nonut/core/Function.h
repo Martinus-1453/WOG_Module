@@ -1,6 +1,7 @@
 #ifndef NONUT_CORE_FUNCTION_H
 #define NONUT_CORE_FUNCTION_H
 
+#include <optional>
 #include <string>
 
 #include "squirrel_api.h"
@@ -13,6 +14,8 @@ using namespace SqModule;
 
 namespace nonut
 {
+	class Class;
+
 	template <typename ReturnType, typename... Args>
 	class Function
 	{
@@ -97,32 +100,41 @@ namespace nonut
 			if constexpr (std::is_same_v<ReturnType, void>)
 			{
 				debug = sq_gettop(vm);
-				auto returnCode = sq_call(vm, argCount + 1, SQFalse, SQFalse); // TODO: HANDLE ERROR RETURN CODE
+				auto returnCode = sq_call(vm, ARG_COUNT + 1, SQFalse, SQFalse); // TODO: HANDLE ERROR RETURN CODE
 				sq_pop(vm, 2);
-				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
+				sq_settop(vm, top);
 				return void();
 			}
 			else
 			{
-				auto returnCode = sq_call(vm, argCount + 1, SQTrue, SQFalse); // TODO: HANDLE ERROR RETURN CODE
+				auto returnCode = sq_call(vm, ARG_COUNT + 1, SQTrue, SQFalse); // TODO: HANDLE ERROR RETURN CODE
 
-				ReturnType result{};
+				std::optional<ReturnType> result;
 
 				if constexpr (std::derived_from<ReturnType, CustomType>)
 				{
+					result = std::make_optional<ReturnType>();
 					auto intermediateResult = returnVar<SQObject>();
-					result.convert(intermediateResult);
+					result.value().convert(intermediateResult);
+					sq_release(vm, &intermediateResult);
+					sq_resetobject(&intermediateResult);
+				}
+				else if constexpr (std::derived_from<ReturnType, Class>)
+				{
+					auto intermediateResult = returnVar<SQObject>();
+					result = std::make_optional<ReturnType>(ReturnType(intermediateResult));
+					
 					sq_release(vm, &intermediateResult);
 					sq_resetobject(&intermediateResult);
 				}
 				else
 				{
-					result = returnVar<ReturnType>();
+					result = std::make_optional<ReturnType>(returnVar<ReturnType>());
 				}
 				
 				sq_pop(vm, 2);
-				sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
-				return result;
+				sq_settop(vm, top);
+				return result.value();
 			}
 		}
 
@@ -135,7 +147,7 @@ namespace nonut
 		SQObject funcObj{};
 		SQObject envObj{};
 		bool isClassMethod = false;
-		static constexpr auto argCount{sizeof...(Args)};
+		static constexpr auto ARG_COUNT{sizeof...(Args)};
 
 		static SQObject getRootTable()
 		{

@@ -6,6 +6,7 @@
 #include "squirrel_api.h"
 #include "module_api.h"
 #include "Utils.h"
+#include "Class.h"
 
 using namespace SqModule;
 
@@ -15,20 +16,37 @@ namespace nonut
 	T getProperty(SQObject& object, String& name)
 	{
 		const auto top = sq_gettop(vm);
-		T result{};
 
 		sq_pushobject(vm, object);
 		sq_pushstring(vm, name.c_str(), name.length());
 
-		if (SQ_SUCCEEDED(sq_get(vm, -2))) // pops property
+		if constexpr (std::derived_from<T, Class>)
 		{
-			sqGetValue(vm, -1, &result);
-			sq_pop(vm, 1); // pops result
-		}
+			SQObject intermediateResult{};
+			if (SQ_SUCCEEDED(sq_get(vm, -2))) // pops property
+			{
+				sqGetValue(vm, -1, &intermediateResult);
+				sq_pop(vm, 1); // pops result
+			}
 
-		sq_pop(vm, 1); // pops object
-		sq_settop(vm, top);
-		return result;
+			sq_pop(vm, 1); // pops object
+			sq_settop(vm, top);
+			return T(intermediateResult);
+		}
+		else
+		{
+			T result{};
+
+			if (SQ_SUCCEEDED(sq_get(vm, -2))) // pops property
+			{
+				sqGetValue(vm, -1, &result);
+				sq_pop(vm, 1); // pops result
+			}
+
+			sq_pop(vm, 1); // pops object
+			sq_settop(vm, top);
+			return result;
+		}
 	}
 
 	template <>
@@ -63,7 +81,15 @@ namespace nonut
 	{
 		sq_pushobject(vm, object);
 		sq_pushstring(vm, name.c_str(), name.length());
-		sqPushValue(vm, value);
+		if constexpr (std::derived_from<T, Class>)
+		{
+			sqPushValue(vm, value.getInstance());
+		}
+		else
+		{
+			sqPushValue(vm, value);
+		}
+		
 
 		auto result = sq_set(vm, -3); // pops name and value
 

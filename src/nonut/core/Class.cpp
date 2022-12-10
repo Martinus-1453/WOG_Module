@@ -51,4 +51,9 @@ namespace nonut
 		sq_resetobject(&classObject);
 		sq_resetobject(&classObjectInstance);
 	}
+
+	SQObject Class::getInstance()
+	{
+		return classObjectInstance;
+	}
 }

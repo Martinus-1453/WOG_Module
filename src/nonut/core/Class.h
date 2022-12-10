@@ -21,6 +21,8 @@ namespace nonut
 		Class(String className);
 		~Class();
 
+		[[nodiscard]] SQObject getInstance();
+
 	protected:
 		// Object holding information about class
 		SQObject classObject{};
