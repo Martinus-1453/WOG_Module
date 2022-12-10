@@ -26,6 +26,14 @@ namespace nonut::g2o
 		}
 	}
 
+	void onPlayerMessage(Int playerId, String message)
+	{
+		for (auto&& function : ServerEventHandlers::onPlayerMessageHandler)
+		{
+			function(playerId, message);
+		}
+	}
+
 	//TODO: MAKE IT BETTER AND NOT SQRAT DEPENDANT
 #define BIND_EVENT_HANDLER(eventName) Sqrat::RootTable(vm).Func(#eventName "Wrapper", &eventName); \
 	Function<void, String, SQObject, Int> eventName ## AddEventHandler("addEventHandler"); \
@@ -59,6 +67,7 @@ namespace nonut::g2o
 			onPacketAddEventHandler("onPacket", onPacketTestHandler.getObject(), 1);
 
 			BIND_EVENT_HANDLER(onPlayerChangeWeaponMode);
+			BIND_EVENT_HANDLER(onPlayerMessage);
 
 			isInitialized = true;
 		}

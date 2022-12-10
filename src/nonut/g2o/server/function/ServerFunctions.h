@@ -23,6 +23,8 @@ namespace nonut::g2o
 		Function<void, Int, Int> setPlayerMaxHealth;
 		Function<void, Int, Int> setPlayerMana;
 		Function<void, Int, Int> setPlayerMaxMana;
+
+		Function<void, Int, Int, Int, Int, String> sendPlayerMessageToAll;
 	};
 }
 #endif // NONUT_G2O_SERVER_FUNCTION_SERVER_FUNCTIONS_H

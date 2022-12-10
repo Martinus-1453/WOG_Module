@@ -57,6 +57,8 @@ file(GLOB CLIENT_SRC
 	"src/wog/client/ClientSqMain.cpp"
 	"src/wog/client/HUD.cpp"
 	"src/wog/client/Sprint.cpp"
+	"src/wog/client/Player.cpp"
+	"src/wog/client/Chat.cpp"
 )
 
 file(GLOB SERVER_SRC
@@ -72,6 +74,8 @@ file(GLOB SERVER_SRC
 	"src/nonut/g2o/server/function/ServerFunctions.cpp"
 
 	"src/wog/server/ServerSqMain.cpp"
+
+	"src/wog/server/Chat.cpp"
 )
 
 add_library(wog-module-client SHARED ${SHARED_SRC})

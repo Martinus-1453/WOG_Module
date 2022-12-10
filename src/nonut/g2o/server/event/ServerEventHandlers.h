@@ -16,6 +16,8 @@ namespace nonut::g2o
 
 	static void onPlayerChangeWeaponMode(Int playerId, Int oldWeaponMode, Int newWeaponMode);
 
+	static void onPlayerMessage(Int playerId, String message);
+
 	class ServerEventHandlers
 	{
 	public:
@@ -24,6 +26,7 @@ namespace nonut::g2o
 
 		static inline std::map<ClientPacketType ,std::function<void(Int ,Packet&)>> onPacketHandler{};
 		static inline HANDLER_INIT(void(Int, Int, Int), onPlayerChangeWeaponMode);
+		static inline HANDLER_INIT(void(Int, String), onPlayerMessage);
 	};
 }
 #endif // NONUT_G2O_SERVER_EVENT_SERVER_EVENT_HANDLERS_H

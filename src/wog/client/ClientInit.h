@@ -1,7 +1,9 @@
 #ifndef WOG_CLIENT_CLIENT_INIT_H
 #define WOG_CLIENT_CLIENT_INIT_H
+#include "Chat.h"
 #include "HUD.h"
 #include "pch.h"
+#include "Player.h"
 #include "Sprint.h"
 
 #include "constant/ClientConstants.h"
@@ -26,6 +28,8 @@ namespace wog
 		SharedConstants::init();
 		std::ignore = HUD::get();
 		std::ignore = Sprint::get();
+		std::ignore = Player::get();
+		std::ignore = Chat::get();
 
 		ClientEventHandlers::onPacketHandler.emplace(
 			nonut::ServerPacketType::HelloClient,
