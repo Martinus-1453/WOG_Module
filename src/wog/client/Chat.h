@@ -11,24 +11,51 @@ namespace wog
 {
 	enum ChatMode
 	{
-		IC,
-		OOC,
-		ANNOUNCEMENT,
-		ADMIN,
+		Ic,
+		Ooc,
+		Announcement,
+		Admin,
+		Info,
+		Size
+	};
+
+	enum Highlight
+	{
+		Normal,
+		Me,
+		Do,
+	};
+
+	struct HighlightRange
+	{
+		Highlight highlightType;
+		Int start;
+		Int end;
+	};
+
+	struct ChatEntry
+	{
+		Int id;
+		String text;
+		std::vector<HighlightRange> ranges;
 	};
 
 	class Chat
 	{
 	public:
 		static Chat* get();
-		ChatMode chatMode = ChatMode::IC;
+		ChatMode chatMode = Ic;
 
 	protected:
 		Chat();
 
-		std::vector<std::unique_ptr<nonut::g2o::Draw>> chatLine;
-		std::vector<String> chatHistory;
+		std::vector<std::vector<std::unique_ptr<nonut::g2o::Draw>>> chatLine;
+		std::vector<ChatEntry> chatHistory;
 		bool needsUpdate = false;
+
+		Int letterWidth;
+		Int letterHeight;
+		
 
 		static inline Chat* instance = nullptr;
 	};
