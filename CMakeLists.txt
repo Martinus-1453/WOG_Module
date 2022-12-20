@@ -76,6 +76,8 @@ file(GLOB SERVER_SRC
 	"src/wog/server/ServerSqMain.cpp"
 
 	"src/wog/server/Chat.cpp"
+	"src/wog/server/Login.cpp"
+	"src/wog/server/db/Database.cpp"
 )
 
 add_library(wog-module-client SHARED ${SHARED_SRC})

@@ -4,6 +4,7 @@
 
 //#include "constant/ServerConstants.h"
 #include "Chat.h"
+#include "Login.h"
 #include "event/ServerEventHandlers.h"
 #include "function/SharedFunctions.h"
 #include "constant/SharedConstants.h"
@@ -22,6 +23,7 @@ namespace wog
 		//ServerConstants::init();
 		ServerEventHandlers::init();
 		std::ignore = Chat::get();
+		std::ignore = Login::get();
 
 		ServerEventHandlers::onPacketHandler.emplace(
 			nonut::ClientPacketType::HelloServer,

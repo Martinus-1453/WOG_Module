@@ -8,6 +8,7 @@
 #include "module_api.h"
 #include "squirrel_api.h"
 #include "sqrat.h"
+#include <optional>
 
 using Int = SQInteger;
 using UInt = SQUnsignedInteger;
@@ -15,6 +16,12 @@ using UInt32 = SQUnsignedInteger32;
 using Float = SQFloat;
 using Bool = SQBool;
 using String = std::string;
+
+using PrimaryKey = int;
+using ForeignKey = std::optional<int>;
+
+namespace nonut::g2o{}
+namespace g2o = nonut::g2o;
 
 
 #endif // PCH_PCH_H

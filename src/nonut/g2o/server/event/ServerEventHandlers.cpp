@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "ServerEventHandlers.h"
 
+#include <ranges>
+
 #include "Function.h"
 #include "Bind.h"
 
@@ -34,6 +36,33 @@ namespace nonut::g2o
 		}
 	}
 
+	void onPlayerCommand(Int playerId, String command, String params)
+	{
+		auto view = params
+			| std::ranges::views::split(' ')
+			| std::ranges::views::transform([](auto&& str) { return std::string_view(&*str.begin(), std::ranges::distance(str)); });
+		std::vector<String> paramView;
+
+		for (auto&& item : view)
+		{
+			paramView.emplace_back(item);
+		}
+
+		for (auto&& function : ServerEventHandlers::onPlayerCommandHandler)
+		{
+			function(playerId, command, paramView);
+		}
+	}
+
+	void onExit()
+	{
+		for (auto&& function : ServerEventHandlers::onExitHandler)
+		{
+			function();
+		}
+	}
+
+
 	//TODO: MAKE IT BETTER AND NOT SQRAT DEPENDANT
 #define BIND_EVENT_HANDLER(eventName) Sqrat::RootTable(vm).Func(#eventName "Wrapper", &eventName); \
 	Function<void, String, SQObject, Int> eventName ## AddEventHandler("addEventHandler"); \
@@ -53,21 +82,26 @@ namespace nonut::g2o
 		return 0;
 	}
 
+	void ServerEventHandlers::bindOnPacket()
+	{
+		// Binding for onPacket
+		Bind::registerFunction("pckwrappserv", &onPacketWrapper, sizeof(&onPacketWrapper));
+		Function<void, String, SQObject, Int> onPacketAddEventHandler("addEventHandler");
+		const Function<void> onPacketTestHandler("pckwrappserv");
+		onPacketAddEventHandler("onPacket", onPacketTestHandler.getObject(), 1);
+	}
+
 	void ServerEventHandlers::init()
 	{
-		static bool isInitialized = false;
-
 		// Prevent calling bind more than once
-		if (!isInitialized)
+		if (static bool isInitialized = false; !isInitialized)
 		{
-			// Binding for onPacket
-			Bind::registerFunction("pckwrappserv", &onPacketWrapper, sizeof(&onPacketWrapper));
-			Function<void, String, SQObject, Int> onPacketAddEventHandler("addEventHandler");
-			Function<void> onPacketTestHandler("pckwrappserv");
-			onPacketAddEventHandler("onPacket", onPacketTestHandler.getObject(), 1);
+			bindOnPacket();
 
 			BIND_EVENT_HANDLER(onPlayerChangeWeaponMode);
 			BIND_EVENT_HANDLER(onPlayerMessage);
+			BIND_EVENT_HANDLER(onPlayerCommand);
+			BIND_EVENT_HANDLER(onExit);
 
 			isInitialized = true;
 		}

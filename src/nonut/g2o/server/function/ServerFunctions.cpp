@@ -7,7 +7,8 @@ namespace nonut::g2o
 		FUNCTION_CTOR(setPlayerMaxHealth),
 		FUNCTION_CTOR(setPlayerMana),
 		FUNCTION_CTOR(setPlayerMaxMana),
-		FUNCTION_CTOR(sendPlayerMessageToAll)
+		FUNCTION_CTOR(sendPlayerMessageToAll),
+		FUNCTION_CTOR(sendPlayerMessageToPlayer)
 	{
 	}
 

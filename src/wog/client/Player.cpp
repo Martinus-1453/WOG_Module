@@ -21,5 +21,13 @@ namespace wog
 	Player::Player()
 	{
 		C_F->disableLogicalKey(ClientConstants::GAME_END, true);
+
+		ClientEventHandlers::onKeyHandler.emplace_back([](Int key)
+			{
+				if (key == ClientConstants::KEY_END)
+				{
+					C_F->exitGame();
+				}
+			});
 	}
 }
