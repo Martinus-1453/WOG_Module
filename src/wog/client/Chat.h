@@ -55,6 +55,8 @@ namespace wog
 
 		Int letterWidth;
 		Int letterHeight;
+
+		float maxWidth = 0.75f;
 		
 
 		static inline Chat* instance = nullptr;

@@ -3,6 +3,7 @@
 #include <regex>
 #include <utility>
 
+#include "Virt.h"
 #include "constant/ClientConstants.h"
 #include "event/ClientEventHandlers.h"
 #include "function/ClientFunctions.h"
@@ -10,6 +11,7 @@
 using ClientEventHandlers = nonut::g2o::ClientEventHandlers;
 using ClientConstants = nonut::g2o::ClientConstants;
 using Draw = nonut::g2o::Draw;
+using Virt = nonut::g2o::Virt;
 
 namespace wog
 {
@@ -159,13 +161,25 @@ namespace wog
 			{
 				if (needsUpdate)
 				{
-					for (int i = chatLine.size() - 1, j = chatHistory.size() - 1;
-						i >= 0 && j >= 0; --i, --j)
+					Int previousPlayerId = -1;
+					Int chatHistoryLine = static_cast<Int>(chatHistory.size()) - static_cast<Int>(chatLine.size());
+					chatHistoryLine = chatHistoryLine < 0 ? 0 : chatHistoryLine;
+
+					for (int i = 0, j = chatHistoryLine; i < chatLine.size() && j < chatHistory.size(); ++i, ++j)
 					{
 						auto&& entry = chatHistory[j];
 						auto&& line = chatLine[i];
+						const auto playerName = C_F->getPlayerName(entry.id) + ": ";
 						line.clear();
-						line.emplace_back(std::make_unique<Draw>(C_F->anx(10), letterHeight * i * 1.15f, C_F->getPlayerName(entry.id) + ": "));
+						if (previousPlayerId == entry.id)
+						{
+							line.emplace_back(std::make_unique<Draw>(C_F->anx(10), letterHeight* i * 1.15f, "  "));
+						}
+						else
+						{
+							line.emplace_back(std::make_unique<Draw>(C_F->anx(10), letterHeight* i * 1.15f, playerName));
+						}
+						
 						line.back()->visible = true;
 						for (int k = 0; k < entry.ranges.size(); ++k)
 						{
@@ -192,7 +206,7 @@ namespace wog
 							line.back()->visible = true;
 						}
 						
-						
+						previousPlayerId = entry.id;
 						/*chatLine[i]->text = C_F->getPlayerName(chatHistory[j].id) + ": " + chatHistory[j].text;*/
 					}
 					needsUpdate = false;
