@@ -110,7 +110,7 @@ namespace wog
 				auto end = 0;
 				Highlight highlight = Normal;
 
-				for(int i = 0; i < message.size(); ++i)
+				for(size_t i = 0; i < message.size(); ++i)
 				{
 					if(message[i] == '#')
 					{
@@ -126,7 +126,7 @@ namespace wog
 					}
 					else if(message[i] == '<')
 					{
-						for (int j = i + 1; j < message.size(); ++j)
+						for (size_t j = i + 1; j < message.size(); ++j)
 						{
 							if (message[j] == '>')
 							{
@@ -171,15 +171,7 @@ namespace wog
 						auto&& line = chatLine[i];
 						const auto playerName = C_F->getPlayerName(entry.id) + ": ";
 						line.clear();
-						if (previousPlayerId == entry.id)
-						{
-							line.emplace_back(std::make_unique<Draw>(C_F->anx(10), letterHeight* i * 1.15f, "  "));
-						}
-						else
-						{
-							line.emplace_back(std::make_unique<Draw>(C_F->anx(10), letterHeight* i * 1.15f, playerName));
-						}
-						
+						line.emplace_back(std::make_unique<Draw>(C_F->anx(10), letterHeight * i * 1.15f, playerName));
 						line.back()->visible = true;
 						for (int k = 0; k < entry.ranges.size(); ++k)
 						{
