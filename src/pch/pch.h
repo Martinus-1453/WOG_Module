@@ -17,6 +17,8 @@ using Float = SQFloat;
 using Bool = SQBool;
 using String = std::string;
 
+constexpr SQObject SQ_NULL{ OT_NULL };
+
 using PrimaryKey = int;
 using ForeignKey = std::optional<int>;
 

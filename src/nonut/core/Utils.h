@@ -1,6 +1,7 @@
 #ifndef NONUT_CORE_UTILS_H
 #define NONUT_CORE_UTILS_H
 
+#include "Instance.h"
 #include "pch.h"
 
 using namespace SqModule;
@@ -49,7 +50,8 @@ namespace nonut
 			std::is_same_v<T, const SQChar*> ||
 			std::is_same_v<T, SQObject> ||
 			std::is_same_v<T, String> ||
-			std::is_same_v<T, String&>,
+			std::is_same_v<T, String&> ||
+			std::derived_from<T, Instance>,
 			"Not supported return type");
 
 		if constexpr (std::is_same_v<T, bool>)
@@ -66,6 +68,12 @@ namespace nonut
 			sq_pushobject(vm, value);
 		if constexpr (std::is_same_v<T, String> || std::is_same_v<T, String&>)
 			sq_pushstring(vm, value.c_str(), value.length());
+		if constexpr (std::derived_from<T, Instance>)
+		{
+			const SQObject ptr = value.getInstance();
+			sq_pushobject(vm, ptr);
+		}
+		bool abc;
 	}
 
 	template <typename T>

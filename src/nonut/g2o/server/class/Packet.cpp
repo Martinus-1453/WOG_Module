@@ -33,7 +33,7 @@ namespace nonut::g2o
 	}
 
 	Packet::Packet(SQObject object) :
-		Class(object, "Packet"),
+		Class("Packet", object),
 		METHOD_CTOR(reset),
 		METHOD_CTOR(send),
 		METHOD_CTOR(sendToAll),

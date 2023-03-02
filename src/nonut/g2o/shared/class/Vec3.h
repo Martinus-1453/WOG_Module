@@ -12,6 +12,7 @@ namespace nonut::g2o
 		Vec3(Float value);
 		Vec3(Float x, Float y, Float z);
 		Vec3(SQObject object);
+		COPY_CTOR(Vec3);
 
 		Property<Float> x;
 		Property<Float> y;

@@ -122,7 +122,8 @@ namespace nonut
 				else if constexpr (std::derived_from<ReturnType, Class>)
 				{
 					auto intermediateResult = returnVar<SQObject>();
-					result = std::make_optional<ReturnType>(ReturnType(intermediateResult));
+					//result = std::make_optional<ReturnType>(ReturnType(intermediateResult));
+					result.emplace(ReturnType(intermediateResult));
 					
 					sq_release(vm, &intermediateResult);
 					sq_resetobject(&intermediateResult);
