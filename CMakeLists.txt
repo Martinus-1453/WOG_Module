@@ -21,6 +21,7 @@ file(GLOB SHARED_SRC
 	"src/nonut/core/Constant.cpp"
 
 	"src/nonut/g2o/shared/class/Mds.cpp"
+	"src/nonut/g2o/shared/class/Vec3.cpp"
 
 	"src/nonut/g2o/shared/CustomTypes.cpp"
 
