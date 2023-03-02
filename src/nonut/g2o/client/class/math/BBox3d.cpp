@@ -7,7 +7,7 @@ namespace nonut::g2o
 	PROPERTY_CTOR(mins),
 	PROPERTY_CTOR(maxs),
 	PROPERTY_CTOR(center),
-	FUNCTION_CTOR(intersecting)
+	METHOD_CTOR(intersecting)
 	{
 	}
 }

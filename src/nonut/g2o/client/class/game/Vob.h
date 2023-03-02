@@ -4,17 +4,22 @@
 
 #include "Class.h"
 #include "CustomTypes.h"
+#include "class/math/BBox3d.h"
+#include "class/math/Mat4.h"
+#include "class/math/Vec3.h"
 
 namespace nonut::g2o
 {
-	class Mob : public Class
+	class Vob : public Class
 	{
 	protected:
 		// Inheritance Ctor
-		Vob(constexpr const char* className);
+		//Vob(constexpr const char* className);
 	public:
 		Vob(String model);
 		Vob(SQUserPointer ptr);
+		Vob(SQObject object);
+		COPY_CTOR(Vob);
 
 		// Methods
 		Function<void> beginMovement;
@@ -41,10 +46,8 @@ namespace nonut::g2o
 		Property<Bool> physicsEnabled;
 		Property<Bool> drawBBox3d;
 		Property<Bool> castDynShadow;
-		Property<BBox3d&> bbox3dWorld;
-		Property<BBox3d&> bbox3dLocal;
-		
-		
+		Property<BBox3d> bbox3dWorld;
+		Property<BBox3d> bbox3dLocal;
 
 		// Read-only properties
 		Property<Bool, true> isProjectile;

@@ -51,6 +51,7 @@ namespace nonut
 			std::is_same_v<T, SQObject> ||
 			std::is_same_v<T, String> ||
 			std::is_same_v<T, String&> ||
+			std::is_same_v<T, SQUserPointer> ||
 			std::derived_from<T, Instance>,
 			"Not supported return type");
 
@@ -68,12 +69,10 @@ namespace nonut
 			sq_pushobject(vm, value);
 		if constexpr (std::is_same_v<T, String> || std::is_same_v<T, String&>)
 			sq_pushstring(vm, value.c_str(), value.length());
+		if constexpr (std::is_same_v<T, SQUserPointer>)
+			sq_pushuserpointer(vm, value);
 		if constexpr (std::derived_from<T, Instance>)
-		{
-			const SQObject ptr = value.getInstance();
-			sq_pushobject(vm, ptr);
-		}
-		bool abc;
+			sq_pushobject(vm, value.getInstance());
 	}
 
 	template <typename T>

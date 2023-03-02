@@ -22,6 +22,9 @@ file(GLOB SHARED_SRC
 
 	"src/nonut/g2o/shared/class/mds/Mds.cpp"
 	"src/nonut/g2o/shared/class/math/Vec3.cpp"
+	"src/nonut/g2o/shared/class/math/Vec4.cpp"
+	"src/nonut/g2o/shared/class/math/Mat3.cpp"
+	"src/nonut/g2o/shared/class/math/Mat4.cpp"
 
 	"src/nonut/g2o/shared/CustomTypes.cpp"
 
@@ -41,6 +44,7 @@ file(GLOB CLIENT_SRC
 	"src/nonut/g2o/client/class/game/Sound.cpp"
 	"src/nonut/g2o/client/class/game/Sound3d.cpp"
 	"src/nonut/g2o/client/class/game/Timestep.cpp"
+	"src/nonut/g2o/client/class/game/Vob.cpp"
 	"src/nonut/g2o/client/class/game/World.cpp"
 	"src/nonut/g2o/client/class/game/Way.cpp"
 	"src/nonut/g2o/client/class/game/TraceRayReport.cpp"
