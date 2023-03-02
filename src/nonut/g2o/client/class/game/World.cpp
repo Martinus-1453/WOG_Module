@@ -10,7 +10,7 @@ namespace nonut::g2o
 		METHOD_CTOR(isPlaying),
 		PROPERTY_CTOR(fileName),
 		PROPERTY_CTOR(name),
-		//PROPERTY_CTOR(vobs),
+		PROPERTY_CTOR(vobs),
 		PROPERTY_CTOR(showWaynet),
 		PROPERTY_CTOR(showZonesDebugInfo)
 	{

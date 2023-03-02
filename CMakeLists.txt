@@ -49,7 +49,7 @@ file(GLOB CLIENT_SRC
 	"src/nonut/g2o/client/class/game/Way.cpp"
 	"src/nonut/g2o/client/class/game/TraceRayReport.cpp"
 	#general classes
-
+	"src/nonut/g2o/client/class/general/zlist.cpp"
 	#math classes
 	"src/nonut/g2o/client/class/math/BBox3d.cpp"
 	#network classes

@@ -4,6 +4,7 @@
 
 #include "Class.h"
 #include "CustomTypes.h"
+#include "class/general/zlist.h"
 
 namespace nonut::g2o
 {
@@ -21,7 +22,7 @@ namespace nonut::g2o
 		// Properties
 		Property<String> fileName;
 		Property<String> name;
-		//Property<zlistsort&> vobs;
+		Property<zlist> vobs;
 		Property<Bool> showWaynet;
 		Property<Bool> showZonesDebugInfo;
 	};
