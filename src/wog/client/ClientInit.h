@@ -11,7 +11,7 @@
 #include "event/ClientEventHandlers.h"
 #include "function/SharedFunctions.h"
 #include "StringHelpers.h"
-#include "class/Camera.h"
+#include "class/game/Camera.h"
 
 using namespace SqModule;
 

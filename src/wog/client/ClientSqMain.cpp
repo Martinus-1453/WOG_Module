@@ -2,9 +2,9 @@
 #include "function/ClientFunctions.h"
 #include "ClientInit.h"
 #include "WogConfig.h"
-#include "class/Draw.h"
+#include "class/ui/Draw.h"
 #include "Virt.h"
-#include "class/Vec3.h"
+#include "class/math/Vec3.h"
 
 using namespace SqModule;
 

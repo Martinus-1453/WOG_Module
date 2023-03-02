@@ -1,7 +1,7 @@
 #ifndef WOG_CLIENT_HUD_H
 #define WOG_CLIENT_HUD_H
 #include "pch.h"
-#include "class/Texture.h"
+#include "class/ui/Texture.h"
 
 namespace wog
 {

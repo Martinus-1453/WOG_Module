@@ -4,7 +4,7 @@
 #include <functional>
 #include <string>
 #include <vector>
-#include "class/Packet.h"
+#include "class/network/Packet.h"
 
 namespace nonut::g2o
 {
