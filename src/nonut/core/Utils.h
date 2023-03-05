@@ -3,6 +3,7 @@
 
 #include "Instance.h"
 #include "pch.h"
+#include "UserData.h"
 
 using namespace SqModule;
 
@@ -21,7 +22,8 @@ namespace nonut
 			std::is_same_v<T, Int*> ||
 			std::is_same_v<T, Float*> ||
 			std::is_same_v<T, SQChar**> ||
-			std::is_same_v<T, HSQOBJECT*>,
+			std::is_same_v<T, HSQOBJECT*> ||
+			std::is_same_v<T, UserData*>,
 			"Not supported return type");
 
 		if constexpr (std::is_same_v<T, Bool*>)
@@ -36,6 +38,10 @@ namespace nonut
 		{
 			sq_getstackobj(vm, idx, outPtr);
 			sq_addref(vm, outPtr);
+		}
+		if constexpr (std::is_same_v<T, UserData*>)
+		{
+			sq_getuserdata(vm, idx, outPtr->userPtr, outPtr->tagPtr);
 		}
 	}
 

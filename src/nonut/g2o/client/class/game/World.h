@@ -4,6 +4,8 @@
 
 #include "Class.h"
 #include "CustomTypes.h"
+#include "TraceRayReport.h"
+#include "../../../../../wog/server/db/User.h"
 #include "class/general/zlist.h"
 
 namespace nonut::g2o
@@ -11,18 +13,17 @@ namespace nonut::g2o
 	class World : public Class
 	{
 	public:
-		World(String fileName);
+		World(SQObject object);
 
 		// Methods
-		Function<SQUserData, String> searchVobByName;
-
-		Function<void> stop;
-		Function<Bool> isPlaying;
+		Function<UserData, String> searchVobByName;
+		//Function<Array<SQUserData>, String> searchVobListByName;
+		Function<TraceRayReport, Vec3, Vec3, Int> traceRayFirstHit;
 
 		// Properties
 		Property<String> fileName;
 		Property<String> name;
-		Property<zlist> vobs;
+		Property<zlist<SQUserPointer>> vobs;
 		Property<Bool> showWaynet;
 		Property<Bool> showZonesDebugInfo;
 	};

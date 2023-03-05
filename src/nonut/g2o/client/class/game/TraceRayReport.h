@@ -9,9 +9,10 @@ namespace nonut::g2o
 	class TraceRayReport : public Class
 	{
 	public:
-		TraceRayReport(const String& fileName);
 		TraceRayReport(SQObject object);
 		COPY_CTOR(TraceRayReport);
+
+		[[nodiscard]] bool isNull() const { return isNullObj; }
 
 		// Properties
 		Property<Vec3> intersect;
@@ -19,6 +20,9 @@ namespace nonut::g2o
 
 		// Read-only properties
 		Property<SQUserData, true> vob;
+
+	private:
+		bool isNullObj = false;
 	};
 }
 #endif // NONUT_G2O_CLIENT_CLASS_TRACE_RAY_REPORT_H
