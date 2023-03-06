@@ -3,20 +3,19 @@
 #include <string>
 
 #include "Class.h"
-#include "CustomTypes.h"
+#include "StaticClass.h"
 #include "TraceRayReport.h"
-#include "../../../../../wog/server/db/User.h"
 #include "class/general/zlist.h"
 
 namespace nonut::g2o
 {
-	class World : public Class
+	class World : public StaticClass
 	{
 	public:
-		World(SQObject object);
+		static World* get();
 
 		// Methods
-		Function<UserData, String> searchVobByName;
+		Function<SQUserPointer, String> searchVobByName;
 		//Function<Array<SQUserData>, String> searchVobListByName;
 		Function<TraceRayReport, Vec3, Vec3, Int> traceRayFirstHit;
 
@@ -26,6 +25,11 @@ namespace nonut::g2o
 		Property<zlist<SQUserPointer>> vobs;
 		Property<Bool> showWaynet;
 		Property<Bool> showZonesDebugInfo;
+
+	private:
+		static inline World* instance = nullptr;
+
+		World();
 	};
 }
 #endif // NONUT_G2O_CLIENT_CLASS_WORLD_H

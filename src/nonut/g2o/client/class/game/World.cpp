@@ -3,8 +3,17 @@
 
 namespace nonut::g2o
 {
-	World::World(SQObject object) :
-		Class("World", object),
+	World* World::get()
+	{
+		if (instance == nullptr)
+		{
+			instance = new World();
+		}
+		return instance;
+	}
+
+	World::World() :
+		StaticClass("GameWorld"),
 		METHOD_CTOR(searchVobByName),
 		METHOD_CTOR(traceRayFirstHit),
 		PROPERTY_CTOR(fileName),

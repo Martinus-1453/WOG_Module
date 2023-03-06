@@ -23,7 +23,7 @@ namespace nonut
 			std::is_same_v<T, Float*> ||
 			std::is_same_v<T, SQChar**> ||
 			std::is_same_v<T, HSQOBJECT*> ||
-			std::is_same_v<T, UserData*>,
+			std::is_same_v<T, SQUserPointer*>,
 			"Not supported return type");
 
 		if constexpr (std::is_same_v<T, Bool*>)
@@ -39,9 +39,9 @@ namespace nonut
 			sq_getstackobj(vm, idx, outPtr);
 			sq_addref(vm, outPtr);
 		}
-		if constexpr (std::is_same_v<T, UserData*>)
+		if constexpr (std::is_same_v<T, SQUserPointer*>)
 		{
-			sq_getuserdata(vm, idx, outPtr->userPtr, outPtr->tagPtr);
+			sq_getuserpointer(vm, idx, outPtr);
 		}
 	}
 

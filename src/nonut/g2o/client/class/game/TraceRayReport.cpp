@@ -3,7 +3,7 @@
 namespace nonut::g2o
 {
 	TraceRayReport::TraceRayReport(SQObject object) :
-		Class("TraceRayReport"),
+		Class("TraceRayReport", object),
 		PROPERTY_CTOR(intersect),
 		PROPERTY_CTOR(normal),
 		PROPERTY_CTOR(vob)

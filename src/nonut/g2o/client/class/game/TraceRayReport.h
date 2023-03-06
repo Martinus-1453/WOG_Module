@@ -19,7 +19,7 @@ namespace nonut::g2o
 		Property<Vec3> normal;
 
 		// Read-only properties
-		Property<SQUserData, true> vob;
+		Property<SQUserPointer, true> vob;
 
 	private:
 		bool isNullObj = false;

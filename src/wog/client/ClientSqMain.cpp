@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "function/ClientFunctions.h"
 #include "ClientInit.h"
+#include "UserData.h"
 #include "WogConfig.h"
 #include "class/ui/Draw.h"
 #include "Virt.h"
+#include "class/game/World.h"
 #include "class/math/Vec3.h"
 
 using namespace SqModule;
@@ -25,14 +27,9 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	draw->visible = true;
 	draw->setScale(1, 1);
 
-	nonut::g2o::Vec3 v0(0);
-	nonut::g2o::Vec3 v1(1.f);
-	nonut::g2o::Vec3 v2(-0.5f);
-	//auto v3 = v0.dot(v1, v2);
-	//v1 = v2;
-	auto v4 = v1.normalize();
-	//v1.swap(v1, v2);
-	SH_F->print(std::to_string(v4.x));
+	SH_F->print("Gameworld file:");
+	SH_F->print(g2o::World::get()->fileName);
+
 	//SH_F->print("v1=" + std::to_string(v1.x));
 	//SH_F->print("v2=" + std::to_string(v2.x));
 	//SH_F->print("v3=" + std::to_string(v3));
