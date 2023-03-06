@@ -53,7 +53,7 @@ namespace wog
 					g2o::Position3d pos = g2o::Camera::get()->getPosition();
 					g2o::Vec3 posVec3(pos.x, pos.y, pos.z);
 					auto atVec3 = mat.getAtVector();
-					g2o::Vec3 distanceVec3(atVec3.x * 5000, atVec3.y * 5000, atVec3.z * 5000);
+					g2o::Vec3 distanceVec3 = posVec3 * 5000;
 					SH_F->print("posVec: " + std::to_string(posVec3.x) + " " + std::to_string(posVec3.y) + " " + std::to_string(posVec3.z));
 					SH_F->print("disVec: " + std::to_string(distanceVec3.x) + " " + std::to_string(distanceVec3.y) + " " + std::to_string(distanceVec3.z));
 					auto ray = g2o::World::get()->traceRayFirstHit(posVec3, distanceVec3, ClientConstants::TRACERAY_POLY_NORMAL);

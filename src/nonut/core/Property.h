@@ -116,7 +116,7 @@ namespace nonut
 			return this->get();
 		}
 
-		T get()
+		T get() const
 		{
 			return getProperty<T>(object, propertyName);
 		}

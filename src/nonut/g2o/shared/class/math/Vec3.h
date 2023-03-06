@@ -2,10 +2,11 @@
 #define NONUT_G2O_SHARED_CLASS_VEC3_H
 #include "pch.h"
 #include "Class.h"
+#include "Stringify.h"
 
 namespace nonut::g2o
 {
-	class Vec3 : public Class
+	class Vec3 final : public Class, public Stringify<Vec3>
 	{
 	public:
 		Vec3();
@@ -13,6 +14,17 @@ namespace nonut::g2o
 		Vec3(Float x, Float y, Float z);
 		Vec3(SQObject object);
 		COPY_CTOR(Vec3);
+
+		bool operator==(const Vec3& rhs) const;
+		Vec3 operator+(const Vec3& rhs) const;
+		Vec3 operator+(const Float& rhs) const;
+		Vec3 operator-(const Vec3& rhs) const;
+		Vec3 operator-(const Float& rhs) const;
+		Vec3 operator*(const Vec3& rhs) const;
+		Vec3 operator*(const Float& rhs) const;
+		Vec3 operator/(const Vec3& rhs) const;
+		Vec3 operator/(const Float &rhs) const;
+		[[nodiscard]] String toString() const override;
 
 		Property<Float> x;
 		Property<Float> y;

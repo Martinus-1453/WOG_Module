@@ -18,7 +18,7 @@ namespace nonut::g2o
 		classCtor(x, y, z);
 	}
 
-	Vec3::Vec3(SQObject object) : 
+	Vec3::Vec3(SQObject object) :
 		Class("Vec3", object),
 		PROPERTY_CTOR(x),
 		PROPERTY_CTOR(y),
@@ -42,5 +42,96 @@ namespace nonut::g2o
 		METHOD_CTOR(cross),
 		METHOD_CTOR(lerp)
 	{
+	}
+
+	bool Vec3::operator==(const Vec3& rhs) const
+	{
+		return this->x.get() == rhs.x.get() &&
+			this->y.get() == rhs.y.get() &&
+			this->z.get() == rhs.z.get();
+	}
+
+	Vec3 Vec3::operator+(const Vec3& rhs) const
+	{
+		return {
+			this->x.get() + rhs.x.get(),
+			this->y.get() + rhs.y.get(),
+			this->z.get() + rhs.z.get()
+		};
+	}
+
+	Vec3 Vec3::operator+(const Float& rhs) const
+	{
+		return {
+			this->x.get() + rhs,
+			this->y.get() + rhs,
+			this->z.get() + rhs
+		};
+	}
+
+	Vec3 Vec3::operator-(const Vec3& rhs) const
+	{
+		return {
+			this->x.get() - rhs.x.get(),
+			this->y.get() - rhs.y.get(),
+			this->z.get() - rhs.z.get()
+		};
+	}
+
+	Vec3 Vec3::operator-(const Float& rhs) const
+	{
+		return {
+			this->x.get() - rhs,
+			this->y.get() - rhs,
+			this->z.get() - rhs
+		};
+	}
+
+	Vec3 Vec3::operator*(const Vec3& rhs) const
+	{
+		return {
+			this->x.get() * rhs.x.get(),
+			this->y.get() * rhs.y.get(),
+			this->z.get() * rhs.z.get()
+		};
+	}
+
+	Vec3 Vec3::operator*(const Float& rhs) const
+	{
+		return {
+			this->x.get() * rhs,
+			this->y.get() * rhs,
+			this->z.get() * rhs
+		};
+	}
+
+	Vec3 Vec3::operator/(const Vec3& rhs) const
+	{
+		return {
+			this->x.get() / rhs.x.get(),
+			this->y.get() / rhs.y.get(),
+			this->z.get() / rhs.z.get()
+		};
+	}
+
+	Vec3 Vec3::operator/(const Float& rhs) const
+	{
+		return {
+			this->x.get() / rhs,
+			this->y.get() / rhs,
+			this->z.get() / rhs
+		};
+	}
+
+	String Vec3::toString() const
+	{
+		return
+			'[' +
+			std::to_string(this->x.get()) +
+			", " +
+			std::to_string(this->y.get()) +
+			", " +
+			std::to_string(this->z.get()) +
+			']';
 	}
 }
