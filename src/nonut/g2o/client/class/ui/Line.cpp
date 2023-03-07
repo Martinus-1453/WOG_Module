@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Line.h"
-        
+
 namespace nonut::g2o
 {
 	Line::Line(Int x1, Int y1, Int x2, Int y2) :

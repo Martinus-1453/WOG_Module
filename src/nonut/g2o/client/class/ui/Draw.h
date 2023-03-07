@@ -5,9 +5,8 @@
 #include "Class.h"
 #include "CustomTypes.h"
 
-	namespace nonut::g2o
+namespace nonut::g2o
 {
-
 	/// @brief This class represents text visible on the screen.
 	class Draw : public Class
 	{

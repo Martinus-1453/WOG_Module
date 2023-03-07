@@ -17,8 +17,8 @@ namespace wog
 	Chat::Chat()
 	{
 		nonut::g2o::ServerEventHandlers::onPlayerMessageHandler.emplace_back([this](Int playerId, String message)
-			{
-				S_F->sendPlayerMessageToAll(playerId, 255, 255, 255, message);
-			});
+		{
+			S_F->sendPlayerMessageToAll(playerId, 255, 255, 255, message);
+		});
 	}
 }

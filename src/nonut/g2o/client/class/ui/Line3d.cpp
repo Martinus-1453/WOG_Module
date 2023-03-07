@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Line3d.h"
-        
+
 namespace nonut::g2o
 {
 	Line3d::Line3d(Float x1, Float y1, Float z1, Float x2, Float y2, Float z2) :

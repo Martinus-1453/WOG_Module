@@ -20,7 +20,8 @@ namespace wog
 
 	Login::Login()
 	{
-		g2o::ServerEventHandlers::onPlayerCommandHandler.emplace_back([](const Int id, const String command, const std::vector<String> params)
+		g2o::ServerEventHandlers::onPlayerCommandHandler.emplace_back(
+			[](const Int id, const String command, const std::vector<String> params)
 			{
 				if (command == "register")
 				{
@@ -28,13 +29,13 @@ namespace wog
 
 					String message;
 
-					try 
+					try
 					{
-						const User newUser{ -1, params[0], params[1] };
+						const User newUser{-1, params[0], params[1]};
 						const auto newId = DB_STORAGE.insert<User>(newUser);
 						message = "Account: " + params[0] + " registered with id=" + std::to_string(newId) + ".";
 					}
-					catch (const std::system_error& e) 
+					catch (const std::system_error& e)
 					{
 						message = e.what();
 					}
@@ -58,7 +59,8 @@ namespace wog
 						}
 						else
 						{
-							throw std::system_error(0, std::generic_category(), "account does not exist or wrong password");
+							throw std::system_error(0, std::generic_category(),
+							                        "account does not exist or wrong password");
 						}
 					}
 					catch (const std::system_error& e)

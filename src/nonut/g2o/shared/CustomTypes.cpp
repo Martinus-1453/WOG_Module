@@ -6,6 +6,7 @@
 namespace nonut::g2o
 {
 #define GET_SLOT(slot, type) slot = arrayWrapper.get<type>(#slot)
+
 	void GameTime::convert(SQObject object)
 	{
 		Array arrayWrapper(object);

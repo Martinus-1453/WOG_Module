@@ -12,9 +12,9 @@ namespace nonut::g2o
 	}
 
 	Mds::Mds():
-	StaticClass("Mds"),
-	METHOD_CTOR(id),
-	METHOD_CTOR(name)
+		StaticClass("Mds"),
+		METHOD_CTOR(id),
+		METHOD_CTOR(name)
 	{
 	}
 }

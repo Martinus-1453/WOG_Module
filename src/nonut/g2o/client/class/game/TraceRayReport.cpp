@@ -8,7 +8,7 @@ namespace nonut::g2o
 		PROPERTY_CTOR(normal),
 		PROPERTY_CTOR(vob)
 	{
-		if(object._type == OT_NULL)
+		if (object._type == OT_NULL)
 		{
 			isNullObj = true;
 		}

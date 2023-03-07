@@ -89,7 +89,7 @@ namespace nonut
 		{
 			sqPushValue(vm, value);
 		}
-		
+
 
 		auto result = sq_set(vm, -3); // pops name and value
 
@@ -101,7 +101,7 @@ namespace nonut
 	{
 	public:
 		Property(String propertyName, const SQObject object) : object(object),
-		                                                             propertyName(std::move(propertyName))
+		                                                       propertyName(std::move(propertyName))
 		{
 		}
 

@@ -40,7 +40,10 @@ namespace nonut::g2o
 	{
 		auto view = params
 			| std::ranges::views::split(' ')
-			| std::ranges::views::transform([](auto&& str) { return std::string_view(&*str.begin(), std::ranges::distance(str)); });
+			| std::ranges::views::transform([](auto&& str)
+			{
+				return std::string_view(&*str.begin(), std::ranges::distance(str));
+			});
 		std::vector<String> paramView;
 
 		for (auto&& item : view)

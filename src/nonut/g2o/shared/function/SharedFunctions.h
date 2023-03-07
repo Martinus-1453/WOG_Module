@@ -20,7 +20,6 @@ namespace nonut::g2o
 
 		// G2O functions
 		Function<void, String> print;
-		
 	};
 }
 #endif // NONUT_G2O_SHARED_FUNCTION_SHARED_FUNCTIONS_H

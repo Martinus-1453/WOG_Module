@@ -4,8 +4,8 @@
 #include "event/ClientEventHandlers.h"
 #include "function/ClientFunctions.h"
 
-using ClientEventHandlers = nonut::g2o::ClientEventHandlers;
-using ClientConstants = nonut::g2o::ClientConstants;
+using ClientEventHandlers = g2o::ClientEventHandlers;
+using ClientConstants = g2o::ClientConstants;
 
 namespace wog
 {
@@ -23,11 +23,11 @@ namespace wog
 		C_F->disableLogicalKey(ClientConstants::GAME_END, true);
 
 		ClientEventHandlers::onKeyHandler.emplace_back([](Int key)
+		{
+			if (key == ClientConstants::KEY_END)
 			{
-				if (key == ClientConstants::KEY_END)
-				{
-					C_F->exitGame();
-				}
-			});
+				C_F->exitGame();
+			}
+		});
 	}
 }

@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Timestep.h"
-        
+
 namespace nonut::g2o
 {
 	Timestep::Timestep() :

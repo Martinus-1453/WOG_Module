@@ -5,36 +5,36 @@
 #include "event/ClientEventHandlers.h"
 #include "constant/ClientConstants.h"
 
-using ClientEventHandlers = nonut::g2o::ClientEventHandlers;
-using ClientConstant = nonut::g2o::ClientConstants;
+using ClientEventHandlers = g2o::ClientEventHandlers;
+using ClientConstant = g2o::ClientConstants;
 
 namespace wog
 {
 	Sprint::Sprint()
 	{
 		ClientEventHandlers::onKeyHandler.emplace_back([this](Int key)
+		{
+			if (key == ClientConstant::KEY_LSHIFT)
 			{
-				if (key == ClientConstant::KEY_LSHIFT)
-				{
-					isActive = true;
-					keyTimer = 0.f;
-				}
-			});
+				isActive = true;
+				keyTimer = 0.f;
+			}
+		});
 
 		ClientEventHandlers::onRenderHandler.emplace_back([this](float deltaTime)
-			{
-				update(deltaTime);
-			});
+		{
+			update(deltaTime);
+		});
 	}
 
 	void Sprint::update(float deltaTime)
 	{
 		if (exhaustionTimer > 0.f)
 			exhaustionTimer = std::clamp(exhaustionTimer - deltaTime,
-			0.f,
-			EXHAUSTION_TIME);
+			                             0.f,
+			                             EXHAUSTION_TIME);
 
-		if(isActive)
+		if (isActive)
 		{
 			keyTimer += deltaTime;
 

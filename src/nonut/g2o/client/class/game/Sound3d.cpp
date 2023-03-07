@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Sound3d.h"
-        
+
 namespace nonut::g2o
 {
 	Sound3d::Sound3d(String fileName) :

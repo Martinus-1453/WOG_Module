@@ -2,5 +2,4 @@
 
 namespace nonut::g2o
 {
-
 }

@@ -9,17 +9,19 @@ namespace orm = sqlite_orm;
 
 namespace wog
 {
-	static inline auto initStorage(const std::string& dbName = "wog.sqlite") {
+	static inline auto initStorage(const std::string& dbName = "wog.sqlite")
+	{
 		return orm::make_storage(dbName,
-			orm::make_table("users",
-				orm::make_column("id", &User::id, orm::primary_key().autoincrement()),
-				orm::make_column("username", &User::username, orm::unique()),
-				orm::make_column("password", &User::password)),
-			orm::make_table("characters",
-				orm::make_column("id", &Character::id, orm::primary_key().autoincrement()),
-				orm::make_column("account_id", &Character::accountId),
-				orm::make_column("name", &Character::name),
-				orm::foreign_key(&Character::accountId).references(&User::id))
+		                         orm::make_table("users",
+		                                         orm::make_column("id", &User::id, orm::primary_key().autoincrement()),
+		                                         orm::make_column("username", &User::username, orm::unique()),
+		                                         orm::make_column("password", &User::password)),
+		                         orm::make_table("characters",
+		                                         orm::make_column("id", &Character::id,
+		                                                          orm::primary_key().autoincrement()),
+		                                         orm::make_column("account_id", &Character::accountId),
+		                                         orm::make_column("name", &Character::name),
+		                                         orm::foreign_key(&Character::accountId).references(&User::id))
 		);
 	}
 

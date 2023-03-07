@@ -16,7 +16,6 @@ namespace nonut::g2o
 	private:
 		Mds();
 		static inline Mds* instance = nullptr;
-
 	};
 }
 #endif // NONUT_G2O_SHARED_CLASS_MDS_H

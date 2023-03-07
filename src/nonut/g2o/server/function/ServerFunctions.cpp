@@ -14,7 +14,7 @@ namespace nonut::g2o
 
 	ServerFunctions* ServerFunctions::getInstance()
 	{
-		if(instance == nullptr)
+		if (instance == nullptr)
 		{
 			instance = new ServerFunctions();
 		}

@@ -28,8 +28,8 @@ namespace nonut::g2o
 
 	void onRender()
 	{
-		static auto previousFrame{ std::chrono::high_resolution_clock::now() };
-		static auto currentFrame{ std::chrono::high_resolution_clock::now() };
+		static auto previousFrame{std::chrono::high_resolution_clock::now()};
+		static auto currentFrame{std::chrono::high_resolution_clock::now()};
 
 		currentFrame = std::chrono::high_resolution_clock::now();
 

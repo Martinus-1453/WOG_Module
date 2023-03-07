@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Sound.h"
-        
+
 namespace nonut::g2o
 {
 	Sound::Sound(String fileName) :

@@ -10,7 +10,7 @@ namespace nonut::g2o
 {
 #define HANDLER_INIT(type, name) std::vector<std::function<type>> name ## Handler{}
 
-	
+
 	// Network
 	static void onPacket(Int playerId, SQObject object);
 
@@ -29,7 +29,7 @@ namespace nonut::g2o
 		// !!!INITIALIZATION!!!
 		static void init();
 
-		static inline std::map<ClientPacketType ,std::function<void(Int ,Packet&)>> onPacketHandler{};
+		static inline std::map<ClientPacketType, std::function<void(Int, Packet&)>> onPacketHandler{};
 		static inline HANDLER_INIT(void(Int, Int, Int), onPlayerChangeWeaponMode);
 		static inline HANDLER_INIT(void(Int, String), onPlayerMessage);
 		static inline HANDLER_INIT(void(Int, String&, std::vector<String>&), onPlayerCommand);

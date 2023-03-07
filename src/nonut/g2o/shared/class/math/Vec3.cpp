@@ -2,7 +2,6 @@
 
 namespace nonut::g2o
 {
-
 	Vec3::Vec3() : Vec3(SQ_NULL)
 	{
 		classCtor();

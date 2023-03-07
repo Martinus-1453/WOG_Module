@@ -7,6 +7,6 @@ namespace nonut
 	{
 	public:
 		[[nodiscard]] virtual SQObject getInstance() const = 0;
-	};	
+	};
 }
 #endif //NONUT_CORE_INSTANCE_H

@@ -18,15 +18,15 @@ namespace wog
 	private:
 		static inline HUD* instance = nullptr;
 		HUD();
-		nonut::g2o::Texture healthBarEmpty;
-		nonut::g2o::Texture healthBarFull;
+		g2o::Texture healthBarEmpty;
+		g2o::Texture healthBarFull;
 
-		nonut::g2o::Texture manaBarEmpty;
-		nonut::g2o::Texture manaBarFull;
+		g2o::Texture manaBarEmpty;
+		g2o::Texture manaBarFull;
 
-		nonut::g2o::Texture sprintBarEmpty;
-		nonut::g2o::Texture sprintBarExhausted;
-		nonut::g2o::Texture sprintBarFull;
+		g2o::Texture sprintBarEmpty;
+		g2o::Texture sprintBarExhausted;
+		g2o::Texture sprintBarFull;
 	};
 }
 #endif // WOG_CLIENT_HUD_H

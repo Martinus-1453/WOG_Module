@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Way.h"
-        
+
 namespace nonut::g2o
 {
 	Way::Way(String fileName) :

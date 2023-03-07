@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Packet.h"
-        
+
 namespace nonut::g2o
 {
 	Packet::Packet(ServerPacketType packetType) :

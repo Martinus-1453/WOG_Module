@@ -16,14 +16,15 @@ namespace nonut
 
 		[[nodiscard]] size_t size() const;
 
-		template<typename T>
+		template <typename T>
 		T get(String index)
 		{
 			T result{};
 			sq_pushobject(vm, object);
 			sq_pushstring(vm, index.c_str(), index.length());
 
-			if (SQ_FAILED(sq_get(vm, -2))) {
+			if (SQ_FAILED(sq_get(vm, -2)))
+			{
 				sq_pop(vm, 1);
 				return result;
 			}
@@ -40,8 +41,8 @@ namespace nonut
 
 			sq_pop(vm, 2);
 			return result;
-
 		}
+
 	private:
 		SQObject object;
 		size_t cachedSize;

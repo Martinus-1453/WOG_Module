@@ -21,7 +21,6 @@ namespace nonut::g2o
 
 		// Properties
 		Property<Bool> visible;
-		
 	};
 }
 #endif // NONUT_G2O_CLIENT_CLASS_LINE_H

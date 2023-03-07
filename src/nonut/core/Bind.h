@@ -14,7 +14,6 @@ namespace nonut
 	class Bind
 	{
 	public:
-
 		static void registerFunction(String funcName, SQFUNCTION func, size_t funcSize)
 		{
 			const auto top = sq_gettop(vm);

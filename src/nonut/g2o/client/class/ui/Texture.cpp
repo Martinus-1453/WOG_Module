@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Texture.h"
-        
+
 namespace nonut::g2o
 {
 	Texture::Texture(Int x, Int y, Int width, Int height, String txt) :

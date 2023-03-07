@@ -96,7 +96,7 @@ namespace nonut
 			sq_pushobject(vm, envObj);
 			auto debug = sq_gettop(vm);
 			(sqPushValue(vm, args), ...);
-			
+
 			if constexpr (std::is_same_v<ReturnType, void>)
 			{
 				debug = sq_gettop(vm);
@@ -124,7 +124,7 @@ namespace nonut
 					auto intermediateResult = returnVar<SQObject>();
 					//result = std::make_optional<ReturnType>(ReturnType(intermediateResult));
 					result.emplace(ReturnType(intermediateResult));
-					
+
 					sq_release(vm, &intermediateResult);
 					sq_resetobject(&intermediateResult);
 				}
@@ -132,7 +132,7 @@ namespace nonut
 				{
 					result = std::make_optional<ReturnType>(returnVar<ReturnType>());
 				}
-				
+
 				sq_pop(vm, 2);
 				sq_settop(vm, top);
 				return result.value();

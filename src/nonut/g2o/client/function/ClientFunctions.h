@@ -198,7 +198,7 @@ namespace nonut::g2o
 		//Function<Vec3, Int> getPlayerAtVector;
 		Function<Int, Int> getPlayerBelt;
 		Function<Bool, Int> getPlayerCollision;
-		Function<Color, Int > getPlayerColor;
+		Function<Color, Int> getPlayerColor;
 		Function<Int, Int> getPlayerDexterity;
 		Function<Float, Int> getPlayerFatness;
 		Function<Int, Int> getPlayerHealth;
@@ -213,13 +213,13 @@ namespace nonut::g2o
 		Function<Int, Int> getPlayerMeleeWeapon;
 		Function<String, Int> getPlayerName;
 		Function<Int, Int> getPlayerPing;
-		Function<Position3d, Int > getPlayerPosition;
+		Function<Position3d, Int> getPlayerPosition;
 		Function<Int, Int, Int> getPlayerProtection;
 		Function<SQUserPointer, Int> getPlayerPtr;
 		Function<Int, Int> getPlayerRangedWeapon;
 		Function<Int, Int> getPlayerReadiedWeapon;
 		Function<Int, Int, Int> getPlayerRing;
-		Function<Position3d, Int > getPlayerScale;
+		Function<Position3d, Int> getPlayerScale;
 		Function<Int, Int> getPlayerShield;
 		Function<Int, Int, Int> getPlayerSkillWeapon;
 		Function<Int, Int, Int> getPlayerSpell;

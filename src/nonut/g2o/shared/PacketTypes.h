@@ -15,6 +15,5 @@ namespace nonut
 		HelloClient,
 		NumberOfPacketTypes // Only for reference
 	};
-
 }
 #endif // NONUT_G2O_SHARED_PACKET_TYPES_H

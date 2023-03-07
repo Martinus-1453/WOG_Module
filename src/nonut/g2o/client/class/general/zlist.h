@@ -5,7 +5,7 @@
 
 namespace nonut::g2o
 {
-	template<typename T>
+	template <typename T>
 	class zlist : public Class
 	{
 	public:
@@ -13,6 +13,7 @@ namespace nonut::g2o
 		{
 			classCtor();
 		}
+
 		zlist(SQObject object) :
 			Class("zlist", object),
 			METHOD_CTOR(len),
@@ -21,6 +22,7 @@ namespace nonut::g2o
 			METHOD_CTOR(remove)
 		{
 		}
+
 		COPY_CTOR(zlist);
 
 		Function<Int> len;

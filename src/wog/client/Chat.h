@@ -1,7 +1,6 @@
 #ifndef WOG_CLIENT_CHAT_H
 #define WOG_CLIENT_CHAT_H
 
-#include <deque>
 #include <vector>
 
 #include "pch.h"
@@ -49,7 +48,7 @@ namespace wog
 	protected:
 		Chat();
 
-		std::vector<std::vector<std::unique_ptr<nonut::g2o::Draw>>> chatLine;
+		std::vector<std::vector<std::unique_ptr<g2o::Draw>>> chatLine;
 		std::vector<ChatEntry> chatHistory;
 		bool needsUpdate = false;
 
@@ -57,7 +56,7 @@ namespace wog
 		Int letterHeight;
 
 		float maxWidth = 0.75f;
-		
+
 
 		static inline Chat* instance = nullptr;
 	};

@@ -92,10 +92,10 @@ namespace nonut
 			std::is_same_v<T, String>,
 			"Not supported return type");
 
-			T result{};
-			sqGetValue(vm, -1, &result);
-			sq_pop(vm, 1); // pops result
-			return result;
+		T result{};
+		sqGetValue(vm, -1, &result);
+		sq_pop(vm, 1); // pops result
+		return result;
 	}
 
 	template <>

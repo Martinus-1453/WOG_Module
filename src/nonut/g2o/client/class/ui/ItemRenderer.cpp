@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "ItemRenderer.h"
-        
+
 namespace nonut::g2o
 {
 	ItemRenderer::ItemRenderer(Int x, Int y, Int width, Int height, String instance) :

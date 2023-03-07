@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "ItemGround.h"
-        
+
 namespace nonut::g2o
 {
 	ItemGround::ItemGround(SQObject object) :

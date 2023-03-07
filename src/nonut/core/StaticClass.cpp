@@ -21,6 +21,7 @@ namespace nonut
 		}
 		sq_settop(vm, top); // TODO: FIX LEAK PROPERLY
 	}
+
 	StaticClass::~StaticClass()
 	{
 		sq_release(vm, &classObject);

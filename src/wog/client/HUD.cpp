@@ -8,13 +8,13 @@
 #include "event/ClientEventHandlers.h"
 #include "Sprint.h"
 
-using ClientConstants = nonut::g2o::ClientConstants;
-using Virt = nonut::g2o::Virt;
+using ClientConstants = g2o::ClientConstants;
+using Virt = g2o::Virt;
 using TextureSize = std::pair<float, float>;
 
 constexpr auto scale = 0.65f;
-constexpr TextureSize TEXTURE_BAR{ 316.f * scale, 128.f * scale };
-constexpr TextureSize TEXTURE_SPRINT{ 502.f * scale, 33.f * scale };
+constexpr TextureSize TEXTURE_BAR{316.f * scale, 128.f * scale};
+constexpr TextureSize TEXTURE_SPRINT{502.f * scale, 33.f * scale};
 
 constexpr auto uvBias = 0.004f;
 
@@ -39,7 +39,7 @@ namespace wog
 			y - C_F->any(height) - C_F->any(texture12diff));
 	}*/
 
-	void processHorizontalBar(nonut::g2o::Texture& bar, float percentage, TextureSize textureSize)
+	void processHorizontalBar(g2o::Texture& bar, float percentage, TextureSize textureSize)
 	{
 		const auto width = std::floorf(textureSize.first * percentage);
 
@@ -47,7 +47,7 @@ namespace wog
 		bar.setSize(C_F->anx(width), C_F->any(textureSize.second));
 	}
 
-	void processHorizontalBarMirrored(nonut::g2o::Texture& bar, float percentage, TextureSize textureSize, Int x, Int y)
+	void processHorizontalBarMirrored(g2o::Texture& bar, float percentage, TextureSize textureSize, Int x, Int y)
 	{
 		const auto width = std::floorf(textureSize.first * percentage);
 		const auto deltaWidth = textureSize.first - width;
@@ -67,9 +67,9 @@ namespace wog
 
 	void HUD::drawHp(float deltaTime)
 	{
-		static bool isUpdateNeeded{ true };
-		static int previousHp{ 0 };
-		static float time{ 0.f };
+		static bool isUpdateNeeded{true};
+		static int previousHp{0};
+		static float time{0.f};
 
 		const int hpMax = C_F->getPlayerMaxHealth(ClientConstants::heroId);
 
@@ -88,7 +88,7 @@ namespace wog
 		if (!isUpdateNeeded) return;
 
 		const float hpPercentage = static_cast<float>(hp) / static_cast<float>(hpMax);
-		static float hpPercentageRender{ 0.f };
+		static float hpPercentageRender{0.f};
 
 		if (hpPercentageRender != hpPercentage)
 		{
@@ -106,9 +106,9 @@ namespace wog
 
 	void HUD::drawMp(float deltaTime)
 	{
-		static bool isUpdateNeeded{ true };
-		static int previousMp{ 0 };
-		static float time{ 0.f };
+		static bool isUpdateNeeded{true};
+		static int previousMp{0};
+		static float time{0.f};
 		const int mpMax = C_F->getPlayerMaxMana(ClientConstants::heroId);
 
 		if (mpMax <= 0) return;
@@ -128,7 +128,7 @@ namespace wog
 
 		const float mpPercentage = static_cast<float>(mp) / static_cast<float>(mpMax);
 
-		static float mpPercentageRender{ 0.f };
+		static float mpPercentageRender{0.f};
 
 
 		if (mpPercentageRender != mpPercentage)
@@ -154,8 +154,8 @@ namespace wog
 
 	void HUD::drawStamina(float deltaTime)
 	{
-		static float animationTimer{ 0.f };
-		static float smoothTimer{ 0.f };
+		static float animationTimer{0.f};
+		static float smoothTimer{0.f};
 
 		const auto sprint = Sprint::get();
 
@@ -252,7 +252,7 @@ namespace wog
 		//healthBarEmpty.setUV(0.f, uvBias, 1.f - uvBias, 1.f);
 		//manaBarEmpty.setUV(0.f, uvBias, 1.f - uvBias, 1.f);
 
-		nonut::g2o::ClientEventHandlers::onRenderHandler.emplace_back(
+		g2o::ClientEventHandlers::onRenderHandler.emplace_back(
 			[this](Float deltaTime)
 			{
 				draw(deltaTime);

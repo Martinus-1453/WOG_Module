@@ -22,7 +22,8 @@ namespace nonut
 				{
 					//1. Get object ptr
 					sq_getstackobj(vm, -1, &this->classObjectInstance); //retrieve object
-					sq_addref(vm, &this->classObjectInstance); //Add ref thanks to which object will not be immediately deleted
+					sq_addref(vm, &this->classObjectInstance);
+					//Add ref thanks to which object will not be immediately deleted
 					sq_pop(vm, 1); // pop class instance
 				}
 			}

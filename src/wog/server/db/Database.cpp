@@ -24,8 +24,8 @@ namespace wog
 		storage.pragma.journal_mode(orm::journal_mode::WAL);
 
 		g2o::ServerEventHandlers::onExitHandler.emplace_back([]
-			{
-				disconnect();
-			});
+		{
+			disconnect();
+		});
 	}
 }
