@@ -17,7 +17,7 @@ namespace nonut::g2o
 		// Methods
 		Function<SQUserPointer, String> searchVobByName;
 		//Function<Array<SQUserData>, String> searchVobListByName;
-		Function<TraceRayReport, Vec3, Vec3, Int> traceRayFirstHit;
+		Function<TraceRayReport, const Vec3&, const Vec3&, Int> traceRayFirstHit;
 
 		// Properties
 		Property<String> fileName;
