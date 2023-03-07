@@ -17,7 +17,7 @@ namespace nonut::g2o
 		Property<Vec3> maxs;
 		Property<Vec3, true> center;
 
-		Function<Bool, BBox3d> intersecting;
+		Function<Bool, const BBox3d&> intersecting;
 	};
 }
 #endif //NONUT_G2O_CLIENT_CLASS_BBOX3D_H

@@ -24,7 +24,7 @@ namespace nonut::g2o
 		// Methods
 		Function<void> beginMovement;
 		Function<void> endMovement;
-		Function<void, Vec3> setHeadingAtWorld;
+		Function<void, const Vec3&> setHeadingAtWorld;
 		Function<Mat4, String> getTrafoModelNodeToWorld;
 		Function<void, Float, Float, Float> setPosition;
 		Function<Position3d> getPosition;

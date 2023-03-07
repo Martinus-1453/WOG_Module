@@ -20,7 +20,7 @@ namespace nonut::g2o
 		Function<Position3d> getRotation;
 		Function<void, Float, Float, Float> setRotation;
 		Function<Position2d, Float, Float, Float> project;
-		Function<void, Vob> setTargetVob;
+		Function<void, const Vob&> setTargetVob;
 		Function<void, Int> setTargetPlayer;
 
 		// Properties
