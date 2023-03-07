@@ -18,7 +18,7 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	wog::clientInit();
 
 	// Test print function
-	SH_F->print("Print z szablonu :D");
+	SH_F->print("Nonut module initialized");
 
 	// Draw module version and build time in the corner
 	const std::string corner_message = "WoG v" + std::to_string(wog_module_VERSION_MAJOR) + "." +
@@ -26,13 +26,6 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	const auto draw = new nonut::g2o::Draw(nonut::g2o::Virt(0.2f), nonut::g2o::Virt(0.97f), corner_message); // TODO: consider having unique_ptr in some singleton to hold it?
 	draw->visible = true;
 	draw->setScale(1, 1);
-
-	SH_F->print("Gameworld file:");
-	SH_F->print(g2o::World::get()->fileName);
-
-	//SH_F->print("v1=" + std::to_string(v1.x));
-	//SH_F->print("v2=" + std::to_string(v2.x));
-	//SH_F->print("v3=" + std::to_string(v3));
 
 	return SQ_OK;
 }

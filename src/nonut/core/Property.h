@@ -13,7 +13,7 @@ using namespace SqModule;
 namespace nonut
 {
 	template <typename T>
-	T getProperty(SQObject& object, String& name)
+	T getProperty(const SQObject& object, const String& name)
 	{
 		const auto top = sq_gettop(vm);
 
@@ -50,13 +50,13 @@ namespace nonut
 	}
 
 	template <>
-	inline bool getProperty<bool>(SQObject& object, String& name)
+	inline bool getProperty<bool>(const SQObject& object, const String& name)
 	{
 		return getProperty<Bool>(object, name);
 	}
 
 	template <>
-	inline String getProperty<String>(SQObject& object, String& name)
+	inline String getProperty<String>(const SQObject& object, const String& name)
 	{
 		const Int top = sq_gettop(vm);
 		const SQChar* result{};
@@ -116,7 +116,7 @@ namespace nonut
 			return this->get();
 		}
 
-		T get() const
+		[[nodiscard]] T get() const
 		{
 			return getProperty<T>(object, propertyName);
 		}
