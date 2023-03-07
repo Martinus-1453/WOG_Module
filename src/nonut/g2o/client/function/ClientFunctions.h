@@ -2,6 +2,7 @@
 #define NONUT_G2O_CLIENT_FUNCTION_CLIENT_FUNCTIONS_H
 #include "Function.h"
 #include "CustomTypes.h"
+#include "class/math/Mat4.h"
 
 #define CLIENT_FUNCTIONS nonut::g2o::ClientFunctions::getInstance()
 #define C_F CLIENT_FUNCTIONS
@@ -195,7 +196,7 @@ namespace nonut::g2o
 		Function<Int, Int, String> getPlayerAniIdByName;
 		Function<String, Int, Int> getPlayerAniNameById;
 		Function<Int, Int> getPlayerArmor;
-		//Function<Vec3, Int> getPlayerAtVector;
+		Function<Vec3, Int> getPlayerAtVector;
 		Function<Int, Int> getPlayerBelt;
 		Function<Bool, Int> getPlayerCollision;
 		Function<Color, Int> getPlayerColor;
@@ -207,7 +208,7 @@ namespace nonut::g2o
 		Function<String, Int> getPlayerInstance;
 		Function<Int, Int> getPlayerMagicLevel;
 		Function<Int, Int> getPlayerMana;
-		//Function<Mat4, Int> getPlayerMatrix;
+		Function<Mat4, Int> getPlayerMatrix;
 		Function<Int, Int> getPlayerMaxHealth;
 		Function<Int, Int> getPlayerMaxMana;
 		Function<Int, Int> getPlayerMeleeWeapon;
