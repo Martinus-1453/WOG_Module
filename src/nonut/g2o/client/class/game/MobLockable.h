@@ -9,12 +9,11 @@ namespace nonut::g2o
 {
 	class MobLockable : public MobInter
 	{
-	protected:
-		// Inheritance Ctor
-		MobLockable(constexpr const char* className);
 	public:
-		MobLockable(String model);
+		MobLockable(const String& model);
 		MobLockable(SQUserPointer ptr);
+		MobLockable(SQObject object, const String& className = "MobLockable");
+		COPY_CTOR(MobLockable);
 
 		// Properties
 		Property<Bool> locked;

@@ -9,12 +9,11 @@ namespace nonut::g2o
 {
 	class MobInter : public Mob
 	{
-	protected:
-		// Inheritance Ctor
-		MobInter(constexpr const char* className);
 	public:
-		MobInter(String model);
+		MobInter(const String& model);
 		MobInter(SQUserPointer ptr);
+		MobInter(SQObject object, const String& className = "MobInter");
+		COPY_CTOR(MobInter);
 	};
 }
 #endif // NONUT_G2O_CLIENT_CLASS_MOB_INTER_H

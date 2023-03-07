@@ -12,6 +12,7 @@
 #include "function/SharedFunctions.h"
 #include "StringHelpers.h"
 #include "class/game/Camera.h"
+#include "class/game/Mob.h"
 #include "class/game/World.h"
 
 using namespace SqModule;
@@ -64,7 +65,9 @@ namespace wog
 					distanceVec3,
 					ClientConstants::TRACERAY_POLY_NORMAL); !ray.isNull())
 				{
-					auto* sphere = new Vob("Sphere.3ds");
+					const auto sphere = new g2o::Mob("Sphere.3ds");
+					sphere->cdDynamic = true;
+					sphere->name = "sphere";
 					const Vec3 rayIntersect = ray.intersect;
 					SH_F->print("intersectVec: " + rayIntersect.toString());
 					std::apply(sphere->setPosition, rayIntersect.toTuple());

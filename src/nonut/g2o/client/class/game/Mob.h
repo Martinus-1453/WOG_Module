@@ -3,18 +3,16 @@
 #include <string>
 
 #include "Vob.h"
-#include "CustomTypes.h"
 
 namespace nonut::g2o
 {
 	class Mob : public Vob
 	{
-	protected:
-		// Inheritance Ctor
-		Mob(constexpr const char* className);
 	public:
-		Mob(String model);
+		Mob(const String& model);
 		Mob(SQUserPointer ptr);
+		Mob(SQObject object, const String& className = "Mob");
+		COPY_CTOR(Mob);
 
 		// Properties
 		Property<String> name;

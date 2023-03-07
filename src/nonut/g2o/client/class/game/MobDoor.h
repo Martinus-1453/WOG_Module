@@ -9,12 +9,11 @@ namespace nonut::g2o
 {
 	class MobDoor : public MobLockable
 	{
-	protected:
-		// Inheritance Ctor
-		MobDoor(constexpr const char* className);
 	public:
-		MobDoor(String model);
+		MobDoor(const String& model);
 		MobDoor(SQUserPointer ptr);
+		MobDoor(SQObject object, const String& className = "MobDoor");
+		COPY_CTOR(MobDoor);
 	};
 }
 #endif // NONUT_G2O_CLIENT_CLASS_MOB_DOOR_H

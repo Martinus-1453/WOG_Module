@@ -12,13 +12,10 @@ namespace nonut::g2o
 {
 	class Vob : public Class
 	{
-	protected:
-		// Inheritance Ctor
-		//Vob(constexpr const char* className);
 	public:
-		Vob(String model);
+		Vob(const String& model);
 		Vob(SQUserPointer ptr);
-		Vob(SQObject object);
+		Vob(SQObject object, const String& className = "Vob");
 		COPY_CTOR(Vob);
 
 		// Methods

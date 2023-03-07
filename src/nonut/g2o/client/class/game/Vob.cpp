@@ -2,18 +2,18 @@
 
 namespace nonut::g2o
 {
-	Vob::Vob(String model) : Vob(SQ_NULL)
+	Vob::Vob(const String& model) : Vob(SQ_NULL)
 	{
 		classCtor(model);
 	}
 
-	Vob::Vob(SQUserPointer ptr) : Vob(SQ_NULL)
+	Vob::Vob(const SQUserPointer ptr) : Vob(SQ_NULL)
 	{
 		classCtor(ptr);
 	}
 
-	Vob::Vob(SQObject object) :
-		Class("Vob", object),
+	Vob::Vob(const SQObject object, const String& className) :
+		Class(className, object),
 		METHOD_CTOR(beginMovement),
 		METHOD_CTOR(endMovement),
 		METHOD_CTOR(setHeadingAtWorld),
