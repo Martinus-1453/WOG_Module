@@ -20,6 +20,10 @@ using ClientConstants = g2o::ClientConstants;
 using ClientEventHandlers = g2o::ClientEventHandlers;
 using SharedConstants = g2o::SharedConstants;
 using Camera = g2o::Camera;
+using Vec3 = g2o::Vec3;
+using Mat4 = g2o::Mat4;
+using Vob = g2o::Vob;
+using World = g2o::World;
 
 namespace wog
 {
@@ -50,22 +54,20 @@ namespace wog
 
 			if (key == ClientConstants::MOUSE_LMB)
 			{
-				g2o::Mat4 mat = g2o::Camera::get()->vobMatrix;
-				const g2o::Position3d pos = g2o::Camera::get()->getPosition();
-				const g2o::Vec3 posVec3(pos.x, pos.y, pos.z);
-				const g2o::Vec3 distanceVec3 = g2o::Camera::get()->vobMatrix.get().getAtVector() * 5000.f;
+				const auto posVec3 = std::make_from_tuple<Vec3>(Camera::get()->getPosition().toTuple());
+				const auto distanceVec3 = Camera::get()->vobMatrix.get().getAtVector() * 5000.f;
 				SH_F->print("posVec: " + posVec3.toString());
 				SH_F->print("disVec: " + posVec3.toString());
 
-				if (auto ray = g2o::World::get()->traceRayFirstHit(
+				if (auto ray = World::get()->traceRayFirstHit(
 					posVec3,
 					distanceVec3,
 					ClientConstants::TRACERAY_POLY_NORMAL); !ray.isNull())
 				{
-					auto* sphere = new g2o::Vob("Sphere.3ds");
-					g2o::Vec3 rayIntersect = ray.intersect;
+					auto* sphere = new Vob("Sphere.3ds");
+					const Vec3 rayIntersect = ray.intersect;
 					SH_F->print("intersectVec: " + rayIntersect.toString());
-					sphere->setPosition(rayIntersect.x, rayIntersect.y, rayIntersect.z);
+					std::apply(sphere->setPosition, rayIntersect.toTuple());
 					sphere->addToWorld();
 				}
 

@@ -13,6 +13,11 @@ namespace nonut::g2o
 		Int day{};
 		Int hour{};
 		Int min{};
+
+		auto toTuple()
+		{
+			return std::make_tuple(day, hour, min);
+		}
 	};
 
 	struct Position2d : CustomType
@@ -20,6 +25,10 @@ namespace nonut::g2o
 		void convert(SQObject object) override;
 		Int x{};
 		Int y{};
+		auto toTuple()
+		{
+			return std::make_tuple(x, y);
+		}
 	};
 
 	struct Position3d : CustomType
@@ -28,6 +37,10 @@ namespace nonut::g2o
 		Float x{};
 		Float y{};
 		Float z{};
+		auto toTuple()
+		{
+			return std::make_tuple(x, y, z);
+		}
 	};
 
 	struct Size2d : CustomType
@@ -35,6 +48,10 @@ namespace nonut::g2o
 		void convert(SQObject object) override;
 		Int width{};
 		Int height{};
+		auto toTuple()
+		{
+			return std::make_tuple(width, height);
+		}
 	};
 
 	struct Rect : CustomType
@@ -44,6 +61,10 @@ namespace nonut::g2o
 		Int y;
 		Int width;
 		Int height;
+		auto toTuple()
+		{
+			return std::make_tuple(x, y, width, height);
+		}
 	};
 
 	struct UV : CustomType
@@ -53,6 +74,10 @@ namespace nonut::g2o
 		Float y;
 		Float width;
 		Float height;
+		auto toTuple()
+		{
+			return std::make_tuple(x, y, width, height);
+		}
 	};
 
 	struct Resolution : CustomType
@@ -61,6 +86,10 @@ namespace nonut::g2o
 		Int x{};
 		Int y{};
 		Int bpp{};
+		auto toTuple()
+		{
+			return std::make_tuple(x, y, bpp);
+		}
 	};
 
 	struct Item : CustomType
@@ -69,6 +98,10 @@ namespace nonut::g2o
 		Int instance{};
 		Int amount{};
 		String name{};
+		auto toTuple()
+		{
+			return std::make_tuple(instance, amount, name);
+		}
 	};
 
 	struct Color : CustomType
@@ -77,6 +110,10 @@ namespace nonut::g2o
 		Int r{};
 		Int g{};
 		Int b{};
+		auto toTuple()
+		{
+			return std::make_tuple(r, g, b);
+		}
 	};
 
 	struct BodyVisual : CustomType
@@ -86,6 +123,10 @@ namespace nonut::g2o
 		Int bodyTxt{};
 		String headModel{};
 		Int headTxt{};
+		auto toTuple()
+		{
+			return std::make_tuple(bodyModel, bodyTxt, headModel, headTxt);
+		}
 	};
 
 	struct NetworkStats : CustomType
@@ -98,7 +139,17 @@ namespace nonut::g2o
 		Int messageInSendBuffer{};
 		Int bytesInResendBuffer{};
 		Int bytesInSendBuffer{};
+		auto toTuple()
+		{
+			return std::make_tuple(
+				packetReceived,
+				packetlossTotal,
+				packetlossLastSecond,
+				messagesInResendBuffer,
+				messageInSendBuffer,
+				bytesInResendBuffer,
+				bytesInSendBuffer);
+		}
 	};
 }
-
 #endif // NONUT_G2O_SHARED_CUSTOM_TYPES_H

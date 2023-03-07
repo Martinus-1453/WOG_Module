@@ -24,7 +24,12 @@ namespace nonut::g2o
 		Vec3 operator*(const Float& rhs) const;
 		Vec3 operator/(const Vec3& rhs) const;
 		Vec3 operator/(const Float& rhs) const;
+
 		[[nodiscard]] String toString() const override;
+		[[nodiscard]] auto toTuple() const
+		{
+			return std::make_tuple(x.get(), y.get(), z.get());
+		}
 
 		Property<Float> x;
 		Property<Float> y;
