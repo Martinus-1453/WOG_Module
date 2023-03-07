@@ -25,6 +25,11 @@ namespace wog
 		std::ignore = Chat::get();
 		std::ignore = Login::get();
 
+		ServerEventHandlers::onPlayerJoinHandler.emplace_back([](Int playerId)
+			{
+				S_F->spawnPlayer(playerId);
+			});
+
 		ServerEventHandlers::onPacketHandler.emplace(
 			nonut::ClientPacketType::HelloServer,
 			[](Int playerId, nonut::g2o::Packet& packet)

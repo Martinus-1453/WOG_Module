@@ -8,7 +8,8 @@ namespace nonut::g2o
 		FUNCTION_CTOR(setPlayerMana),
 		FUNCTION_CTOR(setPlayerMaxMana),
 		FUNCTION_CTOR(sendPlayerMessageToAll),
-		FUNCTION_CTOR(sendPlayerMessageToPlayer)
+		FUNCTION_CTOR(sendPlayerMessageToPlayer),
+		FUNCTION_CTOR(spawnPlayer)
 	{
 	}
 

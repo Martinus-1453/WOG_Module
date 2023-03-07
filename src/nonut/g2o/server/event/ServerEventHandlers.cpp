@@ -57,6 +57,14 @@ namespace nonut::g2o
 		}
 	}
 
+	void onPlayerJoin(Int playerId)
+	{
+		for (auto&& function : ServerEventHandlers::onPlayerJoinHandler)
+		{
+			function(playerId);
+		}
+	}
+
 	void onExit()
 	{
 		for (auto&& function : ServerEventHandlers::onExitHandler)
@@ -104,6 +112,7 @@ namespace nonut::g2o
 			BIND_EVENT_HANDLER(onPlayerChangeWeaponMode);
 			BIND_EVENT_HANDLER(onPlayerMessage);
 			BIND_EVENT_HANDLER(onPlayerCommand);
+			BIND_EVENT_HANDLER(onPlayerJoin);
 			BIND_EVENT_HANDLER(onExit);
 
 			isInitialized = true;

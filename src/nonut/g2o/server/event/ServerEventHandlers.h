@@ -20,6 +20,8 @@ namespace nonut::g2o
 
 	static void onPlayerCommand(Int playerId, String command, String params);
 
+	static void onPlayerJoin(Int playerId);
+
 	static void onExit();
 
 	class ServerEventHandlers
@@ -33,6 +35,7 @@ namespace nonut::g2o
 		static inline HANDLER_INIT(void(Int, Int, Int), onPlayerChangeWeaponMode);
 		static inline HANDLER_INIT(void(Int, String), onPlayerMessage);
 		static inline HANDLER_INIT(void(Int, String&, std::vector<String>&), onPlayerCommand);
+		static inline HANDLER_INIT(void(Int), onPlayerJoin);
 		static inline HANDLER_INIT(void(), onExit);
 	};
 }

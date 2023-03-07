@@ -24,6 +24,8 @@ namespace nonut::g2o
 		Function<void, Int, Int> setPlayerMana;
 		Function<void, Int, Int> setPlayerMaxMana;
 
+		Function<void, Int> spawnPlayer;
+
 		Function<void, Int, Int, Int, Int, String> sendPlayerMessageToAll;
 		Function<void, Int, Int, Int, Int, Int, String> sendPlayerMessageToPlayer;
 	};
