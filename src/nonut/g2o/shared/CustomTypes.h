@@ -151,5 +151,18 @@ namespace nonut::g2o
 				bytesInSendBuffer);
 		}
 	};
+
+	struct Position3dWithName : CustomType
+	{
+		void convert(SQObject object) override;
+		String name{};
+		Float x{};
+		Float y{};
+		Float z{};
+		auto toTuple()
+		{
+			return std::make_tuple(name, x, y, z);
+		}
+	};
 }
 #endif // NONUT_G2O_SHARED_CUSTOM_TYPES_H
