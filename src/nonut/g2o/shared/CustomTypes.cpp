@@ -99,4 +99,13 @@ namespace nonut::g2o
 		GET_SLOT(bytesInResendBuffer, Int);
 		GET_SLOT(bytesInSendBuffer, Int);
 	}
+
+	void Position3dWithName::convert(SQObject object)
+	{
+		Array arrayWrapper(object);
+		GET_SLOT(name, String);
+		GET_SLOT(x, Float);
+		GET_SLOT(y, Float);
+		GET_SLOT(z, Float);
+	}
 }
