@@ -77,6 +77,7 @@ file(GLOB CLIENT_SRC
 	"src/wog/client/Sprint.cpp"
 	"src/wog/client/Player.cpp"
 	"src/wog/client/Chat.cpp"
+	"src/wog/client/WorldBuilder.cpp"
 )
 
 file(GLOB SERVER_SRC
