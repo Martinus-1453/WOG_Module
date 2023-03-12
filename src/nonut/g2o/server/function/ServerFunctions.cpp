@@ -2,7 +2,7 @@
 
 namespace nonut::g2o
 {
-	ServerFunctions::ServerFunctions():
+	ServerFunctions::ServerFunctions() :
 		FUNCTION_CTOR(sendMessageToAll),
 		FUNCTION_CTOR(sendMessageToPlayer),
 		FUNCTION_CTOR(sendPlayerMessageToAll),
@@ -32,6 +32,7 @@ namespace nonut::g2o
 		FUNCTION_CTOR(getPlayerAngle),
 		FUNCTION_CTOR(getPlayerAniId),
 		FUNCTION_CTOR(getPlayerArmor),
+		FUNCTION_CTOR(getPlayerAtVector),
 		FUNCTION_CTOR(getPlayerBelt),
 		FUNCTION_CTOR(getPlayerCameraPosition),
 		FUNCTION_CTOR(getPlayerCollision),
@@ -113,6 +114,8 @@ namespace nonut::g2o
 		FUNCTION_CTOR(unequipShield),
 		FUNCTION_CTOR(unspawnPlayer),
 		FUNCTION_CTOR(useItem),
+		FUNCTION_CTOR(getNearestWaypoint),
+		FUNCTION_CTOR(getWaypoint)
 	{
 	}
 
