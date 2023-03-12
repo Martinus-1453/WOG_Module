@@ -122,6 +122,38 @@ namespace nonut::g2o
 		};
 	}
 
+	Vec3& Vec3::operator+=(const Vec3& rhs)
+	{
+		this->x = this->x.get() + rhs.x.get();
+		this->y = this->y.get() + rhs.y.get();
+		this->z = this->z.get() + rhs.z.get();
+		return *this;
+	}
+
+	Vec3& Vec3::operator-=(const Vec3& rhs)
+	{
+		this->x = this->x.get() - rhs.x.get();
+		this->y = this->y.get() - rhs.y.get();
+		this->z = this->z.get() - rhs.z.get();
+		return *this;
+	}
+
+	Vec3& Vec3::operator*=(const Vec3& rhs)
+	{
+		this->x = this->x.get() * rhs.x.get();
+		this->y = this->y.get() * rhs.y.get();
+		this->z = this->z.get() * rhs.z.get();
+		return *this;
+	}
+
+	Vec3& Vec3::operator/=(const Vec3& rhs)
+	{
+		this->x = this->x.get() / rhs.x.get();
+		this->y = this->y.get() / rhs.y.get();
+		this->z = this->z.get() / rhs.z.get();
+		return *this;
+	}
+
 	String Vec3::toString() const
 	{
 		return

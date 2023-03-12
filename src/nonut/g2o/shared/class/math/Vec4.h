@@ -14,6 +14,21 @@ namespace nonut::g2o
 		Vec4(SQObject object);
 		COPY_CTOR(Vec4);
 
+		bool operator==(const Vec4& rhs) const;
+		Vec4 operator+(const Vec4& rhs) const;
+		Vec4 operator+(const Float& rhs) const;
+		Vec4 operator-(const Vec4& rhs) const;
+		Vec4 operator-(const Float& rhs) const;
+		Vec4 operator*(const Vec4& rhs) const;
+		Vec4 operator*(const Float& rhs) const;
+		Vec4 operator/(const Vec4& rhs) const;
+		Vec4 operator/(const Float& rhs) const;
+
+		Vec4& operator+=(const Vec4& rhs);
+		Vec4& operator-=(const Vec4& rhs);
+		Vec4& operator*=(const Vec4& rhs);
+		Vec4& operator/=(const Vec4& rhs);
+
 		Property<Float> x;
 		Property<Float> y;
 		Property<Float> z;

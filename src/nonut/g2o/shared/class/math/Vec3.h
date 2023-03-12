@@ -25,6 +25,11 @@ namespace nonut::g2o
 		Vec3 operator/(const Vec3& rhs) const;
 		Vec3 operator/(const Float& rhs) const;
 
+		Vec3& operator+=(const Vec3& rhs);
+		Vec3& operator-=(const Vec3& rhs);
+		Vec3& operator*=(const Vec3& rhs);
+		Vec3& operator/=(const Vec3& rhs);
+
 		[[nodiscard]] String toString() const override;
 		[[nodiscard]] auto toTuple() const
 		{
