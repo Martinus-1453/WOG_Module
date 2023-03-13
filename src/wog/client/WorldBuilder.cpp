@@ -69,10 +69,10 @@ namespace wog
 		if (isEnabled)
 		{
 			Position3d rotation = Camera::get()->getRotation();
-			Resolution resolution = C_F->getResolution();
+			const Resolution resolution = C_F->getResolution();
 
-			rotation.x += x / resolution.x * ROTATION_SPEED;
-			rotation.y += y / resolution.y * ROTATION_SPEED;
+			rotation.x += static_cast<float>(x) / static_cast<float>(resolution.x) * ROTATION_SPEED;
+			rotation.y += static_cast<float>(y) / static_cast<float>(resolution.y) * ROTATION_SPEED;
 
 			Camera::get()->setRotation(rotation.x, rotation.y, rotation.z);
 		}
