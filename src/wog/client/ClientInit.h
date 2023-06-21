@@ -2,7 +2,7 @@
 #define WOG_CLIENT_CLIENT_INIT_H
 #include "Chat.h"
 #include "HUD.h"
-#include "pch.h"
+#include "CommonHeader.h"
 #include "Player.h"
 #include "Sprint.h"
 
@@ -15,6 +15,8 @@
 #include "class/game/Mob.h"
 #include "class/game/MobInter.h"
 #include "class/game/World.h"
+#include "gui/scenes/InventoryScene.h"
+#include "NoNutInitClient.h"
 
 using namespace SqModule;
 
@@ -31,13 +33,12 @@ namespace wog
 {
 	inline void clientInit()
 	{
-		ClientEventHandlers::init();
-		ClientConstants::init();
-		SharedConstants::init();
+		g2o::NoNutInitClient();
 		std::ignore = HUD::get();
 		std::ignore = Sprint::get();
 		std::ignore = Player::get();
 		std::ignore = Chat::get();
+		gui::createInventoryGui();
 
 		ClientEventHandlers::onPacketHandler.emplace(
 			nonut::ServerPacketType::HelloClient,
@@ -47,6 +48,7 @@ namespace wog
 				SHARED_FUNCTIONS->print(result);
 			});
 
+		return;
 		ClientEventHandlers::onMouseClickHandler.emplace_back([](Int key)
 		{
 			g2o::Packet packet{nonut::ClientPacketType::HelloServer};

@@ -1,7 +1,8 @@
 #ifndef WOG_SERVER_DB_CHARACTER_H
 #define WOG_SERVER_DB_CHARACTER_H
 
-#include "pch.h"
+#include "CommonHeader.h"
+#include "WogHeader.h"
 
 namespace wog
 {

@@ -1,6 +1,6 @@
 #ifndef WOG_SERVER_SERVER_INIT_H
 #define WOG_SERVER_SERVER_INIT_H
-#include "pch.h"
+#include "CommonHeader.h"
 
 //#include "constant/ServerConstants.h"
 #include "Chat.h"
@@ -10,6 +10,8 @@
 #include "constant/SharedConstants.h"
 #include "StringHelpers.h"
 #include "function/ServerFunctions.h"
+#include "NoNutInitServer.h"
+#include "WogHeader.h"
 
 using namespace SqModule;
 
@@ -20,8 +22,7 @@ namespace wog
 {
 	inline void serverInit()
 	{
-		//ServerConstants::init();
-		ServerEventHandlers::init();
+		g2o::NoNutInitServer();
 		std::ignore = Chat::get();
 		std::ignore = Login::get();
 

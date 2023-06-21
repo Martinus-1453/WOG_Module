@@ -3,7 +3,8 @@
 
 #include <vector>
 
-#include "pch.h"
+#include "CommonHeader.h"
+#include "WogHeader.h"
 #include "class/ui/Draw.h"
 
 namespace wog
