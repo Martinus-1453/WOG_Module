@@ -3,6 +3,7 @@
 #include "constant/ClientConstants.h"
 #include "event/ClientEventHandlers.h"
 #include "function/ClientFunctions.h"
+#include "WogHeader.h"
 
 using ClientEventHandlers = g2o::ClientEventHandlers;
 using ClientConstants = g2o::ClientConstants;

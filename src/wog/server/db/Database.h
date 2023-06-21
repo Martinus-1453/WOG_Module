@@ -4,6 +4,7 @@
 #include <sqlite_orm.h>
 #include "User.h"
 #include "Character.h"
+#include "WogHeader.h"
 
 namespace orm = sqlite_orm;
 

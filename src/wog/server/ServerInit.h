@@ -11,6 +11,7 @@
 #include "StringHelpers.h"
 #include "function/ServerFunctions.h"
 #include "NoNutInitServer.h"
+#include "WogHeader.h"
 
 using namespace SqModule;
 

@@ -7,6 +7,7 @@
 #include "Virt.h"
 #include "event/ClientEventHandlers.h"
 #include "Sprint.h"
+#include "WogHeader.h"
 
 using ClientConstants = g2o::ClientConstants;
 using Virt = g2o::Virt;

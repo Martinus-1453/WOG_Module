@@ -2,6 +2,7 @@
 #define WOG_SERVER_DB_USER_H
 
 #include "CommonHeader.h"
+#include "WogHeader.h"
 
 namespace wog
 {

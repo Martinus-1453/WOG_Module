@@ -2,6 +2,7 @@
 #define WOG_SERVER_DB_CHARACTER_H
 
 #include "CommonHeader.h"
+#include "WogHeader.h"
 
 namespace wog
 {

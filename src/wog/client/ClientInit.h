@@ -15,7 +15,6 @@
 #include "class/game/Mob.h"
 #include "class/game/MobInter.h"
 #include "class/game/World.h"
-#include "gui/scenes/InventoryScene.h"
 #include "NoNutInitClient.h"
 
 using namespace SqModule;

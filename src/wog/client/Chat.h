@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "CommonHeader.h"
+#include "WogHeader.h"
 #include "class/ui/Draw.h"
 
 namespace wog

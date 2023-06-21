@@ -2,6 +2,7 @@
 
 #include "event/ServerEventHandlers.h"
 #include "function/ServerFunctions.h"
+#include "WogHeader.h"
 
 namespace wog
 {
