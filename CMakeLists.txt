@@ -42,6 +42,7 @@ target_sources(wog-module-server PRIVATE ${SERVER_SRC})
 
 target_precompile_headers(wog-module-client
     PRIVATE
+		<zGothicAPI.h>
 		"src/api/module_api.h"
 		"src/api/squirrel_api.h"
 )
