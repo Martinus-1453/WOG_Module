@@ -2,7 +2,7 @@
 #define WOG_CLIENT_CLIENT_INIT_H
 #include "Chat.h"
 #include "HUD.h"
-#include "pch.h"
+#include "CommonHeader.h"
 #include "Player.h"
 #include "Sprint.h"
 

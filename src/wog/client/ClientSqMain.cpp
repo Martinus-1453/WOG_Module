@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "CommonHeader.h"
 #include "function/ClientFunctions.h"
 #include "ClientInit.h"
 #include "WogConfig.h"

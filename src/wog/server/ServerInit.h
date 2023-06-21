@@ -1,6 +1,6 @@
 #ifndef WOG_SERVER_SERVER_INIT_H
 #define WOG_SERVER_SERVER_INIT_H
-#include "pch.h"
+#include "CommonHeader.h"
 
 //#include "constant/ServerConstants.h"
 #include "Chat.h"

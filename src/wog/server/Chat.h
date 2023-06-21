@@ -1,6 +1,6 @@
 #ifndef WOG_SERVER_CHAT_H
 #define WOG_SERVER_CHAT_H
-#include "pch.h"
+#include "CommonHeader.h"
 
 namespace wog
 {
