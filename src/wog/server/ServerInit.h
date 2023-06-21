@@ -10,6 +10,7 @@
 #include "constant/SharedConstants.h"
 #include "StringHelpers.h"
 #include "function/ServerFunctions.h"
+#include "NoNutInitServer.h"
 
 using namespace SqModule;
 
@@ -20,8 +21,7 @@ namespace wog
 {
 	inline void serverInit()
 	{
-		//ServerConstants::init();
-		ServerEventHandlers::init();
+		g2o::NoNutInitServer();
 		std::ignore = Chat::get();
 		std::ignore = Login::get();
 

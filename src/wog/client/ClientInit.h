@@ -15,6 +15,8 @@
 #include "class/game/Mob.h"
 #include "class/game/MobInter.h"
 #include "class/game/World.h"
+#include "gui/scenes/InventoryScene.h"
+#include "NoNutInitClient.h"
 
 using namespace SqModule;
 
@@ -31,9 +33,7 @@ namespace wog
 {
 	inline void clientInit()
 	{
-		ClientEventHandlers::init();
-		ClientConstants::init();
-		SharedConstants::init();
+		g2o::NoNutInitClient();
 		std::ignore = HUD::get();
 		std::ignore = Sprint::get();
 		std::ignore = Player::get();
