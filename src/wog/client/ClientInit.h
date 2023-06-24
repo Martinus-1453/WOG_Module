@@ -37,7 +37,6 @@ namespace wog
 		std::ignore = Sprint::get();
 		std::ignore = Player::get();
 		std::ignore = Chat::get();
-
 	}
 }
 #endif // WOG_CLIENT_CLIENT_INIT_H

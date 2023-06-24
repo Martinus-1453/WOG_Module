@@ -73,15 +73,6 @@ namespace wog
 		}
 	}
 
-	Sprint* Sprint::get()
-	{
-		if (instance == nullptr)
-		{
-			instance = new Sprint();
-		}
-		return instance;
-	}
-
 	float Sprint::getStamina() const
 	{
 		return stamina;

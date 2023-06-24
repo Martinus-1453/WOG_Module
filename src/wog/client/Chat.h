@@ -40,10 +40,9 @@ namespace wog
 		std::vector<HighlightRange> ranges;
 	};
 
-	class Chat
+	class Chat : public Singleton<Chat>
 	{
 	public:
-		static Chat* get();
 		ChatMode chatMode = Ic;
 
 	protected:
@@ -58,8 +57,7 @@ namespace wog
 
 		float maxWidth = 0.75f;
 
-
-		static inline Chat* instance = nullptr;
+		friend Singleton;
 	};
 }
 #endif // WOG_CLIENT_CHAT_H

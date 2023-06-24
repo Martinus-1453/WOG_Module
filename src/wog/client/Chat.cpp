@@ -15,15 +15,6 @@ using Virt = g2o::Virt;
 
 namespace wog
 {
-	Chat* Chat::get()
-	{
-		if (instance == nullptr)
-		{
-			instance = new Chat();
-		}
-		return instance;
-	}
-
 	inline void openChat()
 	{
 		C_F->chatInputOpen();

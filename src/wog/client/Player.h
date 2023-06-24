@@ -1,17 +1,17 @@
 #ifndef WOG_CLIENT_PLAYER_H
 #define WOG_CLIENT_PLAYER_H
+#include "WogHeader.h"
 
 namespace wog
 {
-	class Player
+	class Player : public Singleton<Player>
 	{
 	public:
-		static Player* get();
 
 	protected:
 		Player();
 
-		static inline Player* instance = nullptr;
+		friend Singleton;
 	};
 }
 #endif // WOG_CLIENT_PLAYER_H

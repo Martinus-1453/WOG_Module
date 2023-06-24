@@ -1,12 +1,12 @@
 #ifndef WOG_CLIENT_SPRINT_H
 #define WOG_CLIENT_SPRINT_H
+#include "WogHeader.h"
 
 namespace wog
 {
-	class Sprint
+	class Sprint : public Singleton<Sprint>
 	{
 	public:
-		static Sprint* get();
 		[[nodiscard]] float getStamina() const;
 		[[nodiscard]] float getStaminaMax() const;
 		[[nodiscard]] bool isExhausted() const;
@@ -15,7 +15,6 @@ namespace wog
 
 		void update(float deltaTime);
 
-		static inline Sprint* instance = nullptr;
 		//TODO: Replace with fetch from player data
 		float stamina{0.f};
 		float staminaMax{100.f};
@@ -27,6 +26,8 @@ namespace wog
 
 		static constexpr float KEY_TIMEOUT = 0.3f;
 		static constexpr float EXHAUSTION_TIME = 3.f;
+
+		friend Singleton;
 	};
 }
 #endif // WOG_CLIENT_SPRINT_H

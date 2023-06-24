@@ -1,5 +1,6 @@
 #ifndef WOG_SHARED_WOGHEADER_H_
 #define WOG_SHARED_WOGHEADER_H_
+#include "CommonHeader.h"
 #include <vector>
 #include <optional>
 

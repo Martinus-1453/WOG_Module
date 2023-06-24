@@ -21,25 +21,6 @@ constexpr auto uvBias = 0.004f;
 
 namespace wog
 {
-	HUD* HUD::get()
-	{
-		if (instance == nullptr)
-		{
-			instance = new HUD();
-		}
-		return instance;
-	}
-
-	/*void processVerticalBar(nonut::g2o::Texture& bar, float percentage, Int x, Int y)
-	{
-		const auto height = texture2Height * percentage;
-		bar.setUV(0.f, 1.f - percentage, 1.0f, percentage);
-		bar.setSize(C_F->anx(texture2Width), C_F->any(height));
-		bar.setPosition(
-			x,
-			y - C_F->any(height) - C_F->any(texture12diff));
-	}*/
-
 	void processHorizontalBar(g2o::Texture& bar, float percentage, TextureSize textureSize)
 	{
 		const auto width = std::floorf(textureSize.first * percentage);
@@ -57,7 +38,6 @@ namespace wog
 		bar.setSize(C_F->anx(width), C_F->any(textureSize.second));
 		bar.setPosition(x + C_F->anx(deltaWidth), y);
 	}
-
 
 	void HUD::draw(const float deltaTime)
 	{
