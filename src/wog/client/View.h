@@ -1,5 +1,5 @@
-#ifndef WOG_CLIENT_BROWSER_H
-#define WOG_CLIENT_BROWSER_H
+#ifndef WOG_CLIENT_VIEW_H
+#define WOG_CLIENT_VIEW_H
 #include "WogHeader.h"
 #include "CustomTypes.h"
 #include <GothicAPI/Gothic_II_Addon/API/zRndD3d.h>
@@ -33,8 +33,6 @@ namespace wog
 
 	protected:
 		virtual void Blit() override;
-
-	private:
 		void updateVertices();
 
 		std::vector<zTRndSimpleVertex> _vertices;

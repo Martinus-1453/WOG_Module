@@ -5,7 +5,7 @@
 #include "class/ui/Draw.h"
 #include "Virt.h"
 #include "class/game/World.h"
-#include "View.h"
+#include "Browser.h"
 
 using namespace SqModule;
 
@@ -31,8 +31,35 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	draw->visible = true;
 	draw->setScale(1, 1);
 
-	testView = new wog::View(0, 0, 2196, 2196);
-	testView->setFilename("STARTSCREEN.TGA");
+	//CEF - Init
+	CefMainArgs args;
+	CefSettings settings;
+
+	std::string systemDir = zoptions->GetDirString(DIR_EXECUTABLE).ToChar();
+
+	CefString(&settings.browser_subprocess_path).FromString(systemDir + "/cef_launcher.exe");
+	CefString(&settings.resources_dir_path).FromString(systemDir + "/CEF");
+	CefString(&settings.locales_dir_path).FromString(systemDir + "/CEF/locales");
+	CefString(&settings.log_file).FromString(systemDir + "/CEF/log.txt");
+
+	settings.windowless_rendering_enabled = true;
+	settings.no_sandbox = true;
+
+	CefInitialize(args, settings, nullptr, nullptr);
+
+	g2o::ClientEventHandlers::onRenderHandler.emplace_back([](nonut::Float delta) {
+		CefDoMessageLoopWork();
+	});
+
+	//CEF - Enum Texture Formats
+	zCRnd_D3D* render_d3d = reinterpret_cast<zCRnd_D3D*>(zrenderer);
+	LPD3DENUMPIXELFORMATSCALLBACK textureCallback = (LPD3DENUMPIXELFORMATSCALLBACK)0x00647780;
+	int StartFormat;
+
+	render_d3d->xd3d_pd3dDevice7->EnumTextureFormats(textureCallback, static_cast<LPVOID>(&StartFormat));
+
+	//CEF - Test
+	testView = new wog::Browser(0, 0, 2196, 2196, "https://google.com/");
 	testView->setVisible(true);
 
 	return SQ_OK;

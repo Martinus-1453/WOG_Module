@@ -18,6 +18,8 @@ file(GLOB SHARED_SRC
 
 file(GLOB CLIENT_SRC
 	"src/wog/client/ClientSqMain.cpp"
+	"src/wog/client/32bitSurface.cpp"
+	"src/wog/client/Browser.cpp"
 	"src/wog/client/View.cpp"
 	"src/wog/client/HUD.cpp"
 	"src/wog/client/Sprint.cpp"
