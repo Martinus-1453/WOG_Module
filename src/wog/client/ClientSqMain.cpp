@@ -10,6 +10,8 @@ using namespace SqModule;
 
 extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 {
+	//Setup CEF
+
 	Initialize(vm, api);
 	Sqrat::DefaultVM::Set(vm);
 	C_F->enableEvent_Render(true);

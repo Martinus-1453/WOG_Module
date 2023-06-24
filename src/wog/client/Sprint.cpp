@@ -15,7 +15,7 @@ namespace wog
 	{
 		ClientEventHandlers::onKeyHandler.emplace_back([this](Int key)
 		{
-			if (key == ClientConstant::KEY_LSHIFT)
+			if (key == KEY_LSHIFT)
 			{
 				isActive = true;
 				keyTimer = 0.f;

@@ -46,7 +46,7 @@ namespace wog
 
 		ClientEventHandlers::onKeyHandler.emplace_back([this](Int key)
 		{
-			if (key == ClientConstants::KEY_T)
+			if (key == KEY_T)
 			{
 				if (!C_F->chatInputIsOpen())
 				{
@@ -54,43 +54,6 @@ namespace wog
 					openChat();
 				}
 				return;
-			}
-
-			if (key == ClientConstants::KEY_ESCAPE)
-			{
-				if (C_F->chatInputIsOpen())
-				{
-					// CLOSE CHAT HERE
-					closeChat();
-					return;
-				}
-			}
-
-			if (key == ClientConstants::KEY_DELETE)
-			{
-				if (C_F->chatInputIsOpen())
-				{
-					C_F->chatInputClear();
-				}
-				return;
-			}
-
-			if (key == ClientConstants::KEY_RETURN)
-			{
-				if (C_F->chatInputIsOpen())
-				{
-					if (!C_F->chatInputGetText().empty())
-					{
-						// CLOSE CHAT HERE
-						C_F->chatInputSend();
-						C_F->chatInputClear();
-						closeChat();
-					}
-					else
-					{
-						closeChat();
-					}
-				}
 			}
 		});
 

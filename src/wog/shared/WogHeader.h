@@ -1,6 +1,8 @@
 #ifndef WOG_SHARED_WOGHEADER_H_
 #define WOG_SHARED_WOGHEADER_H_
 #include "CommonHeader.h"
+#undef min
+#undef max
 #include <vector>
 #include <optional>
 
