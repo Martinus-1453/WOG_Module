@@ -5,8 +5,11 @@
 #include "class/ui/Draw.h"
 #include "Virt.h"
 #include "class/game/World.h"
+#include "View.h"
 
 using namespace SqModule;
+
+wog::View* testView;
 
 extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 {
@@ -27,6 +30,10 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	// TODO: consider having unique_ptr in some singleton to hold it?
 	draw->visible = true;
 	draw->setScale(1, 1);
+
+	testView = new wog::View(0, 0, 2196, 2196);
+	testView->setFilename("STARTSCREEN.TGA");
+	testView->setVisible(true);
 
 	return SQ_OK;
 }
