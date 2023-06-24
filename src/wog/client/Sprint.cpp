@@ -7,7 +7,7 @@
 #include "WogHeader.h"
 
 using ClientEventHandlers = g2o::ClientEventHandlers;
-using ClientConstant = g2o::ClientConstants;
+using ClientConstants = g2o::ClientConstants;
 
 namespace wog
 {
@@ -15,7 +15,7 @@ namespace wog
 	{
 		ClientEventHandlers::onKeyHandler.emplace_back([this](Int key)
 		{
-			if (key == KEY_LSHIFT)
+			if (key == ClientConstants::KEY_LSHIFT)
 			{
 				isActive = true;
 				keyTimer = 0.f;

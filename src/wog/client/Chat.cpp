@@ -46,7 +46,7 @@ namespace wog
 
 		ClientEventHandlers::onKeyHandler.emplace_back([this](Int key)
 		{
-			if (key == KEY_T)
+			if (key == ClientConstants::KEY_T)
 			{
 				if (!C_F->chatInputIsOpen())
 				{
