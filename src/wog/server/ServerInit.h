@@ -31,28 +31,28 @@ namespace wog
 				S_F->spawnPlayer(playerId);
 			});
 
-		ServerEventHandlers::onPacketHandler.emplace(
-			nonut::ClientPacketType::HelloServer,
-			[](Int playerId, nonut::g2o::Packet& packet)
-			{
-				SH_F->print(std::to_string(packet.readInt32()));
-				SH_F->print(nonut::win1250ToUTF8(packet.readString()));
-				auto val = packet.readInt32();
+		//ServerEventHandlers::onPacketHandler.emplace(
+		//	nonut::ClientPacketType::HelloServer,
+		//	[](Int playerId, nonut::g2o::Packet& packet)
+		//	{
+		//		SH_F->print(std::to_string(packet.readInt32()));
+		//		SH_F->print(nonut::win1250ToUTF8(packet.readString()));
+		//		auto val = packet.readInt32();
 
-				S_F->setPlayerHealth(playerId, val);
-				S_F->setPlayerMana(playerId, val);
-			});
+		//		S_F->setPlayerHealth(playerId, val);
+		//		S_F->setPlayerMana(playerId, val);
+		//	});
 
-		ServerEventHandlers::onPlayerChangeWeaponModeHandler.emplace_back(
-			[](Int playerId, Int oldWeaponMode, Int newWeaponMode)
-			{
-				nonut::g2o::Packet packet{nonut::ServerPacketType::HelloClient};
-				String text = "Hello Client!";
-				S_F->setPlayerMaxHealth(playerId, 100);
-				S_F->setPlayerMaxMana(playerId, 100);
-				packet.writeString(text);
-				packet.send(playerId, nonut::g2o::SharedConstants::RELIABLE_ORDERED);
-			});
+		//ServerEventHandlers::onPlayerChangeWeaponModeHandler.emplace_back(
+		//	[](Int playerId, Int oldWeaponMode, Int newWeaponMode)
+		//	{
+		//		nonut::g2o::Packet packet{nonut::ServerPacketType::HelloClient};
+		//		String text = "Hello Client!";
+		//		S_F->setPlayerMaxHealth(playerId, 100);
+		//		S_F->setPlayerMaxMana(playerId, 100);
+		//		packet.writeString(text);
+		//		packet.send(playerId, nonut::g2o::SharedConstants::RELIABLE_ORDERED);
+		//	});
 	}
 }
 #endif // WOG_SERVER_SERVER_INIT_H
