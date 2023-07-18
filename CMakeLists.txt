@@ -26,6 +26,7 @@ file(GLOB CLIENT_SRC
 	"src/wog/client/Player.cpp"
 	"src/wog/client/Chat.cpp"
 	"src/wog/client/Virt.cpp"
+	"src/wog/client/InputHandler.cpp"
 )
 
 file(GLOB SERVER_SRC

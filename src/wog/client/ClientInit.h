@@ -16,6 +16,7 @@
 #include "class/game/MobInter.h"
 #include "class/game/World.h"
 #include "PacketHelper.h"
+#include "InputHandler.h"
 #include "NoNutInitClient.h"
 
 using namespace SqModule;

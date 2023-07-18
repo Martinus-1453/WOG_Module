@@ -30,7 +30,7 @@ namespace wog
 		void OnPaint(CefRefPtr<CefBrowser> browser, PaintElementType type, const RectList& dirtyRects, const void* buffer, int width, int height) override;
 
 	private:
-		void clearBuffer();
+		void clearBuffer() const;
 		void initTextureFormat();
 		void correctPow2(int& xsize, int& ysize);
 
