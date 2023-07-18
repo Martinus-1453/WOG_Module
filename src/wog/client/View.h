@@ -20,24 +20,24 @@ namespace wog
 		void setSize(int width, int height);
 		void setSizePx(int width, int height);
 		void setVisible(bool visible);
-		void setFilename(const char* file);
+		void setFilename(const char* filename);
 
-		g2o::Color getColor();
-		int getAlpha();
+		g2o::Color getColor() const;
+		int getAlpha() const;
 		g2o::Position2d getPosition();
 		g2o::Position2d getPositionPx();
 		g2o::Size2d getSize();
 		g2o::Size2d getSizePx();
-		bool getVisible();
-		const char* getFilename();
+		bool getVisible() const;
+		const char* getFilename() const;
 
 	protected:
-		virtual void Blit() override;
+		void Blit() override;
 		void updateVertices();
 
-		std::vector<zTRndSimpleVertex> _vertices;
-		zVEC2 _position;
-		zVEC2 _size;
+		std::vector<zTRndSimpleVertex> vertices;
+		zVEC2 position;
+		zVEC2 size;
 	};
 }
 

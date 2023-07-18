@@ -4,14 +4,14 @@ namespace wog
 {
 	View::View(int x, int y, int width, int height) :
 		zCView(0, 0, 0, 0),
-		_position(screen->nax(x), screen->nay(y)),
-		_size(screen->nax(width), screen->nay(height))
+		position(screen->nax(x), screen->nay(y)),
+		size(screen->nax(width), screen->nay(height))
 	{
 		//Create vertices
-		_vertices.emplace_back(zTRndSimpleVertex{ _position, 0.0f, zVEC2(0.0f, 0.0f), zCOLOR(255, 255, 255, 255)});
-		_vertices.emplace_back(zTRndSimpleVertex{ zVEC2(_position[0] + _size[0], _position[1]), 0.0f, zVEC2(1.0f, 0.0f), zCOLOR(255, 255, 255, 255)});
-		_vertices.emplace_back(zTRndSimpleVertex{ _position + _size, 0.0f, zVEC2(1.0f, 1.0f), zCOLOR(255, 255, 255, 255) });
-		_vertices.emplace_back(zTRndSimpleVertex{ zVEC2(_position[0], _position[1] + _size[1]), 0.0f, zVEC2(0.0f, 1.0f), zCOLOR(255, 255, 255, 255)});
+		vertices.emplace_back(position, 0.0f, zVEC2(0.0f, 0.0f), zCOLOR(255, 255, 255, 255));
+		vertices.emplace_back(zVEC2(position[0] + size[0], position[1]), 0.0f, zVEC2(1.0f, 0.0f), zCOLOR(255, 255, 255, 255));
+		vertices.emplace_back(position + size, 0.0f, zVEC2(1.0f, 1.0f), zCOLOR(255, 255, 255, 255));
+		vertices.emplace_back(zVEC2(position[0], position[1] + size[1]), 0.0f, zVEC2(0.0f, 1.0f), zCOLOR(255, 255, 255, 255));
 	}
 
 	void View::top()
@@ -19,51 +19,51 @@ namespace wog
 		Top();
 	}
 
-	void View::setColor(int r, int g, int b)
+	void View::setColor(const int r, const int g, const int b)
 	{
 		color.r = r;
 		color.g = g;
 		color.b = b;
 	}
 
-	void View::setAlpha(int alpha)
+	void View::setAlpha(const int alpha)
 	{
 		color.alpha = alpha;
 	}
 
-	void View::setPosition(int x, int y)
+	void View::setPosition(const int x, const int y)
 	{
-		_position[0] = screen->nax(x);
-		_position[1] = screen->nay(y);
+		position[0] = screen->nax(x);
+		position[1] = screen->nay(y);
 
 		updateVertices();
 	}
 
-	void View::setPositionPx(int x, int y)
+	void View::setPositionPx(const int x, const int y)
 	{
-		_position[0] = x;
-		_position[1] = y;
+		position[0] = x;
+		position[1] = y;
 
 		updateVertices();
 	}
 
-	void View::setSize(int width, int height)
+	void View::setSize(const int width, const int height)
 	{
-		_size[0] = screen->nax(width);
-		_size[1] = screen->nay(height);
+		size[0] = screen->nax(width);
+		size[1] = screen->nay(height);
 
 		updateVertices();
 	}
 
-	void View::setSizePx(int width, int height)
+	void View::setSizePx(const int width, const int height)
 	{
-		_size[0] = width;
-		_size[1] = height;
+		size[0] = width;
+		size[1] = height;
 
 		updateVertices();
 	}
 
-	void View::setVisible(bool visible)
+	void View::setVisible(const bool visible)
 	{
 		if (bool(ondesk) == visible)
 			return;
@@ -79,7 +79,7 @@ namespace wog
 		InsertBack(filename);
 	}
 
-	g2o::Color View::getColor()
+	g2o::Color View::getColor() const
 	{
 		g2o::Color color;
 		color.r = this->color.r;
@@ -89,53 +89,53 @@ namespace wog
 		return color;
 	}
 
-	int View::getAlpha()
+	int View::getAlpha() const
 	{
 		return color.alpha;
 	}
 
 	g2o::Position2d View::getPosition()
 	{
-		g2o::Position2d position;
-		position.x = screen->nax(_position[0]);
-		position.y = screen->nay(_position[1]);
+		g2o::Position2d result;
+		result.x = screen->nax(position[0]);
+		result.y = screen->nay(position[1]);
 
-		return position;
+		return result;
 	}
 
 	g2o::Position2d View::getPositionPx()
 	{
-		g2o::Position2d position;
-		position.x = _position[0];
-		position.y = _position[1];
+		g2o::Position2d result;
+		result.x = position[0];
+		result.y = position[1];
 
-		return position;
+		return result;
 	}
 
 	g2o::Size2d View::getSize()
 	{
-		g2o::Size2d size;
-		size.width = screen->nax(_size[0]);
-		size.height = screen->nay(_size[1]);
+		g2o::Size2d result;
+		result.width = screen->nax(size[0]);
+		result.height = screen->nay(size[1]);
 
-		return size;
+		return result;
 	}
 
 	g2o::Size2d View::getSizePx()
 	{
-		g2o::Size2d size;
-		size.width = _size[0];
-		size.height = _size[1];
+		g2o::Size2d result;
+		result.width = size[0];
+		result.height = size[1];
 
-		return size;
+		return result;
 	}
 
-	bool View::getVisible()
+	bool View::getVisible() const
 	{
 		return ondesk;
 	}
 
-	const char* View::getFilename()
+	const char* View::getFilename() const
 	{
 		if (!backTex)
 			return "";
@@ -146,8 +146,8 @@ namespace wog
 	void View::Blit()
 	{
 		// Get positions of upper left (posMin) and lower right (posMax) corners of element
-		const zVEC2& posMin = _position;
-		const zVEC2 posMax = _position + _size;
+		const zVEC2& posMin = position;
+		const zVEC2 posMax = position + size;
 
 		// if element is outside the screen -> break
 		if (posMin[0] > zrenderer->vid_xdim || posMin[1] > zrenderer->vid_ydim)
@@ -169,16 +169,16 @@ namespace wog
 
 		zrenderer->SetViewport(screenPosMin[0], screenPosMin[1], screenSize[0], screenSize[1]);
 
-		zBOOL oldzWrite = zrenderer->GetZBufferWriteEnabled();
+		const zBOOL oldzWrite = zrenderer->GetZBufferWriteEnabled();
 		zrenderer->SetZBufferWriteEnabled(m_bFillZ);
 
-		zTRnd_ZBufferCmp oldCmp = zrenderer->GetZBufferCompare();
+		const zTRnd_ZBufferCmp oldCmp = zrenderer->GetZBufferCompare();
 		zrenderer->SetZBufferCompare(zRND_ZBUFFER_CMP_ALWAYS);
 
-		zTRnd_AlphaBlendFunc oldBlendFunc = zrenderer->GetAlphaBlendFunc();
+		const zTRnd_AlphaBlendFunc oldBlendFunc = zrenderer->GetAlphaBlendFunc();
 		zrenderer->SetAlphaBlendFunc(alphafunc);
 
-		zBOOL oldBilerpFilter = zrenderer->GetBilerpFilterEnabled();
+		const zBOOL oldBilerpFilter = zrenderer->GetBilerpFilterEnabled();
 		zrenderer->SetBilerpFilterEnabled(TRUE);
 
 		// Update far z
@@ -189,10 +189,10 @@ namespace wog
 		else
 			farZ = (zCCamera::activeCam) ? zCCamera::activeCam->nearClipZ + 1.0f : 1.0f;
 
-		for (auto& vert : _vertices)
+		for (auto& vert : vertices)
 			vert.z = farZ;
 
-		zrenderer->DrawPolySimple(backTex, _vertices.data(), _vertices.size());
+		zrenderer->DrawPolySimple(backTex, vertices.data(), vertices.size());
 
 		// Restoring old values (defaults in zrenderer)
 		zrenderer->SetBilerpFilterEnabled(oldBilerpFilter);
@@ -203,9 +203,9 @@ namespace wog
 
 	void View::updateVertices()
 	{
-		_vertices[0].pos = _position;
-		_vertices[1].pos = zVEC2(_position[0] + _size[0], _position[1]);
-		_vertices[2].pos = _position + _size;
-		_vertices[3].pos = zVEC2(_position[0], _position[1] + _size[1]);
+		vertices[0].pos = position;
+		vertices[1].pos = zVEC2(position[0] + size[0], position[1]);
+		vertices[2].pos = position + size;
+		vertices[3].pos = zVEC2(position[0], position[1] + size[1]);
 	}
 }

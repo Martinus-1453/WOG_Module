@@ -10,35 +10,35 @@ namespace wog
 {
 	class Browser : public View, protected CefClient, protected CefRenderHandler, protected CefLifeSpanHandler
 	{
+	public:
 		IMPLEMENT_REFCOUNTING(Browser);
 
-	public:
 		Browser(int x, int y, int width, int height, const char* url);
-		virtual ~Browser();
+		~Browser() override;
 
 		bool setUrl(const char* url);
 
 		const char* getUrl();
 
 	protected:
-		virtual CefRefPtr<CefRenderHandler> GetRenderHandler() override;
-		virtual CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() override;
+		CefRefPtr<CefRenderHandler> GetRenderHandler() override;
+		CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() override;
 
-		virtual void GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) override;
-		virtual void OnAfterCreated(CefRefPtr<CefBrowser> browser) override;
-		virtual void OnBeforeClose(CefRefPtr<CefBrowser> browser) override;
-		virtual void OnPaint(CefRefPtr<CefBrowser> browser, CefRenderHandler::PaintElementType type, const CefRenderHandler::RectList& dirtyRects, const void* buffer, int width, int height) override;
-	
+		void GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) override;
+		void OnAfterCreated(CefRefPtr<CefBrowser> browser) override;
+		void OnBeforeClose(CefRefPtr<CefBrowser> browser) override;
+		void OnPaint(CefRefPtr<CefBrowser> browser, PaintElementType type, const RectList& dirtyRects, const void* buffer, int width, int height) override;
+
 	private:
 		void clearBuffer();
 		void initTextureFormat();
 		void correctPow2(int& xsize, int& ysize);
 
-		zCTextureConvert* _texConverter;
-		unsigned long _scaleFormat;
+		zCTextureConvert* texConverter;
+		unsigned long scaleFormat;
 
-		CefRefPtr<CefBrowser> _browser;
-		bool _closing;
+		CefRefPtr<CefBrowser> browser;
+		bool isClosing;
 		
 	};
 }

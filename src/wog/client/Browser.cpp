@@ -12,8 +12,8 @@ namespace wog
 	Browser::Browser(int x, int y, int width, int height, const char* url) :
 		View(x, y, width, height)
 	{
-		_texConverter = nullptr;
-		_closing = false;
+		texConverter = nullptr;
+		isClosing = false;
 
 		//Setup texture
 		alphafunc = zRND_ALPHA_FUNC_BLEND;
@@ -34,15 +34,15 @@ namespace wog
 
 	Browser::~Browser()
 	{
-		_browser = nullptr;
+		browser = nullptr;
 	}
 
 	bool Browser::setUrl(const char* url)
 	{
-		if (!_browser)
+		if (!browser)
 			return false;
 
-		CefRefPtr<CefFrame> frame = _browser->GetMainFrame();
+		CefRefPtr<CefFrame> frame = browser->GetMainFrame();
 
 		//TODO: optional POST data
 		frame->LoadURL(url);
@@ -52,10 +52,10 @@ namespace wog
 
 	const char* Browser::getUrl()
 	{
-		if (!_browser)
+		if (!browser)
 			return "";
 
-		CefRefPtr<CefFrame> frame = _browser->GetMainFrame();
+		CefRefPtr<CefFrame> frame = browser->GetMainFrame();
 
 		return frame->GetURL().ToString().c_str();
 	}
@@ -72,33 +72,33 @@ namespace wog
 
 	void Browser::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect)
 	{
-		if (!_closing)
-			rect = { 0, 0, static_cast<int>(_size[0]), static_cast<int>(_size[1]) };
+		if (!isClosing)
+			rect = { 0, 0, static_cast<int>(size[0]), static_cast<int>(size[1]) };
 		else
 			rect = { 0, 0, 1, 1 };
 	}
 
 	void Browser::OnAfterCreated(CefRefPtr<CefBrowser> browser)
 	{
-		_browser = browser;
+		browser = browser;
 	}
 
 	void Browser::OnBeforeClose(CefRefPtr<CefBrowser> browser)
 	{
-		_closing = true;
-		_browser = nullptr;
+		isClosing = true;
+		browser = nullptr;
 	}
 
 	void Browser::OnPaint(CefRefPtr<CefBrowser> browser, CefRenderHandler::PaintElementType type, const CefRenderHandler::RectList& dirtyRects, const void* buffer, int width, int height)
 	{
-		if (_closing)
+		if (isClosing)
 			return;
 
-		if (!_texConverter)
+		if (!texConverter)
 		{
 			if (backTex->Lock(0))
 			{
-				void* srcBuffer = NULL;
+				void* srcBuffer = nullptr;
 				int pitchXBytes = 0;
 
 				// Copy CEF frame to srcBuffer buffer
@@ -110,42 +110,41 @@ namespace wog
 		}
 		else
 		{
-			if (_texConverter->Lock(0))
+			if (texConverter->Lock(0))
 			{
 				// Copy CEF frame to texConverter buffer
-				void* srcBuffer = NULL;
+				void* srcBuffer = nullptr;
 				int pitchXBytes = 0;
 
-				if (_texConverter->GetTextureBuffer(0, srcBuffer, pitchXBytes))
+				if (texConverter->GetTextureBuffer(0, srcBuffer, pitchXBytes))
 					memcpy(srcBuffer, buffer, pitchXBytes * height);
 
 				// Copy scaled image to backTex
 				backTex->Lock(0);
 
-				void* dstBuffer = NULL;
+				void* dstBuffer = nullptr;
 				if (backTex->GetTextureBuffer(0, dstBuffer, pitchXBytes))
 				{
-					int srcSize[] = { _texConverter->GetTextureInfo().sizeX, _texConverter->GetTextureInfo().sizeY };
-					int dstSize[] = { backTex->GetTextureInfo().sizeX, backTex->GetTextureInfo().sizeY };
+					int srcSize[] = { texConverter->GetTextureInfo().sizeX, texConverter->GetTextureInfo().sizeY };
+					const int dstSize[] = { backTex->GetTextureInfo().sizeX, backTex->GetTextureInfo().sizeY };
 
-					resizeTexture(srcSize, dstSize[VX], dstSize[VY], srcBuffer, dstBuffer, _scaleFormat);
+					resizeTexture(srcSize, dstSize[VX], dstSize[VY], srcBuffer, dstBuffer, scaleFormat);
 				}
 
-				_texConverter->Unlock();
+				texConverter->Unlock();
 				backTex->Unlock();
 			}
 		}
 	}
-	void Browser::clearBuffer()
+	void Browser::clearBuffer() const
 	{
 		if (backTex->Lock(0))
 		{
-			void* srcBuffer = NULL;
 			int pitchXBytes = 0;
 
-			zCTextureInfo texInfo = backTex->GetTextureInfo();
+			const zCTextureInfo texInfo = backTex->GetTextureInfo();
 
-			if (backTex->GetTextureBuffer(0, srcBuffer, pitchXBytes))
+			if (void* srcBuffer = nullptr; backTex->GetTextureBuffer(0, srcBuffer, pitchXBytes))
 				memset(srcBuffer, 0x0, pitchXBytes * texInfo.sizeY);
 
 			backTex->Unlock();
@@ -159,8 +158,8 @@ namespace wog
 		zCTextureInfo texInfo;
 		texInfo.numMipMap = 1;
 		texInfo.texFormat = zTRnd_TextureFormat::zRND_TEX_FORMAT_BGRA_8888;
-		_scaleFormat = formatBGRA8888;
-		correctPow2(texInfo.sizeX = _size[0], texInfo.sizeY = _size[1]);
+		scaleFormat = formatBGRA8888;
+		correctPow2(texInfo.sizeX = size[0], texInfo.sizeY = size[1]);
 
 		if (backTex->Lock(0))
 		{
@@ -168,13 +167,13 @@ namespace wog
 			backTex->Unlock();
 		}
 
-		if (texInfo.sizeX != _size[0] || texInfo.sizeY != _size[1])
+		if (texInfo.sizeX != size[0] || texInfo.sizeY != size[1])
 		{
-			texInfo.sizeX = _size[0];
-			texInfo.sizeY = _size[1];
+			texInfo.sizeX = size[0];
+			texInfo.sizeY = size[1];
 
-			_texConverter = zrenderer->CreateTextureConvert();
-			_texConverter->SetTextureInfo(texInfo);
+			texConverter = zrenderer->CreateTextureConvert();
+			texConverter->SetTextureInfo(texInfo);
 		}
 	}
 
