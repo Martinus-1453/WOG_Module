@@ -1,5 +1,6 @@
 #include "Browser.h"
 
+#include "ClientInit.h"
 #include "event/ClientEventHandlers.h"
 #include "function/ClientFunctions.h"
 #include "function/SharedFunctions.h"
@@ -225,16 +226,19 @@ namespace wog
 
 	std::optional<CefBrowserHost::MouseButtonType> getMouseType(const Int key)
 	{
-		if (key == MOUSE_BUTTONLEFT)
+		if (key == ClientConstants::MOUSE_LMB)
 		{
+			SH_F->print("LMB");
 			return std::make_optional(CefBrowserHost::MouseButtonType::MBT_LEFT);
 		}
-		if (key == MOUSE_BUTTONMID)
+		if (key == ClientConstants::MOUSE_MMB)
 		{
+			SH_F->print("MMB");
 			return  std::make_optional(CefBrowserHost::MouseButtonType::MBT_MIDDLE);
 		}
-		if (key == MOUSE_BUTTONRIGHT)
+		if (key == ClientConstants::MOUSE_RMB)
 		{
+			SH_F->print("RMB");
 			return std::make_optional(CefBrowserHost::MouseButtonType::MBT_RIGHT);
 		}
 		return std::nullopt;
@@ -256,18 +260,19 @@ namespace wog
 			mouseFlags[type.value()] = isUp;
 			browser->GetHost()->SendMouseClickEvent(mouseEvent, type.value(), isUp, 1);
 		}
-
-		browser->GetHost()->SetFocus(true);
 	}
 
 	void Browser::sendMouseMoveEvent(const Int x, const Int y)
 	{
 		if (!browser) return;
 
+		auto [cursorX, cursorY] = C_F->getCursorPositionPx().toTuple();
+		auto [windowX, windowY] = getPositionPx().toTuple();
+
 		CefMouseEvent mouseEvent;
 		auto& [mouseX, mouseY] = mousePos;
-		mouseX = x;
-		mouseY = y;
+		mouseX = cursorX - windowX;
+		mouseY = cursorY - windowY;
 
 		mouseEvent.x = mouseX;
 		mouseEvent.y = mouseY;
@@ -281,9 +286,8 @@ namespace wog
 
 		browser->GetHost()->SendMouseMoveEvent(mouseEvent, false);
 
-
-
-		SH_F->print("X: " + std::to_string(mousePos.first) + " Y: " + std::to_string(mousePos.second));
+		SH_F->print("cursorX: " + std::to_string(cursorX) + " cursorY: " + std::to_string(cursorY));
+		SH_F->print("windowX: " + std::to_string(windowX) + " windowY: " + std::to_string(windowY));
 	}
 
 	void Browser::sendMouseWheelEvent(const Int z)
