@@ -1,5 +1,9 @@
 #include "Browser.h"
 
+#include "event/ClientEventHandlers.h"
+#include "function/ClientFunctions.h"
+#include "function/SharedFunctions.h"
+
 const unsigned long formatBGRA8888 = 7;
 
 char* resizeTexture(int* srcsize, int dstx, int dsty, void* src, void* dest, unsigned long fmt)
@@ -9,7 +13,7 @@ char* resizeTexture(int* srcsize, int dstx, int dsty, void* src, void* dest, uns
 
 namespace wog
 {
-	Browser::Browser(int x, int y, int width, int height, const char* url) :
+	Browser::Browser(const int x, const int y, const int width, const int height, const char* url) :
 		View(x, y, width, height)
 	{
 		texConverter = nullptr;
@@ -30,19 +34,42 @@ namespace wog
 		browserSettings.universal_access_from_file_urls = STATE_ENABLED;
 
 		CefBrowserHost::CreateBrowserSync(windowInfo, this, url, browserSettings, nullptr, nullptr);
+		objectList.push_back(this);
+
+		g2o::ClientEventHandlers::onMouseClickHandler.emplace_back([this](const Int key)
+			{
+				sendMouseClickEvent(key, false);
+			});
+
+		g2o::ClientEventHandlers::onMouseReleaseHandler.emplace_back([this](const Int key)
+			{
+				sendMouseClickEvent(key, true);
+			});
+
+		g2o::ClientEventHandlers::onMouseMoveHandler.emplace_back([this](const Int x, const Int y)
+			{
+				sendMouseMoveEvent(x, y);
+			});
+		g2o::ClientEventHandlers::onMouseWheelHandler.emplace_back([this](const Int z)
+			{
+				sendMouseWheelEvent(z);
+			});
+
+		C_F->setCursorVisible(true);
 	}
 
 	Browser::~Browser()
 	{
 		browser = nullptr;
+		auto result = std::ranges::remove(objectList, this);
+		objectList.erase(result.begin(), result.end());
 	}
 
-	bool Browser::setUrl(const char* url)
+	bool Browser::setUrl(const char* url) const
 	{
-		if (!browser)
-			return false;
+		if (!browser) return false;
 
-		CefRefPtr<CefFrame> frame = browser->GetMainFrame();
+		const CefRefPtr<CefFrame> frame = browser->GetMainFrame();
 
 		//TODO: optional POST data
 		frame->LoadURL(url);
@@ -50,14 +77,22 @@ namespace wog
 		return true;
 	}
 
-	const char* Browser::getUrl()
+	const char* Browser::getUrl() const
 	{
-		if (!browser)
-			return "";
+		if (!browser) return "";
 
-		CefRefPtr<CefFrame> frame = browser->GetMainFrame();
+		const CefRefPtr<CefFrame> frame = browser->GetMainFrame();
 
 		return frame->GetURL().ToString().c_str();
+	}
+
+	void Browser::processKeyboardEvents(const CefKeyEvent& keyEvent)
+	{
+		for (auto&& browserObject : objectList)
+		{
+			if (browserObject->browser)
+				browserObject->browser->GetHost()->SendKeyEvent(keyEvent);
+		}
 	}
 
 	CefRefPtr<CefRenderHandler> Browser::GetRenderHandler()
@@ -78,9 +113,9 @@ namespace wog
 			rect = { 0, 0, 1, 1 };
 	}
 
-	void Browser::OnAfterCreated(CefRefPtr<CefBrowser> browser)
+	void Browser::OnAfterCreated(const CefRefPtr<CefBrowser> browser)
 	{
-		browser = browser;
+		this->browser = browser;
 	}
 
 	void Browser::OnBeforeClose(CefRefPtr<CefBrowser> browser)
@@ -89,7 +124,7 @@ namespace wog
 		browser = nullptr;
 	}
 
-	void Browser::OnPaint(CefRefPtr<CefBrowser> browser, CefRenderHandler::PaintElementType type, const CefRenderHandler::RectList& dirtyRects, const void* buffer, int width, int height)
+	void Browser::OnPaint(CefRefPtr<CefBrowser> browser, PaintElementType type, const RectList& dirtyRects, const void* buffer, int width, const int height)
 	{
 		if (isClosing)
 			return;
@@ -157,7 +192,7 @@ namespace wog
 
 		zCTextureInfo texInfo;
 		texInfo.numMipMap = 1;
-		texInfo.texFormat = zTRnd_TextureFormat::zRND_TEX_FORMAT_BGRA_8888;
+		texInfo.texFormat = zRND_TEX_FORMAT_BGRA_8888;
 		scaleFormat = formatBGRA8888;
 		correctPow2(texInfo.sizeX = size[0], texInfo.sizeY = size[1]);
 
@@ -186,5 +221,80 @@ namespace wog
 
 		xsize = xdim;
 		ysize = ydim;
+	}
+
+	std::optional<CefBrowserHost::MouseButtonType> getMouseType(const Int key)
+	{
+		if (key == MOUSE_BUTTONLEFT)
+		{
+			return std::make_optional(CefBrowserHost::MouseButtonType::MBT_LEFT);
+		}
+		if (key == MOUSE_BUTTONMID)
+		{
+			return  std::make_optional(CefBrowserHost::MouseButtonType::MBT_MIDDLE);
+		}
+		if (key == MOUSE_BUTTONRIGHT)
+		{
+			return std::make_optional(CefBrowserHost::MouseButtonType::MBT_RIGHT);
+		}
+		return std::nullopt;
+	}
+
+	void Browser::sendMouseClickEvent(const Int key, const bool isUp)
+	{
+		if (!browser) return;
+
+		CefMouseEvent mouseEvent;
+		const auto type = getMouseType(key);
+
+		auto [mouseX, mouseY] = mousePos;
+		mouseEvent.x = mouseX;
+		mouseEvent.y = mouseY;
+
+		if (type.has_value())
+		{
+			mouseFlags[type.value()] = isUp;
+			browser->GetHost()->SendMouseClickEvent(mouseEvent, type.value(), isUp, 1);
+		}
+
+		browser->GetHost()->SetFocus(true);
+	}
+
+	void Browser::sendMouseMoveEvent(const Int x, const Int y)
+	{
+		if (!browser) return;
+
+		CefMouseEvent mouseEvent;
+		auto& [mouseX, mouseY] = mousePos;
+		mouseX = x;
+		mouseY = y;
+
+		mouseEvent.x = mouseX;
+		mouseEvent.y = mouseY;
+
+		if (mouseFlags[CefBrowserHost::MouseButtonType::MBT_LEFT])
+			mouseEvent.modifiers |= EVENTFLAG_LEFT_MOUSE_BUTTON;
+		if (mouseFlags[CefBrowserHost::MouseButtonType::MBT_MIDDLE])
+			mouseEvent.modifiers |= EVENTFLAG_MIDDLE_MOUSE_BUTTON;
+		if (mouseFlags[CefBrowserHost::MouseButtonType::MBT_RIGHT])
+			mouseEvent.modifiers |= EVENTFLAG_RIGHT_MOUSE_BUTTON;
+
+		browser->GetHost()->SendMouseMoveEvent(mouseEvent, false);
+
+
+
+		SH_F->print("X: " + std::to_string(mousePos.first) + " Y: " + std::to_string(mousePos.second));
+	}
+
+	void Browser::sendMouseWheelEvent(const Int z)
+	{
+		if (!browser) return;
+
+		CefMouseEvent mouseEvent;
+		auto [mouseX, mouseY] = mousePos;
+		mouseEvent.x = mouseX;
+		mouseEvent.y = mouseY;
+
+		browser->GetHost()->SendMouseWheelEvent(mouseEvent, 0, z * 100);
 	}
 }

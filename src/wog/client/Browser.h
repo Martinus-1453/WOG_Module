@@ -1,5 +1,7 @@
 #ifndef WOG_CLIENT_BROWSER_H
 #define WOG_CLIENT_BROWSER_H
+#include <array>
+
 #include "WogHeader.h"
 #include "View.h"
 #include "include/cef_app.h"
@@ -16,9 +18,11 @@ namespace wog
 		Browser(int x, int y, int width, int height, const char* url);
 		~Browser() override;
 
-		bool setUrl(const char* url);
+		bool setUrl(const char* url) const;
 
-		const char* getUrl();
+		const char* getUrl() const;
+
+		static void processKeyboardEvents(const CefKeyEvent& keyEvent);
 
 	protected:
 		CefRefPtr<CefRenderHandler> GetRenderHandler() override;
@@ -33,13 +37,19 @@ namespace wog
 		void clearBuffer() const;
 		void initTextureFormat();
 		void correctPow2(int& xsize, int& ysize);
+		void sendMouseClickEvent(Int key, bool isUp);
+		void sendMouseMoveEvent(Int x, Int y);
+		void sendMouseWheelEvent(Int z);
 
 		zCTextureConvert* texConverter;
 		unsigned long scaleFormat;
 
 		CefRefPtr<CefBrowser> browser;
 		bool isClosing;
-		
+
+		static inline std::vector<Browser*> objectList;
+		std::array<bool, 3> mouseFlags{false};
+		std::pair<Int, Int> mousePos{0, 0};
 	};
 }
 

@@ -52,14 +52,14 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	});
 
 	//CEF - Enum Texture Formats
-	zCRnd_D3D* render_d3d = reinterpret_cast<zCRnd_D3D*>(zrenderer);
-	LPD3DENUMPIXELFORMATSCALLBACK textureCallback = (LPD3DENUMPIXELFORMATSCALLBACK)0x00647780;
-	int StartFormat;
+	auto render_d3d = reinterpret_cast<zCRnd_D3D*>(zrenderer);
+	auto textureCallback = reinterpret_cast<LPD3DENUMPIXELFORMATSCALLBACK>(0x00647780);
+	int startFormat;
 
-	render_d3d->xd3d_pd3dDevice7->EnumTextureFormats(textureCallback, static_cast<LPVOID>(&StartFormat));
+	zCRnd_D3D::xd3d_pd3dDevice7->EnumTextureFormats(textureCallback, &startFormat);
 
 	//CEF - Test
-	testView = new wog::Browser(0, 0, 2196, 2196, "https://google.com/");
+	testView = new wog::Browser(0, 0, 2196*2, 2196*2, "https://google.com/");
 	testView->setVisible(true);
 
 	return SQ_OK;
