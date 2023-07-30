@@ -186,9 +186,19 @@ namespace wog
 			void* srcBuffer = nullptr;
 			int pitchXBytes = 0;
 
-			// Copy CEF frame to srcBuffer buffer
+			// Copy CEF frame to texture buffer
 			if (backTex->GetTextureBuffer(0, srcBuffer, pitchXBytes))
-				memcpy(srcBuffer, buffer, pitchXBytes * height);
+			{
+				char* textureBuffer = reinterpret_cast<char*>(srcBuffer);
+				char* cefBuffer = reinterpret_cast<char*>(const_cast<void*>(buffer));
+
+				for (auto i = 0; i < height; ++i)
+				{
+					memcpy(textureBuffer, cefBuffer, width * 4);
+					textureBuffer += pitchXBytes;
+					cefBuffer += width * 4;
+				}
+			}
 
 			backTex->Unlock();
 		}
@@ -210,19 +220,13 @@ namespace wog
 
 	void Browser::initTexture()
 	{
-		backTex = zrenderer->CreateTexture();
-
 		zCTextureInfo texInfo;
 		texInfo.numMipMap = 1;
 		texInfo.texFormat = zRND_TEX_FORMAT_BGRA_8888;
-		scaleFormat = formatBGRA8888;
 		correctPow2(texInfo.sizeX = size[0], texInfo.sizeY = size[1]);
 
-		if (backTex->Lock(0))
-		{
-			backTex->SetTextureInfo(texInfo);
-			backTex->Unlock();
-		}
+		backTex = zrenderer->CreateTexture();
+		backTex->SetTextureInfo(texInfo);
 
 		setUV(0.0f, 0.0f, size[0] / texInfo.sizeX, size[1] / texInfo.sizeY);
 	}

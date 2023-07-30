@@ -41,8 +41,6 @@ namespace wog
 		void sendMouseMoveEvent(Int x, Int y);
 		void sendMouseWheelEvent(Int z);
 
-		unsigned long scaleFormat;
-
 		CefRefPtr<CefBrowser> browser;
 		bool isClosing;
 
