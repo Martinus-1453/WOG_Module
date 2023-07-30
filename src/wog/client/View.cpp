@@ -8,10 +8,12 @@ namespace wog
 		size(screen->nax(width), screen->nay(height))
 	{
 		//Create vertices
-		vertices.emplace_back(position, 0.0f, zVEC2(0.0f, 0.0f), zCOLOR(255, 255, 255, 255));
-		vertices.emplace_back(zVEC2(position[0] + size[0], position[1]), 0.0f, zVEC2(1.0f, 0.0f), zCOLOR(255, 255, 255, 255));
-		vertices.emplace_back(position + size, 0.0f, zVEC2(1.0f, 1.0f), zCOLOR(255, 255, 255, 255));
-		vertices.emplace_back(zVEC2(position[0], position[1] + size[1]), 0.0f, zVEC2(0.0f, 1.0f), zCOLOR(255, 255, 255, 255));
+		zVEC2 half = zVEC2(0.5f, 0.5f); //Fix for DirectX half-pixel bug
+
+		vertices.emplace_back(position - half, 0.0f, zVEC2(0.0f, 0.0f), zCOLOR(255, 255, 255, 255));
+		vertices.emplace_back(zVEC2(position[0] + size[0], position[1]) - half, 0.0f, zVEC2(1.0f, 0.0f), zCOLOR(255, 255, 255, 255));
+		vertices.emplace_back(position + size - half, 0.0f, zVEC2(1.0f, 1.0f), zCOLOR(255, 255, 255, 255));
+		vertices.emplace_back(zVEC2(position[0], position[1] + size[1]) - half, 0.0f, zVEC2(0.0f, 1.0f), zCOLOR(255, 255, 255, 255));
 	}
 
 	void View::top()
