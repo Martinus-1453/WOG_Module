@@ -35,13 +35,12 @@ namespace wog
 
 	private:
 		void clearBuffer() const;
-		void initTextureFormat();
+		void initTexture();
 		void correctPow2(int& xsize, int& ysize);
 		void sendMouseClickEvent(Int key, bool isUp);
 		void sendMouseMoveEvent(Int x, Int y);
 		void sendMouseWheelEvent(Int z);
 
-		zCTextureConvert* texConverter;
 		unsigned long scaleFormat;
 
 		CefRefPtr<CefBrowser> browser;

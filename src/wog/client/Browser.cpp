@@ -5,6 +5,8 @@
 #include "function/ClientFunctions.h"
 #include "function/SharedFunctions.h"
 
+#include <fstream>
+
 const unsigned long formatBGRA8888 = 7;
 
 char* resizeTexture(int* srcsize, int dstx, int dsty, void* src, void* dest, unsigned long fmt)
@@ -12,17 +14,66 @@ char* resizeTexture(int* srcsize, int dstx, int dsty, void* src, void* dest, uns
 	XCALL(0x00659670);
 }
 
+void SaveBrowserImage(const char* filename, const void* buffer, int width, int height)
+{
+	// Populate the bitmap info header.
+	BITMAPINFOHEADER info;
+	info.biSize = sizeof(BITMAPINFOHEADER);
+	info.biWidth = width;
+	info.biHeight = -height;  // minus means top-down bitmap
+	info.biPlanes = 1;
+	info.biBitCount = 32;
+	info.biCompression = BI_RGB;  // no compression
+	info.biSizeImage = 0;
+	info.biXPelsPerMeter = 1;
+	info.biYPelsPerMeter = 1;
+	info.biClrUsed = 0;
+	info.biClrImportant = 0;
+
+	// Create the bitmap and retrieve the bit buffer.
+	HDC screen_dc = GetDC(NULL);
+	void* bits = NULL;
+	HBITMAP bitmap = CreateDIBSection(screen_dc, reinterpret_cast<BITMAPINFO*>(&info), DIB_RGB_COLORS, &bits, NULL, 0);
+	ReleaseDC(NULL, screen_dc);
+
+	// Read the image into the bit buffer.
+	if (bitmap == NULL)
+		return;
+
+	memcpy(bits, buffer, width * height * 4);
+
+	// Populate the bitmap file header.
+	BITMAPFILEHEADER file;
+	file.bfType = 0x4d42;
+	file.bfSize = sizeof(BITMAPFILEHEADER);
+	file.bfReserved1 = 0;
+	file.bfReserved2 = 0;
+	file.bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
+
+	// Write the bitmap to file.
+	HANDLE file_handle = CreateFile(filename, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
+	if (file_handle != INVALID_HANDLE_VALUE)
+	{
+		DWORD bytes_written = 0;
+		WriteFile(file_handle, &file, sizeof(file), &bytes_written, 0);
+		WriteFile(file_handle, &info, sizeof(info), &bytes_written, 0);
+		WriteFile(file_handle, bits, width * height * 4, &bytes_written, 0);
+		CloseHandle(file_handle);
+	}
+
+	DeleteObject(bitmap);
+}
+
 namespace wog
 {
 	Browser::Browser(const int x, const int y, const int width, const int height, const char* url) :
 		View(x, y, width, height)
 	{
-		texConverter = nullptr;
 		isClosing = false;
 
 		//Setup texture
 		alphafunc = zRND_ALPHA_FUNC_BLEND;
-		initTextureFormat();
+		initTexture();
 		clearBuffer();
 
 		//Setup Cef
@@ -130,46 +181,16 @@ namespace wog
 		if (isClosing)
 			return;
 
-		if (!texConverter)
+		if (backTex->Lock(0))
 		{
-			if (backTex->Lock(0))
-			{
-				void* srcBuffer = nullptr;
-				int pitchXBytes = 0;
+			void* srcBuffer = nullptr;
+			int pitchXBytes = 0;
 
-				// Copy CEF frame to srcBuffer buffer
-				if (backTex->GetTextureBuffer(0, srcBuffer, pitchXBytes))
-					memcpy(srcBuffer, buffer, pitchXBytes * height);
+			// Copy CEF frame to srcBuffer buffer
+			if (backTex->GetTextureBuffer(0, srcBuffer, pitchXBytes))
+				memcpy(srcBuffer, buffer, pitchXBytes * height);
 
-				backTex->Unlock();
-			}
-		}
-		else
-		{
-			if (texConverter->Lock(0))
-			{
-				// Copy CEF frame to texConverter buffer
-				void* srcBuffer = nullptr;
-				int pitchXBytes = 0;
-
-				if (texConverter->GetTextureBuffer(0, srcBuffer, pitchXBytes))
-					memcpy(srcBuffer, buffer, pitchXBytes * height);
-
-				// Copy scaled image to backTex
-				backTex->Lock(0);
-
-				void* dstBuffer = nullptr;
-				if (backTex->GetTextureBuffer(0, dstBuffer, pitchXBytes))
-				{
-					int srcSize[] = { texConverter->GetTextureInfo().sizeX, texConverter->GetTextureInfo().sizeY };
-					const int dstSize[] = { backTex->GetTextureInfo().sizeX, backTex->GetTextureInfo().sizeY };
-
-					resizeTexture(srcSize, dstSize[VX], dstSize[VY], srcBuffer, dstBuffer, scaleFormat);
-				}
-
-				texConverter->Unlock();
-				backTex->Unlock();
-			}
+			backTex->Unlock();
 		}
 	}
 	void Browser::clearBuffer() const
@@ -187,7 +208,7 @@ namespace wog
 		}
 	}
 
-	void Browser::initTextureFormat()
+	void Browser::initTexture()
 	{
 		backTex = zrenderer->CreateTexture();
 
@@ -203,14 +224,7 @@ namespace wog
 			backTex->Unlock();
 		}
 
-		if (texInfo.sizeX != size[0] || texInfo.sizeY != size[1])
-		{
-			texInfo.sizeX = size[0];
-			texInfo.sizeY = size[1];
-
-			texConverter = zrenderer->CreateTextureConvert();
-			texConverter->SetTextureInfo(texInfo);
-		}
+		setUV(0.0f, 0.0f, size[0] / texInfo.sizeX, size[1] / texInfo.sizeY);
 	}
 
 	void Browser::correctPow2(int& xsize, int& ysize)

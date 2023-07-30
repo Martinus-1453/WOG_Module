@@ -79,6 +79,19 @@ namespace wog
 		InsertBack(filename);
 	}
 
+	void View::setUV(float x, float y, float width, float height)
+	{
+		uv[0] = x;
+		uv[1] = y;
+		uv[2] = width;
+		uv[3] = height;
+
+		vertices[0].uv = { x, y };
+		vertices[1].uv = { x + width, y };
+		vertices[2].uv = { x + width, y + height };
+		vertices[3].uv = { x, y + height };
+	}
+
 	g2o::Color View::getColor() const
 	{
 		g2o::Color color;
@@ -141,6 +154,11 @@ namespace wog
 			return "";
 
 		return backTex->GetObjectName().ToChar();
+	}
+
+	zVEC4 View::getUV() const
+	{
+		return uv;
 	}
 
 	void View::Blit()

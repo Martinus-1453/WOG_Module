@@ -21,6 +21,7 @@ namespace wog
 		void setSizePx(int width, int height);
 		void setVisible(bool visible);
 		void setFilename(const char* filename);
+		void setUV(float x, float y, float width, float height);
 
 		g2o::Color getColor() const;
 		int getAlpha() const;
@@ -30,6 +31,7 @@ namespace wog
 		g2o::Size2d getSizePx();
 		bool getVisible() const;
 		const char* getFilename() const;
+		zVEC4 getUV() const;
 
 	protected:
 		void Blit() override;
@@ -38,6 +40,7 @@ namespace wog
 		std::vector<zTRndSimpleVertex> vertices;
 		zVEC2 position;
 		zVEC2 size;
+		zVEC4 uv;
 	};
 }
 
