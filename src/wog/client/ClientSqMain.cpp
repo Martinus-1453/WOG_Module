@@ -59,7 +59,7 @@ extern "C" SQRESULT SQRAT_API sqmodule_load(HSQUIRRELVM vm, HSQAPI api)
 	zCRnd_D3D::xd3d_pd3dDevice7->EnumTextureFormats(textureCallback, &startFormat);
 
 	//CEF - Test
-	testView = new wog::Browser(0, 0, 2196*2, 2196*2, "https://google.com/");
+	testView = new wog::Browser(0, 0, 2196*2, 2196*2, "file:///C:/ui/index.html");
 	testView->setVisible(true);
 
 	return SQ_OK;

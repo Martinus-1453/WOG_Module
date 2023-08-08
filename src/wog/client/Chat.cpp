@@ -55,6 +55,13 @@ namespace wog
 				}
 				return;
 			}
+			if (key == ClientConstants::KEY_ESCAPE)
+			{
+				if(C_F->chatInputIsOpen())
+				{
+					closeChat();
+				}
+			}
 		});
 
 		ClientEventHandlers::onPlayerMessageHandler.emplace_back([this](Int id, Int r, Int g, Int b, String message)

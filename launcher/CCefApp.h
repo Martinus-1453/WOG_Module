@@ -6,13 +6,14 @@
 
 class CCefApp : public CefApp, protected CefRenderProcessHandler
 {
-	IMPLEMENT_REFCOUNTING(CCefApp);
 public:
 	CCefApp() {}
 
 protected:
-	virtual CefRefPtr<CefRenderProcessHandler> GetRenderProcessHandler() override;
-	virtual void OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context) override;
+	CefRefPtr<CefRenderProcessHandler> GetRenderProcessHandler() override;
+
+	void OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context) override;
+	bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefProcessId source_process, CefRefPtr<CefProcessMessage> message) override;
 
 private:
 	static void triggerEvent(CefRefPtr<CefFrame> frame, const CefV8ValueList& arguments);
@@ -20,6 +21,9 @@ private:
 
 	static CefRefPtr<CefProcessMessage> createMessage(const char* name, const CefV8ValueList& arguments);
 	static std::string argumentToString(CefRefPtr<CefV8Value> cefValue);
+
+	IMPLEMENT_REFCOUNTING(CCefApp);
+	DISALLOW_COPY_AND_ASSIGN(CCefApp);
 };
 
 #endif

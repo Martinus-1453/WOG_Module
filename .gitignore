@@ -17,3 +17,7 @@ desktop.ini
 src/scripts/.idea/
 
 dependencies/nonut/
+
+launcher/out/
+
+launcher/.vs/

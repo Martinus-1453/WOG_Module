@@ -6,6 +6,7 @@
 #include "function/SharedFunctions.h"
 
 #include <fstream>
+#include <include/wrapper/cef_message_router.h>
 
 const unsigned long formatBGRA8888 = 7;
 
@@ -67,7 +68,7 @@ void SaveBrowserImage(const char* filename, const void* buffer, int width, int h
 namespace wog
 {
 	Browser::Browser(const int x, const int y, const int width, const int height, const char* url) :
-		View(x, y, width, height)
+		View(x, y, width, height), m_resourceManager(new CefResourceManager)
 	{
 		isClosing = false;
 
@@ -147,6 +148,30 @@ namespace wog
 		}
 	}
 
+	static void blabla(CefRefPtr<CefFrame> frame)
+	{
+		auto msg = CefProcessMessage::Create("chleb");
+		frame->SendProcessMessage(PID_BROWSER, msg);
+	}
+
+	bool Browser::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefProcessId source_process, CefRefPtr<CefProcessMessage> message)
+	{
+		if (message->GetName() == "chleb")
+		{
+			if (!CefCurrentlyOn(TID_IO)) {
+				// Execute on the browser IO thread.
+				CefPostTask(TID_IO,base::Bind(&blabla, frame));
+				return true;
+			}
+			//auto str = CefV8Value::CreateString("bep!");
+			//auto context = frame->GetV8Context();
+			//context->GetGlobal()->SetValue("chleb", str, V8_PROPERTY_ATTRIBUTE_NONE);
+
+			return true;
+		}
+		return false;
+	}
+
 	CefRefPtr<CefRenderHandler> Browser::GetRenderHandler()
 	{
 		return this;
@@ -155,6 +180,28 @@ namespace wog
 	CefRefPtr<CefLifeSpanHandler> Browser::GetLifeSpanHandler()
 	{
 		return this;
+	}
+
+	CefRefPtr<CefResourceHandler> Browser::GetResourceHandler(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+		CefRefPtr<CefRequest> request)
+	{
+		return m_resourceManager->GetResourceHandler(browser, frame, request);
+	}
+
+	CefRefPtr<CefResourceRequestHandler> Browser::GetResourceRequestHandler(CefRefPtr<CefBrowser> cefBrowser,
+		CefRefPtr<CefFrame> cefFrame, CefRefPtr<CefRequest> cefRequest, bool cond, bool cond1,
+		const CefString& cefStringUtf16, bool& cond2)
+	{
+		return this;
+	}
+
+	CefRefPtr<CefRequestHandler> Browser::GetRequestHandler()
+	{ return this; }
+
+	cef_return_value_t Browser::OnBeforeResourceLoad(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+	                                                 CefRefPtr<CefRequest> request, CefRefPtr<CefRequestCallback> callback)
+	{
+		return m_resourceManager->OnBeforeResourceLoad(browser, frame, request, callback);
 	}
 
 	void Browser::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect)
@@ -203,6 +250,7 @@ namespace wog
 			backTex->Unlock();
 		}
 	}
+
 	void Browser::clearBuffer() const
 	{
 		if (backTex->Lock(0))
@@ -303,9 +351,6 @@ namespace wog
 			mouseEvent.modifiers |= EVENTFLAG_RIGHT_MOUSE_BUTTON;
 
 		browser->GetHost()->SendMouseMoveEvent(mouseEvent, false);
-
-		SH_F->print("cursorX: " + std::to_string(cursorX) + " cursorY: " + std::to_string(cursorY));
-		SH_F->print("windowX: " + std::to_string(windowX) + " windowY: " + std::to_string(windowY));
 	}
 
 	void Browser::sendMouseWheelEvent(const Int z)

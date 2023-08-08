@@ -9,9 +9,26 @@ void CCefApp::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame
 {
 	CefRefPtr<CefV8Value> global = context->GetGlobal();
 	CefRefPtr<CefV8Value> g2o = CefV8Value::CreateObject(nullptr, nullptr);
+    auto str = CefV8Value::CreateString("BEP!");
 
     bindFunction(g2o, frame, "triggerEvent", CCefApp::triggerEvent);
 	global->SetValue("g2o", g2o, V8_PROPERTY_ATTRIBUTE_NONE);
+
+    auto msg = CefProcessMessage::Create("chleb");
+    frame->SendProcessMessage(PID_BROWSER, msg);
+}
+
+bool CCefApp::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefProcessId source_process, CefRefPtr<CefProcessMessage> message)
+{
+    if (message->GetName() == "chleb")
+    {
+        auto str = CefV8Value::CreateString("bep!");
+        frame->GetV8Context()->GetGlobal()->SetValue("chleb", str, V8_PROPERTY_ATTRIBUTE_NONE);
+
+        return true;
+    }
+
+    return false;
 }
 
 void CCefApp::triggerEvent(CefRefPtr<CefFrame> frame, const CefV8ValueList& arguments)
