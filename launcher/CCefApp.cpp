@@ -1,5 +1,13 @@
 #include "CCefApp.h"
 
+#include <iostream>
+#include <include/cef_base.h>
+#include "include/cef_app.h"
+#include "include/cef_client.h"
+#include "include/cef_render_handler.h"
+#include "include/wrapper/cef_message_router.h"
+#include <include/wrapper/cef_resource_manager.h>
+
 CefRefPtr<CefRenderProcessHandler> CCefApp::GetRenderProcessHandler()
 {
 	return this;
@@ -10,6 +18,8 @@ void CCefApp::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame
 	CefRefPtr<CefV8Value> global = context->GetGlobal();
 	CefRefPtr<CefV8Value> g2o = CefV8Value::CreateObject(nullptr, nullptr);
     auto str = CefV8Value::CreateString("BEP!");
+    auto frameName = frame->GetName();
+    std::cout <<  "Framename: " << frameName << std::endl;
 
     bindFunction(g2o, frame, "triggerEvent", CCefApp::triggerEvent);
 	global->SetValue("g2o", g2o, V8_PROPERTY_ATTRIBUTE_NONE);
@@ -23,8 +33,10 @@ bool CCefApp::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<
     if (message->GetName() == "chleb")
     {
         auto str = CefV8Value::CreateString("bep!");
-        frame->GetV8Context()->GetGlobal()->SetValue("chleb", str, V8_PROPERTY_ATTRIBUTE_NONE);
-
+        auto context = frame->GetV8Context();
+        context->Enter();
+        context->GetGlobal()->SetValue("chleb", str, V8_PROPERTY_ATTRIBUTE_NONE);
+        context->Exit();
         return true;
     }
 

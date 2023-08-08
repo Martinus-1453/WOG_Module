@@ -91,6 +91,8 @@ namespace wog
 
 		g2o::ClientEventHandlers::onMouseClickHandler.emplace_back([this](const Int key)
 			{
+			auto msg = CefProcessMessage::Create("chleb");
+			browser->GetMainFrame()->SendProcessMessage(PID_BROWSER, msg);
 				sendMouseClickEvent(key, false);
 			});
 
@@ -148,27 +150,8 @@ namespace wog
 		}
 	}
 
-	static void blabla(CefRefPtr<CefFrame> frame)
-	{
-		auto msg = CefProcessMessage::Create("chleb");
-		frame->SendProcessMessage(PID_BROWSER, msg);
-	}
-
 	bool Browser::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefProcessId source_process, CefRefPtr<CefProcessMessage> message)
 	{
-		if (message->GetName() == "chleb")
-		{
-			if (!CefCurrentlyOn(TID_IO)) {
-				// Execute on the browser IO thread.
-				CefPostTask(TID_IO,base::Bind(&blabla, frame));
-				return true;
-			}
-			//auto str = CefV8Value::CreateString("bep!");
-			//auto context = frame->GetV8Context();
-			//context->GetGlobal()->SetValue("chleb", str, V8_PROPERTY_ATTRIBUTE_NONE);
-
-			return true;
-		}
 		return false;
 	}
 
