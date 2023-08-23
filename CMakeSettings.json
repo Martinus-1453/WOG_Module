@@ -1,7 +1,7 @@
 ﻿{
   "configurations": [
     {
-      "name": "x86-Debug",
+      "name": "Client-Debug",
       "generator": "Ninja",
       "configurationType": "Debug",
       "buildRoot": "${projectDir}\\out\\build\\${name}",
@@ -9,22 +9,22 @@
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "msvc_x86" ],
       "cmakeToolchain": "windows-x86.cmake",
-      "buildCommandArgs": "wog-module-client"
+      "buildCommandArgs": "wog-module-client wog-module-launcher"
     },
     {
-      "name": "x86-Release",
+      "name": "Client-Release",
       "generator": "Ninja",
       "configurationType": "RelWithDebInfo",
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
-      "buildCommandArgs": "wog-module-client",
+      "buildCommandArgs": "wog-module-client wog-module-launcher",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "msvc_x86" ],
       "cmakeToolchain": "windows-x86.cmake"
     },
     {
-      "name": "x64-Debug",
+      "name": "Server-Debug",
       "generator": "Ninja",
       "configurationType": "Debug",
       "buildRoot": "${projectDir}\\out\\build\\${name}",
@@ -36,7 +36,7 @@
       "cmakeToolchain": "windows-x64.cmake"
     },
     {
-      "name": "x64-Release",
+      "name": "Server-Release",
       "generator": "Ninja",
       "configurationType": "RelWithDebInfo",
       "buildRoot": "${projectDir}\\out\\build\\${name}",

@@ -14,6 +14,8 @@ target_link_libraries(wog-module-client PUBLIC Union)
 target_link_libraries(wog-module-client PUBLIC Hacks)
 target_link_libraries(wog-module-client PUBLIC CEF)
 
+target_link_libraries(wog-module-launcher PUBLIC CEF)
+
 target_link_libraries(wog-module-server PUBLIC Squirrel)
 target_link_libraries(wog-module-server PUBLIC SqRat)
 target_link_libraries(wog-module-server PUBLIC NoNut_Server)

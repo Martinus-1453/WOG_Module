@@ -30,6 +30,16 @@ file(GLOB CLIENT_SRC
 	"src/wog/client/hooks/AppWndProc.cpp"
 )
 
+file(GLOB LAUNCHER_SRC
+	"src/launcher/CCefApp.cpp"
+	"src/launcher/CV8Handler.cpp"
+	"src/launcher/main.cpp"
+)
+
+file(GLOB LAUNCHER_SHARED_SRC
+	"src/launcher_shared/sample.cpp"
+)
+
 file(GLOB SERVER_SRC
 	"src/wog/server/ServerSqMain.cpp"
 
@@ -38,9 +48,15 @@ file(GLOB SERVER_SRC
 	"src/wog/server/db/Database.cpp"
 )
 
-add_library(wog-module-client SHARED ${SHARED_SRC})
+add_executable(wog-module-launcher WIN32 ${LAUNCHER_SRC})
+
+add_library(wog-module-client SHARED 
+	${SHARED_SRC}
+	${LAUNCHER_SHARED_SRC}
+)
 add_library(wog-module-server SHARED ${SHARED_SRC})
 
+target_sources(wog-module-launcher PRIVATE ${LAUNCHER_SHARED_SRC})
 target_sources(wog-module-client PRIVATE ${CLIENT_SRC})
 target_sources(wog-module-server PRIVATE ${SERVER_SRC})
 
@@ -60,8 +76,16 @@ target_include_directories(wog-module-client
 		"include/"
 	PRIVATE
 		"src/api/"
+		"src/launcher_shared"
 		"src/wog/client"
 		"src/wog/shared"
+)
+target_include_directories(wog-module-launcher
+	INTERFACE
+		"include/"
+	PRIVATE
+		"src/launcher"
+		"src/launcher_shared"
 )
 
 target_precompile_headers(wog-module-server
