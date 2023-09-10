@@ -1,109 +1,127 @@
 #include "CCefApp.h"
 
-#include <iostream>
 #include <include/cef_base.h>
 #include "include/cef_app.h"
 #include "include/cef_client.h"
-#include "include/cef_render_handler.h"
 #include "include/wrapper/cef_message_router.h"
-#include <include/wrapper/cef_resource_manager.h>
 
-CefRefPtr<CefRenderProcessHandler> CCefApp::GetRenderProcessHandler()
+#include "CefValueConverter.h"
+#include "LauncherEnums.h"
+
+namespace wog::launcher
 {
-	return this;
-}
-
-void CCefApp::OnContextCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefV8Context> context)
-{
-	CefRefPtr<CefV8Value> global = context->GetGlobal();
-	CefRefPtr<CefV8Value> g2o = CefV8Value::CreateObject(nullptr, nullptr);
-    auto str = CefV8Value::CreateString("BEP!");
-    auto frameName = frame->GetName();
-    std::cout <<  "Framename: " << frameName << std::endl;
-
-    bindFunction(g2o, frame, "triggerEvent", CCefApp::triggerEvent);
-	global->SetValue("g2o", g2o, V8_PROPERTY_ATTRIBUTE_NONE);
-
-    auto msg = CefProcessMessage::Create("chleb");
-    frame->SendProcessMessage(PID_BROWSER, msg);
-}
-
-bool CCefApp::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefProcessId source_process, CefRefPtr<CefProcessMessage> message)
-{
-    if (message->GetName() == "chleb")
+    CefRefPtr<CefRenderProcessHandler> CCefApp::GetRenderProcessHandler()
     {
-        auto str = CefV8Value::CreateString("bep!");
-        auto context = frame->GetV8Context();
+        return this;
+    }
+
+    void CCefApp::OnContextCreated(CefRefPtr<CefBrowser> browser, const CefRefPtr<CefFrame> frame,
+        const CefRefPtr<CefV8Context> context)
+    {
+    }
+
+    bool CCefApp::handleSetValueMessage(const CefRefPtr<CefFrame>& frame, const CefRefPtr<CefListValue>& arguments)
+    {
+        const auto objectPath = arguments->GetValue(0);
+        const auto context = frame->GetV8Context();
+
+        if (arguments->GetSize() < 2) return false;
+
+        if (objectPath->GetType() == VTYPE_STRING)
+        {
+            //TODO: CHANGE THIS TO BE MORE FLEXIBLE
+            const auto valueRef = context->GetGlobal()->GetValue(OBJECT_G2O);
+            const auto elementName = objectPath->GetString();
+            const auto value = arguments->GetValue(1);
+
+            context->Enter();
+            valueRef->SetValue(elementName, CefValueToCefV8Value(value), V8_PROPERTY_ATTRIBUTE_NONE);
+            context->Exit();
+
+            return true;
+        }
+
+        if (objectPath->GetType() != VTYPE_LIST) return false;
+
+        const auto objectPathList = arguments->GetList(0);
+        const auto objectPathSize = objectPathList->GetSize();
+
+        if (objectPathSize < 1) return false;
+
         context->Enter();
-        context->GetGlobal()->SetValue("chleb", str, V8_PROPERTY_ATTRIBUTE_NONE);
+
+        //TODO: CHANGE THIS TO BE MORE FLEXIBLE
+        auto valueRef = context->GetGlobal()->GetValue(OBJECT_G2O);
+
+        for (size_t i = 0; i < objectPathSize - 1; ++i)
+        {
+	        auto elementName = objectPathList->GetString(i);
+
+	        if (elementName.empty())
+	        {
+		        context->Exit();
+		        return false;
+	        }
+
+	        valueRef = valueRef->GetValue(elementName);
+
+	        if (valueRef == nullptr)
+	        {
+		        context->Exit();
+		        return false;
+	        }
+        }
+
+        const auto elementName = objectPathList->GetString(objectPathSize - 1);
+        const auto value = arguments->GetValue(1);
+
+        valueRef->SetValue(elementName, CefValueToCefV8Value(value), V8_PROPERTY_ATTRIBUTE_NONE);
         context->Exit();
         return true;
     }
 
-    return false;
-}
-
-void CCefApp::triggerEvent(CefRefPtr<CefFrame> frame, const CefV8ValueList& arguments)
-{
-    if (arguments.size() == 0)
-        return;
-
-    CefRefPtr<CefProcessMessage> message = createMessage("triggerEvent", arguments);
-	frame->GetBrowser()->GetMainFrame()->SendProcessMessage(PID_BROWSER, message);
-}
-
-void CCefApp::bindFunction(CefRefPtr<CefV8Value> context, CefRefPtr<CefFrame> frame, const char* name, JavascriptCallback callback)
-{
-    CefRefPtr<CV8Handler> handler = new CV8Handler(frame);
-    handler->Bind(name, callback);
-
-    CefRefPtr<CefV8Value> function = CefV8Value::CreateFunction(name, handler);
-
-    context->SetValue(name, function, V8_PROPERTY_ATTRIBUTE_NONE);
-}
-
-CefRefPtr<CefProcessMessage> CCefApp::createMessage(const char* name, const CefV8ValueList& arguments)
-{
-    // Create the process message
-    CefRefPtr<CefProcessMessage> message = CefProcessMessage::Create(name);
-    CefRefPtr<CefListValue> argList = message->GetArgumentList();
-
-    // Write the event name
-    argList->SetString(0, arguments[0]->GetStringValue());
-
-    // Write number of arguments
-    argList->SetInt(1, arguments.size() - 1);
-
-    // Write arguments
-    for (size_t i = 1; i < arguments.size(); ++i)
+    bool CCefApp::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, const CefRefPtr<CefFrame> frame,
+                                           CefProcessId sourceProcess, const CefRefPtr<CefProcessMessage> message)
     {
-        std::string argument = argumentToString(arguments[i]);
-        argList->SetString(i + 1, argument);
+	    const auto arguments = message->GetArgumentList();
+
+        if (!arguments || arguments->GetSize() == 0)
+        {
+            return false;
+        }
+
+		if (message->GetName() == MESSAGE_TYPE_CALLBACK)
+		{
+			const auto functionName = arguments->GetString(0);
+
+			const auto context = frame->GetV8Context();
+            context->Enter();
+
+			if (const auto functionObject = context->GetGlobal()->GetValue(OBJECT_G2O)->GetValue(functionName))
+            {
+                // TODO: IMPLEMENT EXECUTING JS FUNCTION
+            }
+            else
+            {
+                return false;
+            }
+
+            context->Exit();
+			return true;
+		}
+
+		if (message->GetName() == MESSAGE_TYPE_GETTER)
+		{
+            //TODO: IMPLEMENT GETTING VALUE FROM JS
+
+            return true;
+		}
+
+		if (message->GetName() == MESSAGE_TYPE_SETTER)
+		{
+            return handleSetValueMessage(frame, arguments);
+		}
+
+        return false;
     }
-
-    return message;
-}
-
-std::string CCefApp::argumentToString(CefRefPtr<CefV8Value> cefValue)
-{
-    std::stringstream conversionStream;
-    conversionStream.str("");
-    conversionStream.clear();
-
-    if (cefValue->IsBool())
-        conversionStream << cefValue->GetBoolValue();
-    else if (cefValue->IsDouble())
-        conversionStream << cefValue->GetDoubleValue();
-    else if (cefValue->IsInt())
-        conversionStream << cefValue->GetIntValue();
-    else if (cefValue->IsNull())
-        conversionStream << "nil";
-    else if (cefValue->IsString())
-        conversionStream << std::string(cefValue->GetStringValue());
-    else if (cefValue->IsUInt())
-        conversionStream << cefValue->GetUIntValue();
-    else
-        conversionStream << "unsupported type";
-
-    return conversionStream.str();
 }

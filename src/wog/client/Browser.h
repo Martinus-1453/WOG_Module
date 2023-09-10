@@ -58,7 +58,7 @@ namespace wog
 	private:
 		void clearBuffer() const;
 		void initTexture();
-		void correctPow2(int& xsize, int& ysize);
+		static void correctPow2(int& xSize, int& ySize);
 		void sendMouseClickEvent(Int key, bool isUp);
 		void sendMouseMoveEvent(Int x, Int y);
 		void sendMouseWheelEvent(Int z);

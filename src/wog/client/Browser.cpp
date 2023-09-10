@@ -91,8 +91,6 @@ namespace wog
 
 		g2o::ClientEventHandlers::onMouseClickHandler.emplace_back([this](const Int key)
 			{
-			auto msg = CefProcessMessage::Create("chleb");
-			browser->GetMainFrame()->SendProcessMessage(PID_BROWSER, msg);
 				sendMouseClickEvent(key, false);
 			});
 
@@ -220,7 +218,7 @@ namespace wog
 			if (backTex->GetTextureBuffer(0, srcBuffer, pitchXBytes))
 			{
 				char* textureBuffer = reinterpret_cast<char*>(srcBuffer);
-				char* cefBuffer = reinterpret_cast<char*>(const_cast<void*>(buffer));
+				const char* cefBuffer = reinterpret_cast<char*>(const_cast<void*>(buffer));
 
 				for (auto i = 0; i < height; ++i)
 				{
@@ -262,32 +260,30 @@ namespace wog
 		setUV(0.0f, 0.0f, size[0] / texInfo.sizeX, size[1] / texInfo.sizeY);
 	}
 
-	void Browser::correctPow2(int& xsize, int& ysize)
+	void Browser::correctPow2(int& xSize, int& ySize)
 	{
-		int xdim = 1, ydim = 1;
+		int xDim = 1;
+		int yDim = 1;
 
-		do { xdim <<= 1; } while (xdim < xsize);
-		do { ydim <<= 1; } while (ydim < ysize);
+		do { xDim <<= 1; } while (xDim < xSize);
+		do { yDim <<= 1; } while (yDim < ySize);
 
-		xsize = xdim;
-		ysize = ydim;
+		xSize = xDim;
+		ySize = yDim;
 	}
 
 	std::optional<CefBrowserHost::MouseButtonType> getMouseType(const Int key)
 	{
 		if (key == ClientConstants::MOUSE_LMB)
 		{
-			SH_F->print("LMB");
 			return std::make_optional(CefBrowserHost::MouseButtonType::MBT_LEFT);
 		}
 		if (key == ClientConstants::MOUSE_MMB)
 		{
-			SH_F->print("MMB");
 			return  std::make_optional(CefBrowserHost::MouseButtonType::MBT_MIDDLE);
 		}
 		if (key == ClientConstants::MOUSE_RMB)
 		{
-			SH_F->print("RMB");
 			return std::make_optional(CefBrowserHost::MouseButtonType::MBT_RIGHT);
 		}
 		return std::nullopt;

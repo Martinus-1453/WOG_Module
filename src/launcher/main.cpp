@@ -6,8 +6,8 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdShow, int nCmdShow)
 {
     // Load CEF
-    CefMainArgs main_args(hInstance);
-    CefRefPtr<CCefApp> app { new CCefApp };
+    const CefMainArgs mainArgs(hInstance);
+    const CefRefPtr app { new wog::launcher::CCefApp };
 
-    return CefExecuteProcess(main_args, app, nullptr);
+    return CefExecuteProcess(mainArgs, app, nullptr);
 }

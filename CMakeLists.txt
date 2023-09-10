@@ -37,7 +37,8 @@ file(GLOB LAUNCHER_SRC
 )
 
 file(GLOB LAUNCHER_SHARED_SRC
-	"src/launcher_shared/sample.cpp"
+	"src/launcher_shared/LauncherEnums.cpp"
+	"src/launcher_shared/CefValueConverter.cpp"
 )
 
 file(GLOB SERVER_SRC
