@@ -30,11 +30,12 @@ namespace wog::launcher
         if (objectPath->GetType() == VTYPE_STRING)
         {
             //TODO: CHANGE THIS TO BE MORE FLEXIBLE
+            context->Enter();
+
             const auto valueRef = context->GetGlobal()->GetValue(OBJECT_G2O);
             const auto elementName = objectPath->GetString();
             const auto value = arguments->GetValue(1);
 
-            context->Enter();
             valueRef->SetValue(elementName, CefValueToCefV8Value(value), V8_PROPERTY_ATTRIBUTE_NONE);
             context->Exit();
 

@@ -32,6 +32,9 @@ namespace wog
 
 		static void processKeyboardEvents(const CefKeyEvent& keyEvent);
 
+		static inline std::vector<Browser*> objectList;
+		CefRefPtr<CefBrowser> browser;
+
 	protected:
 		CefRefPtr<CefRenderHandler> GetRenderHandler() override;
 		CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() override;
@@ -63,12 +66,10 @@ namespace wog
 		void sendMouseMoveEvent(Int x, Int y);
 		void sendMouseWheelEvent(Int z);
 
-		CefRefPtr<CefBrowser> browser;
 		bool isClosing;
 
 		CefRefPtr<CefResourceManager> m_resourceManager;
 
-		static inline std::vector<Browser*> objectList;
 		std::array<bool, 3> mouseFlags{false};
 		std::pair<Int, Int> mousePos{0, 0};
 	};

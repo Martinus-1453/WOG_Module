@@ -8,5 +8,14 @@ namespace wog::launcher
 	constexpr auto MESSAGE_TYPE_CALLBACK = "CALLBACK";
 	constexpr auto MESSAGE_TYPE_GETTER = "GETTER";
 	constexpr auto MESSAGE_TYPE_SETTER = "SETTER";
+
+	enum class MessageType
+	{
+		Callback,
+		Getter,
+		Setter,
+	};
+
+	const char* getMessageTypeName(MessageType type);
 }
 #endif // LAUNCHER_SHARED_LAUNCHERENUMS_H_

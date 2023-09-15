@@ -8,6 +8,8 @@
 #include <fstream>
 #include <include/wrapper/cef_message_router.h>
 
+#include "CefMessageFactory.h"
+
 const unsigned long formatBGRA8888 = 7;
 
 char* resizeTexture(int* srcsize, int dstx, int dsty, void* src, void* dest, unsigned long fmt)
@@ -91,6 +93,9 @@ namespace wog
 
 		g2o::ClientEventHandlers::onMouseClickHandler.emplace_back([this](const Int key)
 			{
+				const auto bep = CefValue::Create();
+				bep->SetString("bep");
+				launcher::CefMessageFactory(launcher::MessageType::Setter).setPath("chleb").setValue(bep).send();
 				sendMouseClickEvent(key, false);
 			});
 

@@ -17,6 +17,7 @@ file(GLOB SHARED_SRC
 )
 
 file(GLOB CLIENT_SRC
+	"src/launcher_shared/CefMessageFactory.cpp"
 	"src/wog/client/ClientSqMain.cpp"
 	"src/wog/client/32bitSurface.cpp"
 	"src/wog/client/Browser.cpp"
